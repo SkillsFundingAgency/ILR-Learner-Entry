@@ -1,0 +1,265 @@
+﻿<UserControl xmlns:LdFramControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.LdFramControls"  
+             x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.ucLearnerFundingAndMonitoring"
+             xmlns:IlrTypes="clr-namespace:ILR"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"             
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+             d:DesignHeight="500" d:DesignWidth="950"             
+             mc:Ignorable="d"
+             MinWidth="850"
+             ScrollViewer.CanContentScroll="True" 
+             ScrollViewer.VerticalScrollBarVisibility="Visible"
+             >
+    <UserControl.Resources>
+        <CommonConverters:StringIsEnabledConverter x:Key="IsEnabledConverter" />
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="5" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1" 
+              Grid.Column="0" 
+              Grid.ColumnSpan="4" Margin="0,0,-0.4,0.6" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition  />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="265"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <LdFramControls:ucLdFamList x:Name="LSFControl" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="100"  FamType="LSF" MaxItems="999" />
+                <LdFramControls:ucLdFamList x:Name="ALBControl" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" MinHeight="100"  FamType="ALB" MaxItems="999" />
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Is the aim workplace learning ? " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <CheckBox Grid.Row="1" Grid.Column="1"  IsChecked="{Binding Path=CurrentItem.WPL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" VerticalAlignment="Center"  HorizontalAlignment="Left" Margin="3" TabIndex="1"/>
+
+                <StackPanel Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Margin="3">
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" Style="{DynamicResource StandardTextBlockStyle}" Text="Is the learner aim financed " />
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" Style="{DynamicResource StandardTextBlockStyle}" Text="by 24+ Advanced learning loan ?" />
+                </StackPanel>
+
+                <CheckBox Grid.Row="1" Grid.Column="4"  IsChecked="{Binding Path=CurrentItem.ADL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  VerticalAlignment="Center"   HorizontalAlignment="Left" Margin="3" 
+                           TabIndex="5" />
+
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="Source of funding :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <ComboBox Grid.Row="6" Grid.Column="1"
+                      Margin="4"
+                      MinWidth="100"
+                      MaxWidth="225"
+                      TabIndex="9"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=SourceOfFundingList, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      Style="{DynamicResource ComboBoxWithError}"    
+                      SelectedValue="{Binding Path=CurrentItem.SOF, Mode=TwoWay}" 
+                   />
+
+                <TextBlock Grid.Row="6" Grid.Column="3" Text="National Skills Academy indicator : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <ComboBox Grid.Row="6" Grid.Column="4"
+                      Margin="4"
+                      MinWidth="100"
+                      MaxWidth="225"
+                      TabIndex="10"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=NatioanSkillAgencyList, UpdateSourceTrigger=PropertyChanged}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      Style="{DynamicResource ComboBoxWithError}"    
+                      SelectedValue="{Binding Path=CurrentItem.NSA, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                   />
+
+                <TextBlock Grid.Row="7" Grid.Column="0" Text="Full or co-funding indicator:" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <ComboBox Grid.Row="7" Grid.Column="1"
+                      Margin="4,4,0,0"
+                      MinWidth="100"
+                      MaxWidth="225"
+                      TabIndex="11"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=FullOrCoFundedList, UpdateSourceTrigger=PropertyChanged}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      Style="{DynamicResource ComboBoxWithError}"    
+                      SelectedValue="{Binding Path=CurrentItem.FFI, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                      Height="22" VerticalAlignment="Top" 
+                   />
+                <TextBlock Grid.Row="7" Grid.Column="3" Text="Special project and pilots: " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <ComboBox Grid.Row="7" Grid.Column="4"
+                      Margin="4.2,3.6,0,0"
+                      MinWidth="100"
+                      MaxWidth="225"
+                      TabIndex="12"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=SpecialProjectList, UpdateSourceTrigger=PropertyChanged}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      Style="{DynamicResource ComboBoxWithError}"    
+                      SelectedValue="{Binding Path=CurrentItem.SPP, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Height="23" VerticalAlignment="Top" 
+                   />
+
+                <TextBlock Grid.Row="9" Grid.Column="0" Text="Community Learning provision type: " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <ComboBox Grid.Row="9" Grid.Column="1"
+                      Margin="4"
+                      MinWidth="100"
+                      MaxWidth="225"
+                      TabIndex="12"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=ASLList, UpdateSourceTrigger=PropertyChanged}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      Style="{DynamicResource ComboBoxWithError}"    
+                      SelectedValue="{Binding Path=CurrentItem.ASL, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                   />
+
+
+                <TextBlock Grid.Row="9" Grid.Column="3" Text="Percentage of online delivery: " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <ComboBox Grid.Row="9" Grid.Column="4"
+                      Margin="4"
+                      MinWidth="100"
+                      MaxWidth="225"
+                      TabIndex="12"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=PODList, UpdateSourceTrigger=PropertyChanged}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      Style="{DynamicResource ComboBoxWithError}"    
+                      SelectedValue="{Binding Path=CurrentItem.POD, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                   />
+
+                <TextBlock Grid.Row="8" Grid.Column="0" Text="Is this part of the DWP work programme ?" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <CheckBox Grid.Row="8" Grid.Column="1"  IsChecked="{Binding Path=CurrentItem.WPP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" 
+                           TabIndex="5" />
+
+                <TextBlock Grid.Row="8" Grid.Column="3" Text="Eligibility for enhanced apprenticeship funding : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <ComboBox Grid.Row="8" Grid.Column="4"
+                      Margin="4"
+                      MinWidth="100"
+                      MaxWidth="225"
+                      TabIndex="13"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=EligibitiytAppFundingList, UpdateSourceTrigger=PropertyChanged}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      Style="{DynamicResource ComboBoxWithError}"    
+                      SelectedValue="{Binding Path=CurrentItem.EEF, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                   />
+
+
+                <StackPanel Grid.Row="10" Grid.Column="0" HorizontalAlignment="Right" Margin="3">
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" Style="{DynamicResource StandardTextBlockStyle}" Text="Family English, maths and language : " />
+                </StackPanel>
+
+                <CheckBox Grid.Row="10" Grid.Column="1"  IsChecked="{Binding Path=CurrentItem.FLN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  VerticalAlignment="Center"   HorizontalAlignment="Left" Margin="3" 
+                           TabIndex="5" />
+
+
+                <TextBlock Grid.Row="10" Grid.Column="3" Text="Apprenticeship Trailblazer standard :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBox Grid.Row="10" Grid.Column="4" 
+                      TabIndex="7"
+                     Text="{Binding Path=CurrentItem.TBS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" 
+                     VerticalAlignment="Center" 
+                     Margin="3" 
+                     Width="95"
+                     MaxLength="8" />
+
+                <TextBlock Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Text="Learning Delivery Monitoring Codes :" HorizontalAlignment="Left" Margin="13,2,2,2" FontSize="14" FontWeight="Bold" />
+                <Grid 
+                    Grid.Row="12"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition  />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text=" 1 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+
+                    <TextBox Grid.Row="0" Grid.Column="1"
+                     Text="{Binding Path=LDM1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" 
+                     MinWidth="50"  
+                     Margin="3"
+                     MaxLength="3"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text=" 2 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                    <TextBox Grid.Row="0" Grid.Column="3"
+                     Text="{Binding Path=LDM2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     IsEnabled="{Binding Path=LDM1, Converter={StaticResource IsEnabledConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"                                     
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" 
+                     MinWidth="50"  
+                     Margin="3"
+                     MaxLength="3"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="4" Text=" 3 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                    <TextBox Grid.Row="0" Grid.Column="5"
+                     Text="{Binding Path=LDM3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     IsEnabled="{Binding Path=LDM2, Converter={StaticResource IsEnabledConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay }"        
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" 
+                     MinWidth="50"  
+                     Margin="3"
+                     MaxLength="3"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="6" Text=" 4 :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                    <TextBox Grid.Row="0" Grid.Column="7"
+                     Text="{Binding Path=LDM4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     IsEnabled="{Binding Path=LDM3, Converter={StaticResource IsEnabledConverter},UpdateSourceTrigger=PropertyChanged,  Mode=OneWay}"                                     
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" 
+                     MinWidth="50"  
+                     Margin="3"
+                     MaxLength="3"/>
+                </Grid>
+              
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

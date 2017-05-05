@@ -1,0 +1,33 @@
+Source.TransmissionType removed
+
+Learner.Dest removed  -- Removed from screen 
+Learner.MathGrade added -- Added to ucLearnerInformation
+Learner.EngGrade added -- Added to ucLearnerInformation
+Learner.DS removed -- Removed from LLDD Screen
+Learner.LD removed -- Removed from LLDD Screen
+Learner.EGA removed -- Removed from LLDD Screen
+Learner.MGA removed -- Removed from LLDD Screen
+Learner.ECF added					-- Added to LLDD Screen
+Learner.EDF added (occurrs twice)
+Learner.MCF added					-- Added to LLDD Screen
+Learner.SEN added					-- Added to LLDD Screen
+
+LearningDelivery.ESFProjDosNumber removed   -- Removed from ucLearningStartInformation
+LearningDelivery.ESFLocProjNumber removed   -- Removed from ucLearningStartInformation
+LearningDelivery.AddHours added             -- Added to ucLearningStartInformation
+LearningDelivery.ConRefNumber added         -- Added to ucLearningStartInformation
+LearningDelivery.FLN added		    -- Added to ucLearningStartInformation
+LearningDelivery.HHS added (occurrs twice)  -- 1 Added to ucLearningStartInformation
+
+
+LLDDandHealthProblem.LLDDType removed     
+LLDDandHealthProblem.LLDDCode removed
+LLDDandHealthProblem.LLDDCat added
+LLDDandHealthProblem.PrimaryLLDD added
+
+
+LearningDeliveryHE.GROSSFEE added	-- Added to ucLearningEDInformation
+LearningDeliveryHE.HEPostCode added	-- Added to ucLearningEDInformation
+LearningDeliveryHE.TOTALTS removed	-- looks like this was never in.
+
+ApprenticeshipTrailblazerFinancialDetails renamed TrailblazerApprenticeshipFinancialRecord  -- Rename on TB Screen
