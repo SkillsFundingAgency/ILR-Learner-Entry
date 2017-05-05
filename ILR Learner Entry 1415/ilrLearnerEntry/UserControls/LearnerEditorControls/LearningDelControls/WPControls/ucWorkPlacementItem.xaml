@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.WorkPlacementControls.ucWorkPlacementItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="120"
+             d:DesignWidth="700"
+        >
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+
+        <Grid Margin="5" x:Name="MasterGrid" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="155"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="10" Text="Work Placement Details" HorizontalAlignment="Left" Margin="3" FontSize="18" />
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Work Placement Start Date :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <DatePicker  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" x:Name="dtStartDate"  VerticalAlignment="Top"  Margin="3" MinWidth="130" MaxWidth="130"
+                             DisplayDate="{Binding Path=CurrentItem.WorkPlaceStartDate, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
+                             SelectedDate="{Binding Path=CurrentItem.WorkPlaceStartDate, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
+                           TabIndex="1"
+                          />
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Work Placement End Date :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <DatePicker  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" x:Name="dtEndDate"  VerticalAlignment="Top"  Margin="3" MinWidth="130" MaxWidth="130"
+                             DisplayDate="{Binding Path=CurrentItem.WorkPlaceEndDate, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
+                             SelectedDate="{Binding Path=CurrentItem.WorkPlaceEndDate, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
+                             
+                           TabIndex="3"
+                          />
+                
+                
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Work Placement Mode :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
+                <ComboBox  Grid.Row="1" Grid.Column="3" 
+                                      Margin="4"
+                                      MinWidth="175"  MaxWidth="175"
+                           
+                           TabIndex="2"
+                                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                      ItemsSource="{Binding Path=WorkplacementCodeList, UpdateSourceTrigger=PropertyChanged}" 
+                                      DisplayMemberPath="Description" 
+                                      SelectedValuePath="Code" 
+                                      SelectedValue="{Binding Path=CurrentItem.WorkPlaceMode}" 
+                                   />
+
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="Work Placement Employer Id :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
+                <TextBox Grid.Row="2" Grid.Column="3" 
+                     Text="{Binding Path=CurrentItem.WorkPlaceEmpId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" 
+                     MinWidth="120"  
+                     MaxWidth="120"  
+                     Margin="3"
+                         
+                           TabIndex="4"
+                     MaxLength="9"/>
+
+            </Grid>
+
+        </Grid>
+
+
+    </ScrollViewer>
+</UserControl>
