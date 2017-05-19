@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace ILR.Renormalised
 {
-    public class LearnerContact : ILR._base
+    public class LearnerContact:ILR._base
     {
         private ILR.Learner learner;
 
@@ -98,7 +98,7 @@ namespace ILR.Renormalised
                     newLearnerContact.CreatePostAdd();
                     newLearnerContact.PostAdd.AddLine3 = value;
                 }
-                OnPropertyChanged("AddLine3");
+            OnPropertyChanged("AddLine3");
             }
         }
         public string AddLine4
@@ -186,7 +186,7 @@ namespace ILR.Renormalised
                     ((ILR.LearnerContact)existing).Email = value;
                 else
                 {
-                    ILR.LearnerContact newLearnerContact = this.learner.CreateLearnerContact();
+                    ILR.LearnerContact newLearnerContact=this.learner.CreateLearnerContact();
                     newLearnerContact.LocType = 4;
                     newLearnerContact.ContType = 2;
                     newLearnerContact.Email = value;

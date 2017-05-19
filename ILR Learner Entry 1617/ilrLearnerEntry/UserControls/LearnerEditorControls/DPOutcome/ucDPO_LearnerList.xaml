@@ -20,21 +20,21 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <Grid x:Name="ItemGrid" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="45"/>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="35"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="45"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="35"/>
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Ref : " HorizontalAlignment="Right" />
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding LearnRefNumber, Mode=OneWay}" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="ULN : " HorizontalAlignment="Right" />
-                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ULN, Mode=OneWay}" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
-
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Ref : " HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding LearnRefNumber, Mode=OneWay}" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="ULN : " HorizontalAlignment="Right" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ULN, Mode=OneWay}" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
+                      
                     <TextBlock Grid.Row="2" Grid.Column="1" Text="Don't Export : " HorizontalAlignment="Right" Margin="3"  MaxWidth="75" />
                     <CheckBox Grid.Row="2" Grid.Column="2"  IsChecked="{Binding Path=ExcludeFromExport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  VerticalContentAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,3,0"  MaxWidth="25"/>
 
@@ -51,12 +51,12 @@
         </DataTemplate>
 
     </UserControl.Resources>
-    <Grid x:Name="MasterGrid" >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="200" Width="Auto" />
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+        <Grid x:Name="MasterGrid" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="200" Width="Auto" />
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
             <Grid x:Name="LearnerListGrid" Grid.Column="0"  >
@@ -80,7 +80,7 @@
                         Style="{DynamicResource RoundedButton}"
                         Click="AddLearner_Click" 
                         Grid.RowSpan="3" />
-                <ListBox x:Name="DataItemListBox" 
+                    <ListBox x:Name="DataItemListBox" 
                          Grid.Row="2"
                          SelectionMode="Single"
                          Margin="4,2.6,0,2"    
@@ -94,14 +94,14 @@
                          SelectionChanged="DataItemListBox_SelectionChanged"     
                     />
 
-            </Grid>
-        </ScrollViewer>
-        <Grid x:Name="LearnerDPDetailGrid" Grid.Column="2" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Button Grid.Column="0" Grid.Row="0" 
+    </Grid>
+    </ScrollViewer>
+            <Grid x:Name="LearnerDPDetailGrid" Grid.Column="2" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Button Grid.Column="0" Grid.Row="0" 
                         x:Name="btnSave" 
                         Content=" Save " 
                         Panel.ZIndex="200" 
@@ -115,7 +115,7 @@
                         MinHeight="25"
                         Style="{DynamicResource RoundedButton}" Click="SaveLearner_Click" />
 
-            <Button Grid.Column="0" Grid.Row="0" 
+                <Button Grid.Column="0" Grid.Row="0" 
                         x:Name="btnDeleteLearner" 
                         Content=" Delete DP " 
                         Panel.ZIndex="200" 
@@ -130,13 +130,13 @@
                         Style="{DynamicResource RoundedButton}"
                         Click="RemoveLearner_Click" />
 
-            <DPLearnerControls:ucDPO_LearnerOutcomeList 
+                <DPLearnerControls:ucDPO_LearnerOutcomeList 
                         Grid.Column="0" 
                         Grid.Row="1"  
                         x:Name="LearnerOutcomeListControl" 
                         Margin="4" />
 
+            </Grid>
         </Grid>
-    </Grid>
-
+  
 </UserControl>

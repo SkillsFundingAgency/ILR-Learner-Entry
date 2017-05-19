@@ -28,7 +28,7 @@ namespace ilrLearnerEntry
         public MainWindow()
         {
             InitializeComponent();
-            App.Log("MainWindow", " Constructor", "Start");
+            App.Log("MainWindow"," Constructor", "Start");
             HomeScreenControl.OnNewFileImported += HomeScreenControl_OnNewFileImported;
             HomeScreenControl.OnUkprnUpdated += HomeScreenControl_OnUkprnUpdated;
             this.DataContext = this;
@@ -53,7 +53,7 @@ namespace ilrLearnerEntry
             {
                 if (App.ILRMessage.LearningProvider.UKPRN != null)
                 {
-                    return String.Format("{0} - UKPRN : {1}", App.ApplicationName, App.ILRMessage.LearningProvider.UKPRN.ToString());
+                    return String.Format("{0} - UKPRN : {1}", App.ApplicationName, App.ILRMessage.LearningProvider.UKPRN.ToString());				
                 }
                 else
                 {

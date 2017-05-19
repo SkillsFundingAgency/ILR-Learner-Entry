@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-
+ 
 namespace ILR
 {
     public class DPOutcome : ChildEntity, IDataErrorInfo
@@ -58,14 +58,14 @@ namespace ILR
                         result = "OutType not supplied.";
                     }
                 }
-                if (columnName == "OutCode")
-                {
-                    if (OutCode != null && OutCode.ToString().Length > 8)
-                    {
-                        result = "OutCode exceeds maximum length (8 digits).";
-                        //OutCode = (int?)int.Parse(OutCode.ToString().Substring(0, 8));
-                    }
-                }
+				if (columnName == "OutCode")
+				{
+					if (OutCode != null && OutCode.ToString().Length > 8)
+					{
+						result = "OutCode exceeds maximum length (8 digits).";
+						//OutCode = (int?)int.Parse(OutCode.ToString().Substring(0, 8));
+					}
+				}                
                 return result;
             }
         }

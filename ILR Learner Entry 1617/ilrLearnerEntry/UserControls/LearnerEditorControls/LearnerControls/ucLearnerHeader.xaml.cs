@@ -19,10 +19,10 @@ using ILR;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 {
-    /// <summary>
-    /// Interaction logic for ucLearnerHeader.xaml
-    /// </summary>
-    public partial class ucLearnerHeader : UserControl, INotifyPropertyChanged, IDataErrorInfo
+	/// <summary>
+	/// Interaction logic for ucLearnerHeader.xaml
+	/// </summary>
+	public partial class ucLearnerHeader : UserControl, INotifyPropertyChanged, IDataErrorInfo
     {
         #region Private Variables
         private const String CLASSNAME = "Learner";
@@ -34,54 +34,54 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 
         #region Constructor
         public ucLearnerHeader()
-        {
-            InitializeComponent();
-        }
+		{
+			InitializeComponent();
+		}
         #endregion
 
         #region Public Properties
         public DataTable GenderList { set; get; }
         public Learner CurrentItem
-        {
-            get { return _learner; }
-            set
-            {
+		{
+			get { return _learner; }
+			set
+			{
                 _prevukprn = string.Empty;
                 _uln = string.Empty;
                 if (value != null)
-                {
-                    _learner = value;
+				{
+					_learner = value;
                     _prevukprn = value.PrevUKPRN.ToString();
                     _uln = value.ULN.ToString();
                     this.DataContext = this;
-                    OnPropertyChanged("GenderList");
-                    OnPropertyChanged("DOB");
+					OnPropertyChanged("GenderList");
+					OnPropertyChanged("DOB");
                     OnPropertyChanged("PrevUKPRN");
                     OnPropertyChanged("ULN");
                     OnPropertyChanged("CurrentItem");
-                }
-                else
-                {
-                    this.DataContext = null;
-                }
-            }
+				}
+				else
+				{
+					this.DataContext = null;
+				}
+			}
 
-        }
+		}
 
-        public DateTime? DOB
-        {
-            get { return _learner.DateOfBirth; }
-            set
-            {
-                if (Convert.ToDateTime(_learner.DateOfBirth).Ticks != Convert.ToDateTime(value).Ticks)
-                {
-                    _learner.DateOfBirth = value;
-                    OnPropertyChanged("CurrentItem");
-                }
-            }
-        }
-        public string PrevUKPRN
-        {
+		public DateTime? DOB
+		{
+			get { return _learner.DateOfBirth; }
+			set
+			{
+				if (Convert.ToDateTime(_learner.DateOfBirth).Ticks != Convert.ToDateTime(value).Ticks)
+				{
+					_learner.DateOfBirth = value;
+					OnPropertyChanged("CurrentItem");
+				}
+			}
+		}
+		public string PrevUKPRN
+		{
             get { return _prevukprn; }
             set
             {
@@ -120,62 +120,62 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
             }
         }
-        #endregion
+		#endregion
 
-        #region Public Methods
-        #endregion
+		#region Public Methods
+		#endregion
 
-        #region PRIVATE Methods
-        private void dtDOB_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.AddedItems.Count > 0)
-            {
-                this.DOB = Convert.ToDateTime(e.AddedItems[0]);
-            }
-        }
-        #endregion
+		#region PRIVATE Methods
+		private void dtDOB_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (e.AddedItems.Count > 0)
+			{
+				this.DOB = Convert.ToDateTime(e.AddedItems[0]);
+			}
+		}
+		#endregion
 
-        #region INotifyPropertyChanged Members
-        /// <summary>
-        /// INotifyPropertyChanged requires a property called PropertyChanged.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+		#region INotifyPropertyChanged Members
+		/// <summary>
+		/// INotifyPropertyChanged requires a property called PropertyChanged.
+		/// </summary>
+		public event PropertyChangedEventHandler PropertyChanged;
 
-        /// <summary>
-        /// Fires the event for the property when it changes.
-        /// </summary>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
+		/// <summary>
+		/// Fires the event for the property when it changes.
+		/// </summary>
+		protected virtual void OnPropertyChanged(string propertyName)
+		{
 #if DEBUG
-            VerifyPropertyName(propertyName);
+			VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			if (PropertyChanged != null)
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 
-        }
+		}
 
-        [Conditional("DEBUG")]
-        [DebuggerStepThrough]
-        public void VerifyPropertyName(string propertyName)
-        {
-            // Verify that the property name matches a real,  
-            // public, instance property on this object.
-            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-            {
-                var msg = "Invalid property name: " + propertyName;
+		[Conditional("DEBUG")]
+		[DebuggerStepThrough]
+		public void VerifyPropertyName(string propertyName)
+		{
+			// Verify that the property name matches a real,  
+			// public, instance property on this object.
+			if (TypeDescriptor.GetProperties(this)[propertyName] == null)
+			{
+				var msg = "Invalid property name: " + propertyName;
 
-                if (this.ThrowOnInvalidPropertyName)
-                {
-                    throw new Exception(msg);
-                }
-                else
-                {
-                    Debug.Fail(msg);
-                }
-            }
-        }
+				if (this.ThrowOnInvalidPropertyName)
+				{
+					throw new Exception(msg);
+				}
+				else
+				{
+					Debug.Fail(msg);
+				}
+			}
+		}
 
-        protected bool ThrowOnInvalidPropertyName { get; set; }
+		protected bool ThrowOnInvalidPropertyName { get; set; }
 
         #endregion
 
@@ -191,7 +191,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 string sReturn = null;
                 switch (columnName)
                 {
-
+                   
                     case "ULN":
                         if (ULN == null || ULN.ToString().Length == 0)
                             return "ULN - required\r\n";
@@ -241,10 +241,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
         }
         #endregion
         private void UserControl_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
-        {
-            OnPropertyChanged("CurrentItem");
-            CurrentItem.RefreshData();
-        }
+		{
+			OnPropertyChanged("CurrentItem");
+			CurrentItem.RefreshData();
+		}
 
-    }
+	}
 }

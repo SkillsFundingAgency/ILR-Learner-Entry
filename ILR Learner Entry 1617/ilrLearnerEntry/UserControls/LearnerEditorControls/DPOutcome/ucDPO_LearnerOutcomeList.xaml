@@ -46,7 +46,7 @@
                         MinWidth="45"
                         MinHeight="15"
                         Style="{DynamicResource RoundedButton}" Click="RemoveOutcome" 
-                />-->
+                />-->               
             </Grid>
         </DataTemplate>
     </UserControl.Resources>

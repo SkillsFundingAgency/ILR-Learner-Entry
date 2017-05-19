@@ -45,8 +45,8 @@
                         DisplayMemberPath="Description" 
                         ScrollViewer.VerticalScrollBarVisibility="Visible"                           
             />
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Primary is : " Style="{DynamicResource LdListTextValueStyle}" Margin="5" />
-                <ComboBox x:Name="cbLLDDCatPrimary" Grid.Column="1"
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Primary is : " Style="{DynamicResource LdListTextValueStyle}" Margin="5" />               
+            <ComboBox x:Name="cbLLDDCatPrimary" Grid.Column="1"
                     Grid.Row="1"
                     Margin="3,3,25,3"
                     Style="{DynamicResource ComboBox}"    

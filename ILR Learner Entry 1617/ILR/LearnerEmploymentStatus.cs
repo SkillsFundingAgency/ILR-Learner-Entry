@@ -171,7 +171,7 @@ namespace ILR
             this.DateEmpStatApp = MigrationLearnerEmploymentStatus.DateEmpStatApp;
             this.EmpId = MigrationLearnerEmploymentStatus.EmpId;
 
-            foreach (EmploymentStatusMonitoring migrationItem in MigrationLearnerEmploymentStatus.EmploymentStatusMonitoringList.Where(x => x.ESMType != "RON"))
+            foreach (EmploymentStatusMonitoring migrationItem in MigrationLearnerEmploymentStatus.EmploymentStatusMonitoringList.Where(x=>x.ESMType!="RON"))
             {
                 XmlNode newNode = Node.OwnerDocument.CreateElement("EmploymentStatusMonitoring", NSMgr.LookupNamespace("ia"));
                 EmploymentStatusMonitoring newInstance = new EmploymentStatusMonitoring(migrationItem, newNode, NSMgr);
@@ -226,7 +226,7 @@ namespace ILR
             get { throw new NotImplementedException(); }
         }
 
-
+      
         public string this[string columnName]
         {
             get

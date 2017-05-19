@@ -33,14 +33,14 @@ namespace ILR
             get
             {
                 string result = null;
-                if (columnName == "UKPRN")
-                {
-                    if (UKPRN != null && UKPRN.ToString().Length > 8)
-                    {
-                        result = "UKPRN exceeds maximum length (8 digits).";
-                        //UKPRN = (int?)int.Parse(UKPRN.ToString().Substring(0, 8));
-                    }
-                }
+				if (columnName == "UKPRN")
+				{
+					if (UKPRN != null && UKPRN.ToString().Length > 8)
+					{
+						result = "UKPRN exceeds maximum length (8 digits).";
+						//UKPRN = (int?)int.Parse(UKPRN.ToString().Substring(0, 8));
+					}
+				}
                 return result;
             }
         }

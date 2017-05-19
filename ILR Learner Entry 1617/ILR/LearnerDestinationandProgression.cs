@@ -115,7 +115,7 @@ namespace ILR
                     if (String.IsNullOrEmpty(ULN.ToString()))
                         result = String.Format("{0} required.", columnName);
                     if (ULN != null)
-                        return CheckPropertyLength(ULN, CLASSNAME, columnName, TABS);
+                        return CheckPropertyLength(ULN, CLASSNAME, columnName, TABS);    
                 }
                 return result;
             }

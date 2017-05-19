@@ -364,13 +364,14 @@
       <option code="10" description="Community Learning" />
       <option code="25" description="16-19 EFA" />
       <option code="35" description="Adult skills" />
-      <option code="36" description="Unassigned" />
+      <option code="36" description="Apprenticeships (from 1 May 2017)" />
       <option code="70" description="ESF" />
       <option code="81" description="Other SFA" />
       <option code="82" description="Other EFA" />
       <option code="99" description="Non-funded (No SFA or EFA funding for this learning aim)" />
     </FundModel>
     <LearnDelFAMType>
+      <option code="ACT" description="Apprenticeship contract type" />
       <option code="ADL" description="Advanced Learner Loans indicator" />
       <option code="ALB" description="Advanced Learner Loans Bursary funding" />
       <option code="ASL" description="Adult Safeguarded Learning" />
@@ -1630,6 +1631,10 @@
       </SEN>
     </LearnerFAM>
     <LearningDeliveryFAM>
+      <ACT>
+        <option code="1" description="Apprenticeship fund through a contract for services with the employer" />
+        <option code="2" description="Apprenticeship fund through a contract for services with the Skills Funding Agency" />
+      </ACT>
       <ADL>
         <option code="1" description="Aim is financed by an Advanced Learner Loan" />
       </ADL>
@@ -1778,6 +1783,8 @@
       <TNP>
         <option code="1" description="Total training price" />
         <option code="2" description="Total assessment price" />
+        <option code="3" description="Residual training price" />
+        <option code="4" description="Residual assessment price" />
       </TNP>
       <PMR>
         <option code="1" description="Training payment" />

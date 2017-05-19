@@ -33,7 +33,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
         private const Int32 _maxNLMItem = 2;
 
         private string _planlearnhours = string.Empty;
-        private string _planeephours = string.Empty;
+        private string _planeephours = string.Empty;        
         #endregion
 
         #region Constructor
@@ -70,13 +70,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                     ClearAllNLMSelected();
                     OnPropertyChanged("NLMList");
                     foreach (int? nlmCode in _learner.NLM)
-                    {
+                    {                    
                         SetNLMAsSelected(nlmCode.ToString());
                     }
                     OnPropertyChanged("NLMList");
                     OnPropertyChanged("CurrentItem");
                     lv_NLM.SelectionChanged += lv_NLM_SelectionChanged;
-
+                    
                 }
                 else
                 {
@@ -115,10 +115,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
             }
         }
-
+        
 
         public DataTable PriorAttainmentList { set; get; }
-        public DataTable MGAList { set; get; }
+        public DataTable MGAList { set; get;}
         public DataTable EGAList { set; get; }
         public DataTable FMEList { set; get; }
 
@@ -274,7 +274,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 if (_learner != null)
                 {
                     switch (columnName)
-                    {
+                    {                   
                         case "PlanEEPHours":
                             if (PlanEEPHours != null && PlanEEPHours.Length > 0)
                             {
@@ -286,19 +286,18 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                                     sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
                                 }
                             }
-                            break;
-                        case "PlanLearnHours":
+                            break;case "PlanLearnHours":
                             if (PlanLearnHours != null && PlanLearnHours.Length > 0)
+                        {
+                            sReturn += CheckPropertyLength(PlanLearnHours, CLASSNAME, columnName);
+                            int number;
+                            bool result = Int32.TryParse(PlanLearnHours, out number);
+                            if (!result)
                             {
-                                sReturn += CheckPropertyLength(PlanLearnHours, CLASSNAME, columnName);
-                                int number;
-                                bool result = Int32.TryParse(PlanLearnHours, out number);
-                                if (!result)
-                                {
-                                    sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
-                                }
+                                sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
                             }
-                            break;
+                        }
+                        break;
                         default:
                             break;
                     }
@@ -321,6 +320,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
             return null;
         }
         #endregion
-
+        
     }
 }

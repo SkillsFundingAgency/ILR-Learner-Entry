@@ -7,7 +7,7 @@
              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
              xmlns:IlrTypes="clr-namespace:ILR"
              mc:Ignorable="d" 
-             d:DesignHeight="175" d:DesignWidth="325">
+             d:DesignHeight="169" d:DesignWidth="305">
     <UserControl.Resources>
 
         <CommonConverters:FamTypeVisabilityConverter x:Key="FamTypeVisConverter" />
@@ -26,10 +26,8 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto"/>
-                    <!--<ColumnDefinition Width="Auto"/>-->
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-    
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Code :" Style="{DynamicResource LdListTextHeaderStyle}"  Visibility="{Binding Path=LearnDelFAMType, Converter={StaticResource FamTypeVisConverter}, ConverterParameter=Code, Mode=OneWay}"  Width="40"  />
                 <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=LearnDelFAMCode, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource LdListTextValueStyle}" Visibility="{Binding Path=LearnDelFAMType, Converter={StaticResource FamTypeVisConverter}, ConverterParameter=Code, Mode=OneWay}"  Width="30" />
                 <TextBlock Grid.Row="0" Grid.Column="2" Text="From :" Style="{DynamicResource LdListTextHeaderStyle}"  Width="50" Visibility="{Binding Path=LearnDelFAMType, Converter={StaticResource FamTypeVisConverter}, ConverterParameter=From, Mode=OneWay}" />
@@ -80,22 +78,6 @@
                     Style="{DynamicResource RoundedButton}"
                     Grid.RowSpan="3" 
                     Click="Add_Click" />
-                <!--<Button Grid.Row="2" 
-                    Grid.Column="0" 
-                    x:Name="btnRemove" 
-                    Content="Remove" 
-                    Panel.ZIndex="200" 
-                    IsDefault="True" 
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    FontSize="10"
-                    Margin="0,4,5,0" 
-                    TabIndex="2" 
-                    MinWidth="50"
-                    MinHeight="15"
-                    Style="{DynamicResource RoundedButton}"
-                    Grid.RowSpan="3" 
-                    Click="Remove_Click" />-->
                 <ListView 
                     Grid.Row="1"
                     Grid.Column="0"

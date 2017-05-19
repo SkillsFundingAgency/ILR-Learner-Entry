@@ -67,13 +67,13 @@
                       Grid.Column="0" 
                       Grid.ColumnSpan="5"
                       Grid.RowSpan="2" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto" />
@@ -83,7 +83,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Financial support amount - Cash :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}" />
-
+                    
                     <TextBox 
                         Grid.Row="0" 
                         Grid.Column="1" 
@@ -101,7 +101,7 @@
                         IsUndoEnabled="True" 
                         MaxLines="1" 
                     />
-
+                    
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Financial support amount - Near cash :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                     <TextBox Grid.Row="1" Grid.Column="1" 
                      Panel.ZIndex="100" 

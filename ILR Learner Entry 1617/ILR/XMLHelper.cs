@@ -47,7 +47,7 @@ namespace ILR
         internal static void SetChildValue(string Name, object Value, XmlNode Node, XmlNamespaceManager NSMgr)
         {
             XmlNode childNode = Node.SelectSingleNode("./ia:" + Name, NSMgr);
-            if (Value == null || (Value.GetType().ToString() == "System.String" && Value.ToString().Length == 0))
+            if (Value == null || (Value.GetType().ToString()=="System.String" && Value.ToString().Length==0))
             {
                 if (childNode != null)
                     childNode.ParentNode.RemoveChild(childNode);
@@ -81,13 +81,13 @@ namespace ILR
                 int newNodeIndex = attributes.IndexOf(Name);
                 foreach (XmlNode childNode in Node.ChildNodes)
                 {
-                    if (attributes.IndexOf(childNode.Name) == -1 || attributes.IndexOf(childNode.Name) > newNodeIndex)
+                    if (attributes.IndexOf(childNode.Name)==-1 || attributes.IndexOf(childNode.Name) > newNodeIndex)
                     {
                         Node.InsertBefore(newNode, childNode);
                         break;
                     }
                 }
-                if (newNode.ParentNode == null)
+                if (newNode.ParentNode==null)
                     Node.AppendChild(newNode);
             }
             return newNode;

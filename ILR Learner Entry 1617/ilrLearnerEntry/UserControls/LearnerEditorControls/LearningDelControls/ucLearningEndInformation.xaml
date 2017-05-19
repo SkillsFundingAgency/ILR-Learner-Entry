@@ -62,13 +62,13 @@
                          TabIndex="2" IsTodayHighlighted="False" 
                          SelectedDate="{Binding Path=LearnActEndDate, StringFormat=dd-MM-yyyy, Mode=OneWay,  UpdateSourceTrigger=PropertyChanged}"   
             />
-
+            
             <TextBlock Grid.Row="2" Grid.Column="2" Text="Achievement date :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" Style="{DynamicResource StandardTextBlockStyle}"/>
             <DatePicker  Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" x:Name="dtAchDate"  VerticalAlignment="Top" Margin="3" 
                          TabIndex="2" 
                          SelectedDate="{Binding Path=AchDate, Mode=OneWay, StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}"   
             />
-
+          
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Outcome :" HorizontalAlignment="Right" Margin="3"  VerticalAlignment="Center" Style="{DynamicResource StandardTextBlockStyle}" />
             <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"
                       Margin="4"

@@ -90,7 +90,7 @@ namespace ILR
 
         public void ReFreshStats()
         {
-            ReBuildStatisticsDatatable();
+            ReBuildStatisticsDatatable();        
         }
         public void ReBuildStatisticsDatatable()
         {
@@ -119,7 +119,7 @@ namespace ILR
                 if (l.HasLearningDeliveriesInFundingModel(82)) fm82++;
                 if (l.HasLearningDeliveriesInFundingModel(99)) fm99++;
             }
-
+       
             _statistics.Columns.Add(new DataColumn("Description", typeof(string)));
             _statistics.Columns.Add(new DataColumn("Count", typeof(string)));
             DataRow row = _statistics.NewRow();
@@ -144,11 +144,11 @@ namespace ILR
 
                 //if (learners < 500)
                 //{
-                row = _statistics.NewRow();
-                row["Description"] = "Learners excluded from export count";
-                row["Count"] = (learners - this.LearnerList.Count(x => !x.ExcludeFromExport)).ToString();
+                    row = _statistics.NewRow();
+                    row["Description"] = "Learners excluded from export count";
+                    row["Count"] = (learners - this.LearnerList.Count(x => !x.ExcludeFromExport)).ToString();
 
-                _statistics.Rows.Add(row);
+                    _statistics.Rows.Add(row);
                 //}
             }
             OnPropertyChanged("Statistics");

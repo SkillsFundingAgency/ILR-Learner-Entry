@@ -48,22 +48,22 @@ namespace ILR
             get
             {
                 string result = null;
-                if (columnName == "TBFinCode")
-                {
-                    if (TBFinCode != null && TBFinCode.ToString().Length > 8)
-                    {
-                        result = "TBFinCode exceeds maximum length (8).";
-                        TBFinCode = (int?)int.Parse(TBFinCode.ToString().Substring(0, 8));
-                    }
-                }
-                if (columnName == "TBFinAmount")
-                {
-                    if (TBFinAmount != null && TBFinAmount.ToString().Length > 8)
-                    {
-                        result = "TBFinAmount exceeds maximum length (8).";
-                        TBFinAmount = (int?)int.Parse(TBFinAmount.ToString().Substring(0, 8));
-                    }
-                }
+				if (columnName == "TBFinCode")
+				{
+					if (TBFinCode != null && TBFinCode.ToString().Length > 8)
+					{
+						result = "TBFinCode exceeds maximum length (8).";
+						TBFinCode = (int?)int.Parse(TBFinCode.ToString().Substring(0, 8));
+					}
+				}
+				if (columnName == "TBFinAmount")
+				{
+					if (TBFinAmount != null && TBFinAmount.ToString().Length > 8)
+					{
+						result = "TBFinAmount exceeds maximum length (8).";
+						TBFinAmount = (int?)int.Parse(TBFinAmount.ToString().Substring(0, 8));
+					}
+				}
                 return result;
             }
         }

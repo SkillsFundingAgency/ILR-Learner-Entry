@@ -57,7 +57,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 }
             }
         }
-
+      
         #endregion
 
         #region Public Methods

@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="800">
     <UserControl.Resources>
-
+     
         <DataTemplate x:Key="EmpStatusDataTemplate" DataType="{x:Type IlrTypes:LearnerEmploymentStatus}">
             <Grid >
                 <Grid.ColumnDefinitions>

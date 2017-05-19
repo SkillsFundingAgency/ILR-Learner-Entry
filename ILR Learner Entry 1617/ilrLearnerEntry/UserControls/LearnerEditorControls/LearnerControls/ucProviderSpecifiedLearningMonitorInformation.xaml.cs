@@ -24,7 +24,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
     /// </summary>
     public partial class ucProviderSpecifiedLearningMonitorInformation : UserControl, INotifyPropertyChanged
     {
-
+        
         #region Private Variables
         private Learner _learner;
         #endregion
@@ -61,7 +61,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 
         #region PRIVATE Methods
         #endregion
-
+        
         #region INotifyPropertyChanged Members
         /// <summary>
         /// INotifyPropertyChanged requires a property called PropertyChanged.
@@ -106,11 +106,11 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 
         #endregion
 
-        private void UserControl_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
-        {
-            OnPropertyChanged("CurrentItem");
-            CurrentItem.RefreshData();
-        }
+		private void UserControl_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
+		{
+			OnPropertyChanged("CurrentItem");
+			CurrentItem.RefreshData();
+		}
 
 
 

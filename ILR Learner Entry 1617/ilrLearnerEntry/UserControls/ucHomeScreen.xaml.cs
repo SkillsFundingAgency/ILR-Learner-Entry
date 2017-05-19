@@ -28,7 +28,7 @@ namespace ilrLearnerEntry.UserControls
         private String _windowTitle = string.Empty;
         private String _loadMessage = string.Empty;
         private String _statsMessage = string.Empty;
-
+        
         private Boolean IsProcessing { get; set; }
         private string ImportFilename { get; set; }
         private string FilenameOnly { get; set; }
@@ -154,7 +154,7 @@ namespace ilrLearnerEntry.UserControls
             {
                 return _statsMessage == string.Empty ? Visibility.Collapsed : Visibility.Visible;
             }
-
+          
         }
         public int? UKPRN
         {
@@ -165,11 +165,11 @@ namespace ilrLearnerEntry.UserControls
             }
             set
             {
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
-                if (result) { App.ILRMessage.LearningProvider.UKPRN = value; }
-                else { App.ILRMessage.LearningProvider.UKPRN = null; }
-            }
+				int number;
+				bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+				if (result) { App.ILRMessage.LearningProvider.UKPRN = value; }
+				else { App.ILRMessage.LearningProvider.UKPRN = null; }
+			}
         }
         public System.Data.DataTable Statistics
         {
@@ -326,7 +326,7 @@ namespace ilrLearnerEntry.UserControls
                     {
                         LoadMessage = String.Format("  Loading File : {0} {1}    Please Wait...{1} {1}    This may take a few minutes depending on size of file.", FilenameOnly, Environment.NewLine);
                         OnPropertyChanged("LoadMessage");
-
+                        
                         App.Log("Home Screen", "Import", "File Exists");
                         HideControlWhileLoadingFile(Visibility.Collapsed);
                         App.DoEvents();
@@ -336,7 +336,7 @@ namespace ilrLearnerEntry.UserControls
                         fi = null;
 
                         App.DoEvents();
-
+                        
                         App.ILRMessage.Import(ImportFilename);
                         LoadMessage = String.Format("Loading File : {0}  {1} {1}Completed.", FilenameOnly, Environment.NewLine);
                         OnPropertyChanged("LoadMessage");
@@ -345,8 +345,7 @@ namespace ilrLearnerEntry.UserControls
                         RaiseEvent(new RoutedEventArgs(OnNewFileImportedClickEvent, String.Empty));
                     }
                     else
-                    {
-                        LoadMessage = String.Empty;
+                    {   LoadMessage = String.Empty;
                         OnPropertyChanged("LoadMessage");
                         App.DoEvents();
                     }
@@ -421,9 +420,9 @@ namespace ilrLearnerEntry.UserControls
                         LoadMessage = String.Format("Export Started : {0}..", this.UKPRN.ToString());
                         App.DoEvents();
 
-                        App.ILRMessage.Export(App.ExportFolder, App.ApplicationVersion.ToString());
+                        App.ILRMessage.Export(App.ExportFolder,App.ApplicationVersion.ToString());
                         LoadMessage = String.Format("Export Started : {0}...", this.UKPRN.ToString());
-
+                       
                         App.Log("Home Screen", "Export", "Complete");
                         StatsMessage = String.Format("Export Complete..");
                         App.DoEvents();
@@ -435,7 +434,7 @@ namespace ilrLearnerEntry.UserControls
 
         }
         private void btnOpenExportFolder_Click(object sender, RoutedEventArgs e)
-        {
+        {        
             ilrLearnerEntry.Utils.FileStuff.OpenFolderInExplorer(App.ExportFolder);
         }
         private void UserControl_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)

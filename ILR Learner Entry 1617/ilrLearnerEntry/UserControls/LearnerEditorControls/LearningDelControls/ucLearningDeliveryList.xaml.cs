@@ -71,11 +71,11 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     if (_learner.LearningDeliveryList.Count > 0)
                     {
                         LearningDeliveryItemControl.Visibility = System.Windows.Visibility.Visible;
-						if (LearningDeliveryItemsCV.CurrentItem !=null)
-						{
-							(LearningDeliveryItemsCV.CurrentItem as ILR.LearningDelivery).IsSelected = true;
-						}
-						
+                        if (LearningDeliveryItemsCV.CurrentItem != null)
+                        {
+                            (LearningDeliveryItemsCV.CurrentItem as ILR.LearningDelivery).IsSelected = true;
+                        }
+
                     }
                     else
                     {
@@ -89,7 +89,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     this.DataContext = null;
                     LearningDeliveryItemControl.Visibility = System.Windows.Visibility.Collapsed;
                 }
-				lv.UnselectAll();
+                lv.UnselectAll();
             }
         }
         public ICollectionView LearningDeliveryItemsCV
@@ -104,12 +104,12 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 
         #region PRIVATE Methods
         private void AddNewLearningDelivery()
-        {  
-           LearningDelivery ld = _learner.CreateLearningDelivery();
-           ld.IsSelected = true;
-           LearningDeliveryItemsCV.MoveCurrentTo(ld);
+        {
+            LearningDelivery ld = _learner.CreateLearningDelivery();
+            ld.IsSelected = true;
+            LearningDeliveryItemsCV.MoveCurrentTo(ld);
             LearningDeliveryItemsCV.Refresh();
-           OnPropertyChanged("LearningDeliveryItemsCV");
+            OnPropertyChanged("LearningDeliveryItemsCV");
         }
         private void LearningDeliveryRemove_Click(object sender, RoutedEventArgs e)
         {
@@ -130,16 +130,16 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 {
                     if (ld2Remove != null)
                     {
-                    	if (LearningDeliveryItemsCV.CurrentPosition == 0)
-						{
-							LearningDeliveryItemsCV.MoveCurrentToNext();
-						}
-						else if (_learner.LearningDeliveryList.Count()>0)
-						{
-							LearningDeliveryItemsCV.MoveCurrentToPrevious();
-						}
-					
-						_learner.Delete(ld2Remove);					
+                        if (LearningDeliveryItemsCV.CurrentPosition == 0)
+                        {
+                            LearningDeliveryItemsCV.MoveCurrentToNext();
+                        }
+                        else if (_learner.LearningDeliveryList.Count() > 0)
+                        {
+                            LearningDeliveryItemsCV.MoveCurrentToPrevious();
+                        }
+
+                        _learner.Delete(ld2Remove);
                         LearningDelivery ldTmp = LearningDeliveryItemsCV.CurrentItem as LearningDelivery;
                         if (ldTmp != null)
                         {
@@ -203,7 +203,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 
         #endregion
 
-       
+
 
     }
 }

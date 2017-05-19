@@ -6,31 +6,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"             
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
-             d:DesignHeight="500" d:DesignWidth="950"             
              mc:Ignorable="d"
-             MinWidth="850"
              ScrollViewer.CanContentScroll="True" 
              ScrollViewer.VerticalScrollBarVisibility="Visible"
+             MinWidth="950" d:DesignWidth="1500"  
+             MinHeight="670"
              >
     <UserControl.Resources>
-
         <CommonConverters:StringIsEnabledConverter x:Key="IsEnabledConverter" />
     </UserControl.Resources>
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid Margin="5" >
             <Grid.RowDefinitions>
+                <RowDefinition Height="170" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Row="1" 
-              Grid.Column="0" 
-              Grid.ColumnSpan="4" Margin="0,0,-0.4,0.6" >
+            <Grid Grid.Row="0" Grid.Column="0" MinWidth="800" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*" MinWidth="150" />
+                    <ColumnDefinition Width="25*" MinWidth="200"/>
+                    <ColumnDefinition Width="25*" MinWidth="200"/>
+                </Grid.ColumnDefinitions>
+                <LdFramControls:ucLdFamList x:Name="LSFControl" Grid.Row="0" Grid.Column="0" FamType="LSF" MaxItems="999" />
+                <LdFramControls:ucLdFamList x:Name="ALBControl" Grid.Row="0" Grid.Column="1" FamType="ALB" MaxItems="999" />
+                <LdFramControls:ucLdFamList x:Name="ACTControl" Grid.Row="0" Grid.Column="2" FamType="ACT" MaxItems="999" />
+            </Grid>
+            <Grid Grid.Row="1" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -55,17 +57,12 @@
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-
-                <LdFramControls:ucLdFamList x:Name="LSFControl" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="100"  FamType="LSF" MaxItems="999" />
-                <LdFramControls:ucLdFamList x:Name="ALBControl" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" MinHeight="100"  FamType="ALB" MaxItems="999" />
-
-				<StackPanel Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Margin="3">
+                <StackPanel Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Margin="3">
                     <TextBlock HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" Style="{DynamicResource StandardTextBlockStyle}" Text="Is the learning aim financed " />
                     <TextBlock HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" Style="{DynamicResource StandardTextBlockStyle}" Text="by an Advanced Learner Loan ?" />
                 </StackPanel>
-
                 <CheckBox Grid.Row="1" Grid.Column="4"  IsChecked="{Binding Path=CurrentItem.ADL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  VerticalAlignment="Center"   HorizontalAlignment="Left" Margin="3" 
-                           TabIndex="5" />
+                          TabIndex="5" />
 
                 <TextBlock Grid.Row="6" Grid.Column="0" Text="Source of funding :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <ComboBox Grid.Row="6" Grid.Column="1"
@@ -137,7 +134,6 @@
                       SelectedValue="{Binding Path=CurrentItem.ASL, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
                    />
 
-
                 <TextBlock Grid.Row="9" Grid.Column="3" Text="Percentage of online delivery: " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <ComboBox Grid.Row="9" Grid.Column="4"
                       Margin="4"
@@ -170,7 +166,6 @@
                       SelectedValue="{Binding Path=CurrentItem.EEF, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
                    />
 
-
                 <StackPanel Grid.Row="10" Grid.Column="0" HorizontalAlignment="Right" Margin="3">
                     <TextBlock HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" Style="{DynamicResource StandardTextBlockStyle}" Text="Family English, Maths and Language : " />
                 </StackPanel>
@@ -178,9 +173,8 @@
                 <CheckBox Grid.Row="10" Grid.Column="1"  IsChecked="{Binding Path=CurrentItem.FLN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  VerticalAlignment="Center"   HorizontalAlignment="Left" Margin="3" 
                            TabIndex="5" />
 
-
-				<TextBlock Grid.Row="10" Grid.Column="3" Text="Apprenticeship Standard Code : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-				<TextBox Grid.Row="10" Grid.Column="4" 
+                <TextBlock Grid.Row="10" Grid.Column="3" Text="Apprenticeship Standard Code : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBox Grid.Row="10" Grid.Column="4" 
                       TabIndex="7"
                      Text="{Binding Path=CurrentItem.StdCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
@@ -191,9 +185,7 @@
                      Width="95"
                      MaxLength="5" />
 
-
-
-				<TextBlock Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Text="Learning Delivery Monitoring Codes :" HorizontalAlignment="Left" Margin="13,2,2,2" FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Text="Learning Delivery Monitoring Codes :" HorizontalAlignment="Left" Margin="13,2,2,2" FontSize="14" FontWeight="Bold" />
                 <Grid 
                     Grid.Row="12"
                     Grid.Column="0"

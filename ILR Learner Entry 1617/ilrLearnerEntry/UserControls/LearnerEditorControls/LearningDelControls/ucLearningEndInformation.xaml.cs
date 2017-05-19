@@ -27,7 +27,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         #region Private Variables
         private const String CLASSNAME = "LearningDelivery";
         private ILR.Schema XmlSchema = new ILR.Schema();
-        private ILR.LearningDelivery _learningDelivery;
+        private ILR.LearningDelivery _learningDelivery;        
         #endregion
 
         #region Constructor
@@ -78,7 +78,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                         dtRetunr = null;
                     }
                 }
-                if (_learningDelivery != null && _learningDelivery.LearnActEndDate != dtRetunr)
+                if (_learningDelivery!= null && _learningDelivery.LearnActEndDate != dtRetunr)
                 {
                     _learningDelivery.LearnActEndDate = dtRetunr;
                 }
@@ -88,11 +88,11 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         }
         public string LearnActEndDateDisplayDate
         {
-            get { return LearnActEndDate == null ? string.Empty : Convert.ToDateTime(LearnActEndDate).ToString("dd-MM-yyyy"); }
+            get { return LearnActEndDate==null ? string.Empty : Convert.ToDateTime(LearnActEndDate).ToString("dd-MM-yyyy"); }
         }
         public DateTime? AchDate
         {
-            get { return _learningDelivery == null ? null : _learningDelivery.AchDate; ; }
+            get { return  _learningDelivery == null ? null : _learningDelivery.AchDate; ; }
             set
             {
                 DateTime? dtRetunr = null;
@@ -114,7 +114,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     _learningDelivery.AchDate = dtRetunr;
                 }
                 OnPropertyChanged("AchDate");
-                OnPropertyChanged("AchDateDisplayDate");
+                OnPropertyChanged("AchDateDisplayDate");                
             }
         }
         public string AchDateDisplayDate
@@ -164,7 +164,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     LearnActEndDate = null;
                     break;
                 }
-            }
+            }        
         }
         private void dtAchDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -227,9 +227,9 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             }
         }
 
-        protected bool ThrowOnInvalidPropertyName { get; set; }
+        protected bool ThrowOnInvalidPropertyName { get; set; }        
         #endregion
-
+        
         #region IDataErrorInfo Members
         public string Error
         {
@@ -245,7 +245,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     case "PriorLearnFundAdj":
                         break;
                     case "AchDate":
-                        break;
+                        break;                 
                     default:
                         break;
                 }

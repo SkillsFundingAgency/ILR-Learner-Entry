@@ -9,10 +9,8 @@ namespace ilrLearnerEntry.WpfConverter
 {
 	public class FamTypeVisabilityConverter : IValueConverter
 	{
-
 		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
-
 			System.Windows.Visibility v = System.Windows.Visibility.Visible;
 			if ((value != null) && (!String.IsNullOrEmpty(value.ToString())))
 			{
@@ -40,10 +38,8 @@ namespace ilrLearnerEntry.WpfConverter
 						v = System.Windows.Visibility.Visible;
 						break;
 				}
-
 			}
 			return v;
-
 		}
 
 		private System.Windows.Visibility Process_Visability_Code(String FamType)

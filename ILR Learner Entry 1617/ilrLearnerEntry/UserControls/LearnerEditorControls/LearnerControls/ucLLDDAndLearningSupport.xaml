@@ -12,11 +12,11 @@
              d:DesignHeight="500" 
              d:DesignWidth="750"
              RequestBringIntoView="UserControl_RequestBringIntoView"  >
-    <UserControl.Resources>
-        <CommonConverters:IsCompleteToBackgroundColourConverter x:Key="IsCompleteColourConverter" />
-        <CommonConverters:IsCompleteVisabilityConverter x:Key="IsCompleteVisibilityConverter" />
-        <CommonConverters:StringToNullableLongConverter x:Key="StringToNullableLongConverter" />
-        <CommonConverters:StringToNullableIntConverter x:Key="StringToNullableIntConverter" />
+	<UserControl.Resources>
+		<CommonConverters:IsCompleteToBackgroundColourConverter x:Key="IsCompleteColourConverter" />
+		<CommonConverters:IsCompleteVisabilityConverter x:Key="IsCompleteVisibilityConverter" />
+		<CommonConverters:StringToNullableLongConverter x:Key="StringToNullableLongConverter" />
+		<CommonConverters:StringToNullableIntConverter x:Key="StringToNullableIntConverter" />
         <Style x:Key="ListBoxItemStyle" TargetType="ListBoxItem">
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>

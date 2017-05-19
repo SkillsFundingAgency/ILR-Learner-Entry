@@ -50,7 +50,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 TrailblazersListControl.CurrentItem = _learningDelivery;
                 WorkplaceListControls.CurrentItem = _learningDelivery;
                 HEControl.CurrentItem = _learningDelivery;
-                OnPropertyChanged("CurrentItem");
+				OnPropertyChanged("CurrentItem");
                 OnPropertyChanged("ShowControl");
             }
         }

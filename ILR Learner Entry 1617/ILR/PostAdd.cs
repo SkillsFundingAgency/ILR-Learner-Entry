@@ -57,38 +57,38 @@ namespace ILR
             get
             {
                 string result = null;
-                if (columnName == "AddLine1")
-                {
-                    if (AddLine1 != null && AddLine1.ToString().Length > 100)
-                    {
-                        result = "AddLine1 exceeds maximum length (100 digits).";
-                        //AddLine1 = AddLine1.ToString().Substring(0, 100);
-                    }
-                }
-                if (columnName == "AddLine2")
-                {
-                    if (AddLine2 != null && AddLine2.ToString().Length > 100)
-                    {
-                        result = "AddLine2 exceeds maximum length (100 digits).";
-                        //AddLine2 = AddLine2.ToString().Substring(0, 100);
-                    }
-                }
-                if (columnName == "AddLine3")
-                {
-                    if (AddLine3 != null && AddLine3.ToString().Length > 100)
-                    {
-                        result = "AddLine3 exceeds maximum length (100 digits).";
-                        //AddLine3 = AddLine3.ToString().Substring(0, 100);
-                    }
-                }
-                if (columnName == "AddLine4")
-                {
-                    if (AddLine4 != null && AddLine4.ToString().Length > 100)
-                    {
-                        result = "AddLine4 exceeds maximum length (100 digits).";
-                        //AddLine4 = AddLine4.ToString().Substring(0, 100);
-                    }
-                }
+				if (columnName == "AddLine1")
+				{
+					if (AddLine1 != null && AddLine1.ToString().Length > 100)
+					{
+						result = "AddLine1 exceeds maximum length (100 digits).";
+						//AddLine1 = AddLine1.ToString().Substring(0, 100);
+					}
+				}
+				if (columnName == "AddLine2")
+				{
+					if (AddLine2 != null && AddLine2.ToString().Length > 100)
+					{
+						result = "AddLine2 exceeds maximum length (100 digits).";
+						//AddLine2 = AddLine2.ToString().Substring(0, 100);
+					}
+				}
+				if (columnName == "AddLine3")
+				{
+					if (AddLine3 != null && AddLine3.ToString().Length > 100)
+					{
+						result = "AddLine3 exceeds maximum length (100 digits).";
+						//AddLine3 = AddLine3.ToString().Substring(0, 100);
+					}
+				}
+				if (columnName == "AddLine4")
+				{
+					if (AddLine4 != null && AddLine4.ToString().Length > 100)
+					{
+						result = "AddLine4 exceeds maximum length (100 digits).";
+						//AddLine4 = AddLine4.ToString().Substring(0, 100);
+					}
+				}
                 return result;
             }
         }

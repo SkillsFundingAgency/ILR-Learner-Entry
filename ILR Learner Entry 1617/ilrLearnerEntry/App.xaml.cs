@@ -15,7 +15,7 @@ namespace ilrLearnerEntry
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
-    {
+    {       
         private static readonly string appGuid = "SFA-ilrLearnerEntry-A07151B7-8F1A-4423-ABFB-B85387423E98-1617";
         private static readonly Mutex mutex = new Mutex(false, appGuid);
 
@@ -90,7 +90,7 @@ namespace ilrLearnerEntry
             GC.Collect();
             SetupApplicationStuff();
         }
-
+        
         private void SetupApplicationStuff()
         {
             Application.Current.ShutdownMode = System.Windows.ShutdownMode.OnMainWindowClose;
@@ -167,23 +167,23 @@ namespace ilrLearnerEntry
         public static String ExportFolder
         { get; set; }
         #endregion
-
+        
         #region Public Static Methods
         public static void Log(String className, String caller, String message)
         {
 #if DEBUG
-            if (IsLoggingEnabled)
-            {
-                using (System.IO.StreamWriter writer = new System.IO.StreamWriter(LogFileName, true))
-                {
-                    writer.WriteLine("{0} | {1} | {2} | {3}", DateTime.Now.ToString("yyyy.MM.dd.hhss"), className, caller, message);
-                }
-            }
+			if (IsLoggingEnabled)
+			{
+				using (System.IO.StreamWriter writer = new System.IO.StreamWriter(LogFileName, true))
+				{
+					writer.WriteLine("{0} | {1} | {2} | {3}", DateTime.Now.ToString("yyyy.MM.dd.hhss"), className, caller, message);
+				}
+			}
 #endif
-        }
-        #endregion
+		}
+		#endregion
 
-        private void Application_Exit(object sender, ExitEventArgs e)
+		private void Application_Exit(object sender, ExitEventArgs e)
         {
             Log("App", "EXIT", "");
         }

@@ -98,7 +98,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 OnPropertyChanged("CurrentItem");
             }
         }
-
+     
 
         public string PriorLearnFundAdj
         {
@@ -134,7 +134,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 bool result = Int32.TryParse(System.Convert.ToString(value), out number);
                 if (result) { CurrentItem.FworkCode = number; }
                 else { CurrentItem.FworkCode = null; }
-            }
+            } 
         }
         public string PwayCode
         {
@@ -146,7 +146,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 bool result = Int32.TryParse(System.Convert.ToString(value), out number);
                 if (result)
                 { CurrentItem.PwayCode = number; }
-                else
+                else            
                 { CurrentItem.PwayCode = null; }
             }
         }

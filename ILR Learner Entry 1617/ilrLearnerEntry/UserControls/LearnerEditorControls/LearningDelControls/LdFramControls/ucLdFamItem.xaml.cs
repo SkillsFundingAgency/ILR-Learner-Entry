@@ -25,9 +25,9 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 	/// </summary>
 	public partial class ucLdFamItem : UserControl, INotifyPropertyChanged
 	{
-
 		private LearningDeliveryFAM _learningDeliverFAM;
-		#region Constructor
+        
+        #region Constructor
 		public ucLdFamItem()
 		{
 			InitializeComponent();
@@ -47,7 +47,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 					this.DataContext = this;
 					OnPropertyChanged("CurrentItem");
 					OnPropertyChanged("IsTypeVisable");
-					OnPropertyChanged("IsTypeReadOnly");
+					OnPropertyChanged("IsCodeReadOnly");
 					OnPropertyChanged("IsCodeVisable");
 					OnPropertyChanged("IsFromVisable");
 					OnPropertyChanged("IsToVisable");
@@ -56,7 +56,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				{
 					this.DataContext = null;
 				}
-
 			}
 		}
 
@@ -92,7 +91,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 						default:
 							v = Visibility.Visible;
 							break;
-
 					}
 				}
 				return v;
@@ -122,41 +120,42 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 						default:
 							v = Visibility.Visible;
 							break;
-
 					}
 				}
 				return v;
 			}
 		}
-		public bool IsTypeReadOnly
-		{
-			get
-			{
-				bool bRet = false;
-				if ((_learningDeliverFAM == null) || (_learningDeliverFAM.LearnDelFAMType == null))
-				{
-
-				}
-				else
-				{
-					switch (_learningDeliverFAM.LearnDelFAMType.ToUpper())
-					{
-						case "ALB":
-							bRet = false;
-							break;
-						case "LSF":
-							bRet = true;
-							break;
-						default:
-							bRet = true;
-							break;
-					}
-				}
-				return bRet;
-			}
-		}
 		
-		public Visibility IsFromVisable
+        public bool IsCodeReadOnly
+        {
+            get
+            {
+                bool bRet = false;
+                if ((_learningDeliverFAM == null) || (_learningDeliverFAM.LearnDelFAMType == null))
+                {
+
+                }
+                else
+                {
+                    switch (_learningDeliverFAM.LearnDelFAMType.ToUpper())
+                    {
+                        case "ALB":
+                        case "ACT":
+                            bRet = false;
+                            break;
+                        case "LSF":
+                            bRet = true;
+                            break;
+                        default:
+                            bRet = true;
+                            break;
+                    }
+                }
+                return bRet;
+            }
+        }
+
+        public Visibility IsFromVisable
 		{
 			get
 			{
@@ -168,7 +167,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 						case "ALB":
 						case "HEM":
 						case "LDM":
-						case "LSF":
+                        case "ACT":
+                        case "LSF":
 							v = Visibility.Visible;
 							break;
 						default:
@@ -191,7 +191,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 						case "ALB":
 						case "HEM":
 						case "LDM":
-						case "LSF":
+                        case "ACT":
+                        case "LSF":
 							v = Visibility.Visible;
 							break;
 						default:
@@ -209,8 +210,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 
 		#region PRIVATE Methods
 		#endregion
-
-
+        
 		#region INotifyPropertyChanged Members
 		/// <summary>
 		/// INotifyPropertyChanged requires a property called PropertyChanged.

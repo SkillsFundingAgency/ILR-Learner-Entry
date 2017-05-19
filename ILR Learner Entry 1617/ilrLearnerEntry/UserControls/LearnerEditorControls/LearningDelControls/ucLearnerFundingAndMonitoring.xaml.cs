@@ -28,7 +28,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         #region Private Variables
         private ILR.LearningDelivery _learningDelivery;
         private List<String> LDMList = new List<String>(4);
-        //private DataTable _dt;
         #endregion
 
         #region Constructor
@@ -37,6 +36,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             InitializeComponent();
             ALBControl.UserControlTitle = "Advanced Learner Loans Bursary funding";
             LSFControl.UserControlTitle = "Learning support funding";
+            ACTControl.UserControlTitle = "Apprenticeship contract type";
         }
         #endregion
 
@@ -54,6 +54,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     this.DataContext = this;
                     ALBControl.CurrentItem = _learningDelivery;
                     LSFControl.CurrentItem = _learningDelivery;
+                    ACTControl.CurrentItem = _learningDelivery;
                     OnPropertyChanged("PlusLoanBursaryFundList");
                     OnPropertyChanged("SourceOfFundingList");
                     OnPropertyChanged("FullOrCoFundedList");
@@ -96,7 +97,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             OnPropertyChanged("LDM3");
             OnPropertyChanged("LDM2");
             OnPropertyChanged("LDM1");
-
         }
         public String LDM1
         {
@@ -148,12 +148,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 
         
         public DataTable EligibitiytAppFundingList { set; get; }
+     
         #endregion
 
         #region Public Methods
         #endregion
 
-        #region PRIVATE Methods
+        #region PRIVATE Methods        
         #endregion
 
 
@@ -173,7 +174,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 #endif
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-
         }
 
         [Conditional("DEBUG")]
@@ -200,7 +200,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         protected bool ThrowOnInvalidPropertyName { get; set; }
 
         #endregion
-
 
     }
 }

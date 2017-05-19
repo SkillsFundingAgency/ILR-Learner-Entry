@@ -99,7 +99,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 _hefinnearcash = value;
                 if (String.IsNullOrEmpty(value))
                 {
-                    if (CurrentItem.HEFinNearCash != null) CurrentItem.HEFinNearCash = null;
+                    if (CurrentItem.HEFinNearCash!=null) CurrentItem.HEFinNearCash = null;
                 }
                 else
                 {

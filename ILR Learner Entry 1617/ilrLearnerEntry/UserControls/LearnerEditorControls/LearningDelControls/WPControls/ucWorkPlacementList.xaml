@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="150" 
              d:DesignWidth="700">
-    <UserControl.Resources>
+    <UserControl.Resources>     
         <DataTemplate x:Key="WorkPlacementDataTemplate" DataType="{x:Type IlrTypes:LearningDeliveryWorkPlacement}">
             <Grid >
                 <Grid.ColumnDefinitions>

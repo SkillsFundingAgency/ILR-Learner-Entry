@@ -169,7 +169,7 @@
                         <GradientStop Color="#FF61846E" Offset="1"/>
                     </LinearGradientBrush>
                 </ListBox.BorderBrush>
-
+               
             </ListBox>
         </Grid>
 

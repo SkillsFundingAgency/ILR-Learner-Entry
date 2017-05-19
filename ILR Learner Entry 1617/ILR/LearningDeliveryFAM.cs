@@ -11,7 +11,7 @@ namespace ILR
     {
         #region Enums
         public enum SingleOccurrenceFAMs { SOF, FFI, EEF, RES, ADL, ASL, SPP, NSA, WPP, POD, FLN }
-        public enum MultiOccurrenceFAMs { LDM, HEM, ALB, LSF, HHS }
+        public enum MultiOccurrenceFAMs { LDM, HEM, ALB, LSF, HHS, ACT }
         public enum DatedFAMs { ABCDF, GHIH } //{ ALB, LSF }
         #endregion
 
@@ -90,6 +90,43 @@ namespace ILR
                 if (columnName == "NINumber")
                 {
                     result = "Error message here";
+                }
+
+                switch (columnName.ToUpper())
+                {
+                    case "LEARNDELFAMCODE":
+                        switch (LearnDelFAMType.ToUpper())
+                        {
+                            case "ALB":
+                            case "ACT":
+                                int tmpint;
+                                bool x = Int32.TryParse(System.Convert.ToString(LearnDelFAMCode), out tmpint);
+                                if (x)
+                                {
+                                    switch (LearnDelFAMType.ToUpper())
+                                    {
+                                        //case "LSF":
+                                        //    if (tmpint != 1) { result = "Invalid Value"; }
+                                        //    break;
+                                        //case "ALB":
+                                        //    if (tmpint != 1) { result = "Invalid Value"; }
+                                        //    break;
+                                        case "ACT":
+                                            if ((tmpint < 1) || (tmpint > 2)) { result = "Invalid Value"; }
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    result = "Invalid Value";
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
                 }
                 return result;
             }

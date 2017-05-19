@@ -8,36 +8,36 @@
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
         <Grid Margin="5" x:Name="MasterGrid" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid >
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" MinWidth="100"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Grid >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto" MinWidth="100"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition />
 
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="10" Text="Outcome Record" HorizontalAlignment="Left" Margin="3" FontSize="18" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="10" Text="Outcome Record" HorizontalAlignment="Left" Margin="3" FontSize="18" />
 
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Type :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Type :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
 
-                <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                                       Margin="4"
                                       MinWidth="175"
                                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
@@ -48,8 +48,8 @@
                                       SelectedValue="{Binding Path=CurrentItem.OutType, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
                                    />
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Code :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
-                <TextBox Grid.Row="2" Grid.Column="1" 
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Code :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
+            <TextBox Grid.Row="2" Grid.Column="1" 
                      Name="txtEmpId" 
                      Text="{Binding Path=CurrentItem.OutCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  
                      Style="{DynamicResource TextBoxWithError}"
@@ -61,29 +61,29 @@
                      Margin="3" />
 
 
-                <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="Start date :" Style="{DynamicResource StandardTextBlockStyle}"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="Start date :" Style="{DynamicResource StandardTextBlockStyle}"/>
 
-                <DatePicker  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" x:Name="dtStartDate"  VerticalAlignment="Top" 
+            <DatePicker  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" x:Name="dtStartDate"  VerticalAlignment="Top" 
                              DisplayDate="{Binding Path=CurrentItem.OutStartDate, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
                              SelectedDate="{Binding Path=CurrentItem.OutStartDate, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
                           />
 
 
-                <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="End date :" Style="{DynamicResource StandardTextBlockStyle}"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="End date :" Style="{DynamicResource StandardTextBlockStyle}"/>
 
-                <DatePicker  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" x:Name="dtEndDate"  VerticalAlignment="Top" 
+            <DatePicker  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" x:Name="dtEndDate"  VerticalAlignment="Top" 
                              DisplayDate="{Binding Path=CurrentItem.OutEndDate, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
                              SelectedDate="{Binding Path=CurrentItem.OutEndDate, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
                           />
 
-                <TextBlock Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="Collection date :" Style="{DynamicResource StandardTextBlockStyle}"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="Collection date :" Style="{DynamicResource StandardTextBlockStyle}"/>
 
-                <DatePicker  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" x:Name="dtCollectionDate"  VerticalAlignment="Top" 
+            <DatePicker  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" x:Name="dtCollectionDate"  VerticalAlignment="Top" 
                              DisplayDate="{Binding Path=CurrentItem.OutCollDate, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
                              SelectedDate="{Binding Path=CurrentItem.OutCollDate, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
                           />
 
-            </Grid>
         </Grid>
+    </Grid>
     </ScrollViewer>
 </UserControl>

@@ -14,11 +14,9 @@ namespace ilrLearnerEntry.WpfConverter
             if (value == null) return string.Empty;
 
             String sReturn = String.Empty;
-
             Boolean valueToTry = System.Convert.ToBoolean(value);
             switch (valueToTry)
             {
-
                 case true:
                     sReturn = "#FFBDE891";
                     break;
@@ -30,8 +28,6 @@ namespace ilrLearnerEntry.WpfConverter
                     sReturn = String.Empty;
                     break;
             }
-
-
             return sReturn;
         }
 

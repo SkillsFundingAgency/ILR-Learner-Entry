@@ -113,7 +113,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 OnPropertyChanged("HEM3");
                 OnPropertyChanged("HEM2");
                 OnPropertyChanged("HEM2");
-                OnPropertyChanged("STULOAD");
+                OnPropertyChanged("STULOAD");                
             }
         }
         public String PCOLAB

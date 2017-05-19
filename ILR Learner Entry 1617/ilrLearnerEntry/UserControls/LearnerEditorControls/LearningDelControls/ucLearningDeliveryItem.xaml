@@ -8,12 +8,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="950"             
+             d:DesignHeight="600" d:DesignWidth="1500"       
+             MinWidth="990"
              Visibility="{Binding ShowControl, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
              >
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid>
-            <TabControl Grid.Row="3">
+            <TabControl >
                 <TabItem Header="Learning Information" IsSelected="True" MinWidth="125" TabIndex="1">
                     <LearnerDelControls:ucLearningStartInformation x:Name="LearningStartInformationControl" />
                 </TabItem>
@@ -32,11 +32,9 @@
                 <TabItem Header="Work Placement" IsSelected="False" MinWidth="125"  TabIndex="4">
                     <WpControls:ucWorkPlacementList x:Name="WorkplaceListControls" />
                 </TabItem>
-                <TabItem Header="End Details" IsSelected="False" MinWidth="125"  TabIndex="4">
-                    <LearnerDelControls:ucLearningEndInformation x:Name="LearningEndInformationControl" />
-                </TabItem>
-
-            </TabControl>
-        </Grid>
+            <TabItem Header="End Details" IsSelected="False" MinWidth="125"  TabIndex="4">
+                <LearnerDelControls:ucLearningEndInformation x:Name="LearningEndInformationControl" />
+            </TabItem>
+        </TabControl>
     </ScrollViewer>
 </UserControl>

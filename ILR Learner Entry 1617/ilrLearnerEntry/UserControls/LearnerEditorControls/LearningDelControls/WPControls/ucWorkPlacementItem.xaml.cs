@@ -31,7 +31,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 
         private LearningDeliveryWorkPlacement _learningDeliveryWorkPlacement;
         private string _workplaceempid = string.Empty;
-
+        
         #region Constructor
         public ucWorkPlacementItem()
         {
@@ -142,7 +142,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 if (CurrentItem != null)
                 {
                     switch (columnName)
-                    {
+                    { 
                         case "WorkPlaceEmpId":
                             if (WorkPlaceEmpId != null && WorkPlaceEmpId.Length > 0)
                             {

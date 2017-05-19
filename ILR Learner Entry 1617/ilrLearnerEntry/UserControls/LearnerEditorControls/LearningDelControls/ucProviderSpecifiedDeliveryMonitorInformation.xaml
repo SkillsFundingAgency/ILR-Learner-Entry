@@ -9,23 +9,23 @@
              >
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Margin="5" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition  />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="30" Width="Auto"/>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition MinWidth="10" Width="Auto"/>
-                <ColumnDefinition MinWidth="30" Width="Auto"/>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+    <Grid Margin="5" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition  />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="30" Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition MinWidth="10" Width="Auto"/>
+            <ColumnDefinition MinWidth="30" Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="A :" HorizontalAlignment="Right" Margin="3" />
-            <TextBox Grid.Row="0" Grid.Column="1"  
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="A :" HorizontalAlignment="Right" Margin="3" />
+        <TextBox Grid.Row="0" Grid.Column="1"  
                  Text="{Binding Path=CurrentLearningDelivery.ProvSpecMonA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                  HorizontalAlignment="Left" 
@@ -34,8 +34,8 @@
                  MaxLength="20" 
                  Width="150" />
 
-            <TextBlock Grid.Row="0" Grid.Column="3" Text="B :" HorizontalAlignment="Right" Margin="3" />
-            <TextBox Grid.Row="0" Grid.Column="4" 
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="B :" HorizontalAlignment="Right" Margin="3" />
+        <TextBox Grid.Row="0" Grid.Column="4" 
                  Text="{Binding Path=CurrentLearningDelivery.ProvSpecMonB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                  Style="{DynamicResource TextBoxWithError}" 
                  HorizontalAlignment="Left" 
@@ -44,8 +44,8 @@
                  MaxLength="20" 
                  Width="150" />
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="C :" HorizontalAlignment="Right" Margin="3" />
-            <TextBox Grid.Row="1" Grid.Column="1" 
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="C :" HorizontalAlignment="Right" Margin="3" />
+        <TextBox Grid.Row="1" Grid.Column="1" 
                  Text="{Binding Path=CurrentLearningDelivery.ProvSpecMonC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                  Style="{DynamicResource TextBoxWithError}" 
                  HorizontalAlignment="Left" 
@@ -54,8 +54,8 @@
                  MaxLength="20" 
                  Width="150" />
 
-            <TextBlock Grid.Row="1" Grid.Column="3" Text="D :" HorizontalAlignment="Right" Margin="3" />
-            <TextBox Grid.Row="1" Grid.Column="4" 
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="D :" HorizontalAlignment="Right" Margin="3" />
+        <TextBox Grid.Row="1" Grid.Column="4" 
                  Text="{Binding Path=CurrentLearningDelivery.ProvSpecMonD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                  Style="{DynamicResource TextBoxWithError}"
                  HorizontalAlignment="Left" 

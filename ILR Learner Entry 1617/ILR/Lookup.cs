@@ -16,7 +16,7 @@ namespace ILR
         public string GetDescription(string Item, string Code)
         {
             string result = null;
-            if (Code.Length > 0)
+            if (Code.Length >0)
             {
                 XmlNode item = lookupsXML.SelectSingleNode("lookups/simple/" + Item + "/option[@code=" + Code + "]");
                 if (item != null)

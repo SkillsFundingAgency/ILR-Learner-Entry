@@ -18,267 +18,267 @@ using ILR;
 
 namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
 {
-    /// <summary>
-    /// Interaction logic for ucDPO_LearnerList.xaml
-    /// </summary>
-    public partial class ucDPO_LearnerList : UserControl, INotifyPropertyChanged
-    {
-        #region Private Variables
-        private String _learnerfilterString = string.Empty;
-        #endregion
+	/// <summary>
+	/// Interaction logic for ucDPO_LearnerList.xaml
+	/// </summary>
+	public partial class ucDPO_LearnerList : UserControl, INotifyPropertyChanged
+	{
+		#region Private Variables
+		private String _learnerfilterString = string.Empty;
+		#endregion
 
-        #region Constructor
-        public ucDPO_LearnerList()
-        {
-            InitializeComponent();
-            LearnerDPDetailGrid.Visibility = System.Windows.Visibility.Hidden;
-            SetupLookups();
-        }
-        #endregion
+		#region Constructor
+		public ucDPO_LearnerList()
+		{
+			InitializeComponent();
+			LearnerDPDetailGrid.Visibility = System.Windows.Visibility.Hidden;
+			SetupLookups();       
+		}
+		#endregion
 
-        #region Public Properties
-        public ICollectionView LearnerDPList
-        {
-            get;
-            private set;
-        }
-        private bool LearnerFilter(object item)
-        {
-            LearnerDestinationandProgression learner = item as LearnerDestinationandProgression;
-            if (!string.IsNullOrEmpty(_learnerfilterString))
-            {
-                bool bReturn = false;
-                if ((learner.ULN != null) && (learner.ULN.ToString().ToLower().Contains(_learnerfilterString.ToLower()))) { bReturn = true; }
-                if ((learner.LearnRefNumber != null) && (learner.LearnRefNumber.ToString().ToLower().Contains(_learnerfilterString.ToLower()))) { bReturn = true; }
-                return bReturn;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public string LearnerFilterString
-        {
-            get { return _learnerfilterString; }
-            set
-            {
-                _learnerfilterString = value;
-                OnPropertyChanged("LearnerFilterString");
-                if (LearnerDPList != null)
-                {
-                    LearnerDPList.Refresh();
-                    OnPropertyChanged("LearnerDPList");
-                }
-            }
-        }
+		#region Public Properties
+		public ICollectionView LearnerDPList
+		{
+			get;
+			private set;
+		}
+		private bool LearnerFilter(object item)
+		{
+			LearnerDestinationandProgression learner = item as LearnerDestinationandProgression;
+			if (!string.IsNullOrEmpty(_learnerfilterString))
+			{
+				bool bReturn = false;
+				if ((learner.ULN != null) && (learner.ULN.ToString().ToLower().Contains(_learnerfilterString.ToLower()))) { bReturn = true; }
+				if ((learner.LearnRefNumber != null) && (learner.LearnRefNumber.ToString().ToLower().Contains(_learnerfilterString.ToLower()))) { bReturn = true; }
+				return bReturn;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		public string LearnerFilterString
+		{
+			get { return _learnerfilterString; }
+			set
+			{
+				_learnerfilterString = value;
+				OnPropertyChanged("LearnerFilterString");
+				if (LearnerDPList != null)
+				{
+					LearnerDPList.Refresh();
+					OnPropertyChanged("LearnerDPList");
+				}
+			}
+		}
 
-        #endregion
+		#endregion
 
-        #region Private Properties
-        #endregion
+		#region Private Properties
+		#endregion
 
-        #region Private Methods
-        private void SetupListData()
-        {
-            LearnerDPList = null;
-            if (App.ILRMessage.LearnerDestinationandProgressionCount > 0)
-            {
-                LearnerDPList = CollectionViewSource.GetDefaultView(App.ILRMessage.LearnerDestinationandProgressionList);
-                this.DataContext = this;
-                LearnerDPList.Filter = LearnerFilter;
-                LearnerDPList.CurrentChanged += LearnerDPList_CurrentChanged;
-                if (App.ILRMessage.LearnerDestinationandProgressionList.Count > 0)
-                {
-                    (LearnerDPList.CurrentItem as ILR.LearnerDestinationandProgression).IsSelected = true;
-                }
-                LearnerDPList.Refresh();
-                OnPropertyChanged("LearnerDPList");
-            }
-            else
-            {
-                this.DataContext = null;
-                if (LearnerDPList != null)
-                {
-                    LearnerDPList.CurrentChanged -= LearnerDPList_CurrentChanged;
-                }
-                OnPropertyChanged("LearnerDPList");
-                LearnerDPList = null;
-            }
-            ShowOrHideChildControls();
-        }
-        private void ShowOrHideChildControls()
-        {
-            if (App.ILRMessage.LearnerDestinationandProgressionCount > 0)
-            {
-                LearnerDPDetailGrid.Visibility = System.Windows.Visibility.Visible;
-                SetSubControl(LearnerDPList.CurrentItem as LearnerDestinationandProgression);
-            }
-            else
-            {
-                LearnerDPDetailGrid.Visibility = System.Windows.Visibility.Hidden;
-            }
-        }
-        private void LearnerDPList_CurrentChanged(object sender, EventArgs e)
-        {
-        }
-        private void SetSubControl(LearnerDestinationandProgression learnerDp)
-        {
-            if (LearnerDPList.CurrentItem != null)
-            {
-                LearnerDPDetailGrid.Visibility = System.Windows.Visibility.Visible;
-                LearnerOutcomeListControl.CurrentItem = learnerDp;
-            }
-            else
-            {
-                LearnerOutcomeListControl.CurrentItem = null;
-                LearnerDPDetailGrid.Visibility = System.Windows.Visibility.Hidden;
-            }
-        }
-        private void DataItemListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (App.ILRMessage.LearnerDestinationandProgressionCount > 0)
-            {
-                if (e.AddedItems.Count > 0)
-                {
-                    LearnerDestinationandProgression lrdp = e.AddedItems[0] as LearnerDestinationandProgression;
-                    LearnerDPList.MoveCurrentTo(lrdp);
-                    lrdp.IsSelected = true;
-                    SetSubControl(lrdp);
-                    //lr.RefreshData();
-                }
-                LearnerDPDetailGrid.Visibility = System.Windows.Visibility.Visible;
-            }
-        }
+		#region Private Methods
+		private void SetupListData()
+		{
+			LearnerDPList = null;
+			if (App.ILRMessage.LearnerDestinationandProgressionCount > 0)
+			{
+				LearnerDPList = CollectionViewSource.GetDefaultView(App.ILRMessage.LearnerDestinationandProgressionList);
+				this.DataContext = this;
+				LearnerDPList.Filter = LearnerFilter;
+				LearnerDPList.CurrentChanged += LearnerDPList_CurrentChanged;
+				if (App.ILRMessage.LearnerDestinationandProgressionList.Count > 0)
+				{
+					(LearnerDPList.CurrentItem as ILR.LearnerDestinationandProgression).IsSelected = true;
+				}
+				LearnerDPList.Refresh();
+				OnPropertyChanged("LearnerDPList");
+			}
+			else
+			{
+				this.DataContext = null;
+				if (LearnerDPList != null)
+				{ 
+					LearnerDPList.CurrentChanged -= LearnerDPList_CurrentChanged; 
+				}
+				OnPropertyChanged("LearnerDPList");
+				LearnerDPList = null;
+			}
+			ShowOrHideChildControls();
+		}
+		private void ShowOrHideChildControls()
+		{
+			if (App.ILRMessage.LearnerDestinationandProgressionCount > 0)
+			{
+				LearnerDPDetailGrid.Visibility = System.Windows.Visibility.Visible;
+				SetSubControl(LearnerDPList.CurrentItem as LearnerDestinationandProgression);
+			}
+			else
+			{
+				LearnerDPDetailGrid.Visibility = System.Windows.Visibility.Hidden;
+			}
+		}
+		private void LearnerDPList_CurrentChanged(object sender, EventArgs e)
+		{
+		}
+		private void SetSubControl(LearnerDestinationandProgression learnerDp)
+		{
+			if (LearnerDPList.CurrentItem != null)
+			{
+				LearnerDPDetailGrid.Visibility = System.Windows.Visibility.Visible;
+				LearnerOutcomeListControl.CurrentItem = learnerDp;
+			}
+			else
+			{
+				LearnerOutcomeListControl.CurrentItem = null;
+				LearnerDPDetailGrid.Visibility = System.Windows.Visibility.Hidden;
+			}
+		}
+		private void DataItemListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (App.ILRMessage.LearnerDestinationandProgressionCount > 0)
+			{
+				if (e.AddedItems.Count > 0)
+				{
+					LearnerDestinationandProgression lrdp = e.AddedItems[0] as LearnerDestinationandProgression;
+					LearnerDPList.MoveCurrentTo(lrdp);
+					lrdp.IsSelected = true;
+					SetSubControl(lrdp);
+					//lr.RefreshData();
+				}
+				LearnerDPDetailGrid.Visibility = System.Windows.Visibility.Visible;
+			}
+		}
 
-        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
-        {
+		private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
+		{
 
-        }
-        private void AddLearner_Click(object sender, RoutedEventArgs e)
-        {
-            LearnerDestinationandProgression NewLr = App.ILRMessage.CreateLearnerDestinationandProgression();
-            if (App.ILRMessage.LearnerDestinationandProgressionCount == 1)
-            {
-                SetupListData();
-            }
-            else
-            {
-                ShowOrHideChildControls();
-            }
-            NewLr.IsSelected = true;
-            if (LearnerDPList.CurrentItem != NewLr)
-            {
-                LearnerDPList.MoveCurrentTo(NewLr);
-            }
-            LearnerDPList.Refresh();
-            OnPropertyChanged("LearnerDPList");
-        }
-        private void RemoveLearner_Click(object sender, RoutedEventArgs e)
-        {
-            if (LearnerDPList.CurrentItem != null)
-            {
-                LearnerDestinationandProgression ldp2Remove = LearnerDPList.CurrentItem as LearnerDestinationandProgression;
-                if (ldp2Remove != null)
-                {
-                    MessageBoxResult result = MessageBox.Show(String.Format("Are you sure you want to delete {0} Learner Destinationand Progression Record {0}{0} Learner Ref - {1} {0} ULN : {2}", Environment.NewLine, ldp2Remove.LearnRefNumber, ldp2Remove.ULN)
-                                                            , "Confirmation"
-                                                            , MessageBoxButton.YesNo
-                                                            , MessageBoxImage.Question
-                                                            , MessageBoxResult.No);
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        App.ILRMessage.Delete(ldp2Remove);
-                        if (!LearnerDPList.IsEmpty)
-                        {
-                            if (!LearnerDPList.MoveCurrentToPrevious())
-                            {
-                                LearnerDPList.MoveCurrentToFirst();
-                                LearnerDPList.Refresh();
-                                OnPropertyChanged("LearnerDPList");
-                            }
-                            if ((LearnerDPList.CurrentItem != null) && (LearnerDPList.CurrentItem != ldp2Remove))
-                            {
-                                LearnerDestinationandProgression lr = LearnerDPList.CurrentItem as LearnerDestinationandProgression;
-                                lr.IsSelected = true;
-                            }
-                            else
-                            {
-                                LearnerDPList.MoveCurrentToNext();
-                                if (LearnerDPList.CurrentItem != null)
-                                {
-                                    LearnerDestinationandProgression lr = LearnerDPList.CurrentItem as LearnerDestinationandProgression;
-                                    lr.IsSelected = true;
-                                }
-                            }
+		}
+		private void AddLearner_Click(object sender, RoutedEventArgs e)
+		{
+			LearnerDestinationandProgression NewLr = App.ILRMessage.CreateLearnerDestinationandProgression();
+			if (App.ILRMessage.LearnerDestinationandProgressionCount == 1)
+			{
+				SetupListData();
+			}
+			else
+			{
+				ShowOrHideChildControls();
+			}
+			NewLr.IsSelected = true;
+			if (LearnerDPList.CurrentItem != NewLr)
+			{
+				LearnerDPList.MoveCurrentTo(NewLr);
+			}
+			LearnerDPList.Refresh();
+			OnPropertyChanged("LearnerDPList");
+		}
+		private void RemoveLearner_Click(object sender, RoutedEventArgs e)
+		{
+			if (LearnerDPList.CurrentItem != null)
+			{
+				LearnerDestinationandProgression ldp2Remove = LearnerDPList.CurrentItem as LearnerDestinationandProgression;
+				if (ldp2Remove != null)
+				{
+					MessageBoxResult result = MessageBox.Show(String.Format("Are you sure you want to delete {0} Learner Destinationand Progression Record {0}{0} Learner Ref - {1} {0} ULN : {2}", Environment.NewLine, ldp2Remove.LearnRefNumber, ldp2Remove.ULN)
+															, "Confirmation"
+															, MessageBoxButton.YesNo
+															, MessageBoxImage.Question
+															, MessageBoxResult.No);
+					if (result == MessageBoxResult.Yes)
+					{
+						App.ILRMessage.Delete(ldp2Remove); 
+						if (!LearnerDPList.IsEmpty)
+						{
+							if (!LearnerDPList.MoveCurrentToPrevious())
+							{
+								LearnerDPList.MoveCurrentToFirst();
+								LearnerDPList.Refresh();
+								OnPropertyChanged("LearnerDPList");
+							}
+							if ((LearnerDPList.CurrentItem != null) && (LearnerDPList.CurrentItem != ldp2Remove))
+							{
+								LearnerDestinationandProgression lr = LearnerDPList.CurrentItem as LearnerDestinationandProgression;
+								lr.IsSelected = true;
+							}
+							else
+							{
+								LearnerDPList.MoveCurrentToNext();
+								if (LearnerDPList.CurrentItem != null)
+								{
+									LearnerDestinationandProgression lr = LearnerDPList.CurrentItem as LearnerDestinationandProgression;
+									lr.IsSelected = true;
+								}
+							}
 
-                        }
-                        LearnerDPList.Refresh();
-                        OnPropertyChanged("LearnerDPList");
-                    }
-                }
-            }
-        }
-        private void SetupLookups()
-        {
-            ILR.Lookup lp = new ILR.Lookup();
-            LearnerOutcomeListControl.OutcomeDetailControl.OutcomeTypeList = lp.GetLookup("OutType");
-        }
-        #endregion
+						}
+						LearnerDPList.Refresh();
+						OnPropertyChanged("LearnerDPList");
+					}
+				}
+			}
+		}
+		private void SetupLookups()
+		{
+			ILR.Lookup lp = new ILR.Lookup();
+			LearnerOutcomeListControl.OutcomeDetailControl.OutcomeTypeList = lp.GetLookup("OutType");
+		}
+		#endregion
 
-        public void UpdateChildControlAsNewDataLoaded()
-        {
-            SetupListData();
-            DataItemListBox.UnselectAll();
-        }
+		public void UpdateChildControlAsNewDataLoaded()
+		{
+			SetupListData();
+			DataItemListBox.UnselectAll();
+		}
 
-        #region INotifyPropertyChanged Members
-        /// <summary>
-        /// INotifyPropertyChanged requires a property called PropertyChanged.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+		#region INotifyPropertyChanged Members
+		/// <summary>
+		/// INotifyPropertyChanged requires a property called PropertyChanged.
+		/// </summary>
+		public event PropertyChangedEventHandler PropertyChanged;
 
-        /// <summary>
-        /// Fires the event for the property when it changes.
-        /// </summary>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
+		/// <summary>
+		/// Fires the event for the property when it changes.
+		/// </summary>
+		protected virtual void OnPropertyChanged(string propertyName)
+		{
 #if DEBUG
-            VerifyPropertyName(propertyName);
+			VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			if (PropertyChanged != null)
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 
-        }
+		}
 
-        [Conditional("DEBUG")]
-        [DebuggerStepThrough]
-        public void VerifyPropertyName(string propertyName)
-        {
-            // Verify that the property name matches a real,  
-            // public, instance property on this object.
-            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-            {
-                var msg = "Invalid property name: " + propertyName;
+		[Conditional("DEBUG")]
+		[DebuggerStepThrough]
+		public void VerifyPropertyName(string propertyName)
+		{
+			// Verify that the property name matches a real,  
+			// public, instance property on this object.
+			if (TypeDescriptor.GetProperties(this)[propertyName] == null)
+			{
+				var msg = "Invalid property name: " + propertyName;
 
-                if (this.ThrowOnInvalidPropertyName)
-                {
-                    throw new Exception(msg);
-                }
-                else
-                {
-                    Debug.Fail(msg);
-                }
-            }
-        }
+				if (this.ThrowOnInvalidPropertyName)
+				{
+					throw new Exception(msg);
+				}
+				else
+				{
+					Debug.Fail(msg);
+				}
+			}
+		}
 
-        protected bool ThrowOnInvalidPropertyName { get; set; }
+		protected bool ThrowOnInvalidPropertyName { get; set; }
 
-        #endregion
+		#endregion
 
-        private void SaveLearner_Click(object sender, RoutedEventArgs e)
-        {
-            App.ILRMessage.Save();
-        }
+		private void SaveLearner_Click(object sender, RoutedEventArgs e)
+		{
+			App.ILRMessage.Save();
+		}
 
-    }
+	}
 }

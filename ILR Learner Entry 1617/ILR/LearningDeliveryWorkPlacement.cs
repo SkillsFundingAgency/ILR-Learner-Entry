@@ -48,22 +48,22 @@ namespace ILR
             {
                 string result = null;
 
-                if (columnName == "WorkPlaceMode")
-                {
-                    if (WorkPlaceMode != null && WorkPlaceMode.ToString().Length > 3)
-                    {
-                        result = "WorkPlaceMode exceeds maximum length (3 digits).";
-                        //WorkPlaceMode = (int?)int.Parse(WorkPlaceMode.ToString().Substring(0, 3));
-                    }
-                }
-                if (columnName == "WorkPlaceEmpId")
-                {
-                    if (WorkPlaceEmpId != null && WorkPlaceEmpId.ToString().Length > 8)
-                    {
-                        result = "WorkPlaceEmpId exceeds maximum length (8 digits).";
-                        //WorkPlaceEmpId = (int?)int.Parse(WorkPlaceEmpId.ToString().Substring(0, 8));
-                    }
-                }
+				if (columnName == "WorkPlaceMode")
+				{
+					if (WorkPlaceMode != null && WorkPlaceMode.ToString().Length > 3)
+					{
+						result = "WorkPlaceMode exceeds maximum length (3 digits).";
+						//WorkPlaceMode = (int?)int.Parse(WorkPlaceMode.ToString().Substring(0, 3));
+					}
+				}
+				if (columnName == "WorkPlaceEmpId")
+				{
+					if (WorkPlaceEmpId != null && WorkPlaceEmpId.ToString().Length > 8)
+					{
+						result = "WorkPlaceEmpId exceeds maximum length (8 digits).";
+						//WorkPlaceEmpId = (int?)int.Parse(WorkPlaceEmpId.ToString().Substring(0, 8));
+					}
+				} 
                 return result;
             }
         }

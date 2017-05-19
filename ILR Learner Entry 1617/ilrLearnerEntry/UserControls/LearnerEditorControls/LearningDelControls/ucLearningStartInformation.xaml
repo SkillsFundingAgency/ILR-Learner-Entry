@@ -117,7 +117,7 @@
                       Height="20"
                    />
 
-                <TextBlock Grid.Row="3" Grid.Column="3" Text="Programme type :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBlock Grid.Row="3" Grid.Column="3" Text="Programme type :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />                
                 <ComboBox Grid.Row="3" Grid.Column="4"
                       Margin="4"
                       Width="125"

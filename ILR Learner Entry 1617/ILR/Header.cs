@@ -64,7 +64,7 @@ namespace ILR
                 if (columnName == "NINumber")
                 {
                     result = "Error message here";
-                }
+                }            
                 return result;
             }
         }

@@ -75,7 +75,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 {
                     return _learner.LearnerContactList.Find(delegate (LearnerContact lcl)
                     {
-                        return (lcl.LocType.Value.ToString() == "1" && lcl.ContType.Value.ToString() == "2");
+                        return (lcl.LocType.Value.ToString() == "1" && lcl.ContType.Value.ToString() == "2" );
                     }
                      ).PostAdd;
                 }
@@ -105,7 +105,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 {
                     return _learner.LearnerContactList.Find(delegate (LearnerContact lcl)
                     {
-                        return (lcl.LocType.Value.ToString() == "2" && lcl.ContType.Value.ToString() == "2");
+                        return (lcl.LocType.Value.ToString() == "2" && lcl.ContType.Value.ToString() == "2" );
                     }
                      ).PostCode;
                 }
@@ -133,7 +133,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 {
                     return _learner.LearnerContactList.Find(delegate (LearnerContact lcl)
                     {
-                        return (lcl.LocType.Value.ToString() == "3" && lcl.ContType.Value.ToString() == "2");
+                        return (lcl.LocType.Value.ToString() == "3" && lcl.ContType.Value.ToString() == "2" );
                     }
                      ).TelNumber;
                 }
@@ -162,7 +162,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 
                     return _learner.LearnerContactList.Find(delegate (LearnerContact lcl)
                     {
-                        return (lcl.LocType.Value.ToString() == "4" && lcl.ContType.Value.ToString() == "2");
+                        return (lcl.LocType.Value.ToString() == "4" && lcl.ContType.Value.ToString() == "2" );
                     }
                      ).Email;
                 }

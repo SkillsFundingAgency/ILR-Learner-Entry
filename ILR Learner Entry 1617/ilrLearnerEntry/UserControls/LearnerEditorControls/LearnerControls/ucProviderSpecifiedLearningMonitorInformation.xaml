@@ -9,36 +9,36 @@
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
         <Grid Margin="5" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Row="1" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" 
               Grid.Column="0" 
               Grid.ColumnSpan="5"
               Grid.RowSpan="2" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition  />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition  />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="A :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=CurrentItem.ProvSpecMonA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="A :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=CurrentItem.ProvSpecMonA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
@@ -46,8 +46,8 @@
                      MaxLength="20" TabIndex="1"
                      Margin="3,6,0,0" />
 
-                <TextBlock Grid.Row="0" Grid.Column="2" Text="B :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
-                <TextBox Grid.Row="0" Grid.Column="3" 
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="B :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+            <TextBox Grid.Row="0" Grid.Column="3" 
                      Text="{Binding Path=CurrentItem.ProvSpecMonB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Stretch" 
@@ -55,7 +55,7 @@
                      MaxLength="20" TabIndex="2" Width="150" 
                      Margin="3" />
 
-            </Grid>
-        </Grid>
-    </ScrollViewer>
+                </Grid>
+    </Grid>
+</ScrollViewer>
 </UserControl>

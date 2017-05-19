@@ -52,15 +52,15 @@ namespace ILR
                 message += this["LearnPlanEndDate"];
                 message += this["FundModel"];
                 message += this["CompStatus"];
-                message += this["DelLocPostCode"];
+				message += this["DelLocPostCode"];			
 
-                return message;
+				return message;
             }
         }
         public bool ShouldProbablyMigrate
         {
             get
-            {
+            {                
                 switch (this.AimType)
                 {
                     case 1:
@@ -417,6 +417,20 @@ namespace ILR
                 foreach (LearningDeliveryFAM fam in value)
                     AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.LSF, fam.LearnDelFAMCode);
                 OnPropertyChanged("LSF");
+            }
+        }
+        public List<LearningDeliveryFAM> ACT
+        {
+            get
+            {
+                return this.LearningDeliveryFAMList.FindAll(x => x.LearnDelFAMType == "ACT");
+            }
+            set
+            {
+                ClearFAMList(LearningDeliveryFAM.MultiOccurrenceFAMs.ACT);
+                foreach (LearningDeliveryFAM fam in value)
+                    AddFAM(LearningDeliveryFAM.MultiOccurrenceFAMs.ACT, fam.LearnDelFAMCode);
+                OnPropertyChanged("ACT");
             }
         }
         //public string ALB1
@@ -859,7 +873,7 @@ namespace ILR
             this.OutGrade = MigrationLearningDelivery.OutGrade;
             this.SWSupAimId = MigrationLearningDelivery.SWSupAimId;
 
-            foreach (LearningDeliveryFAM migrationItem in MigrationLearningDelivery.LearningDeliveryFAMList.Where(f => f.LearnDelFAMType != "TBS"))
+            foreach (LearningDeliveryFAM migrationItem in MigrationLearningDelivery.LearningDeliveryFAMList.Where(f=>f.LearnDelFAMType!="TBS"))
             {
                 if (migrationItem.LearnDelFAMType != "WPL" && !(migrationItem.LearnDelFAMType == "LDM" && migrationItem.LearnDelFAMType == "125") || (this.FundModel == 35 && this.LearnStartDate < FIRST_AUG_2013 && (this.ProgType == 2 || this.ProgType == 3 || this.ProgType == 10 || this.ProgType == 20 || this.ProgType == 21 || this.ProgType == 22 || this.ProgType == 23)))
                 {
@@ -882,7 +896,7 @@ namespace ILR
                 LearningDeliveryWorkPlacement newInstance = new LearningDeliveryWorkPlacement(migrationItem, newNode, NSMgr);
                 LearningDeliveryWorkPlacementList.Add(newInstance);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
-            }
+            } 
             foreach (TrailblazerApprenticeshipFinancialRecord migrationItem in MigrationLearningDelivery.TrailblazerApprenticeshipFinancialRecordList)
             {
                 XmlNode newNode = Node.OwnerDocument.CreateElement("TrailblazerApprenticeshipFinancialRecord", NSMgr.LookupNamespace("ia"));
@@ -929,7 +943,7 @@ namespace ILR
         private LearningDeliveryFAM GetLegacyFAM(string FAMType)
         {
             return this.LearningDeliveryFAMList.Where(x => x.LearnDelFAMType == FAMType).FirstOrDefault();
-        }
+        } 
         public LearningDeliveryFAM GetFAM(LearningDeliveryFAM.SingleOccurrenceFAMs FAMType)
         {
             return this.LearningDeliveryFAMList.Where(x => x.LearnDelFAMType == FAMType.ToString()).FirstOrDefault();
@@ -1240,13 +1254,13 @@ namespace ILR
                         if (ConRefNumber != null)
                             return CheckPropertyLength(ConRefNumber, CLASSNAME, columnName, TABS);
                         break;
-                    case "DelLocPostCode":
-                        if ((DelLocPostCode == null)
-                       || ((DelLocPostCode != null && DelLocPostCode.ToString().Length == 0))
-                       )
-                            return "\t\tDel Loc Post Code - required\r\n";
-                        break;
-                    default:
+					case "DelLocPostCode":
+						if ((DelLocPostCode == null)
+					   || ((DelLocPostCode != null && DelLocPostCode.ToString().Length == 0))
+					   )
+							return "\t\tDel Loc Post Code - required\r\n";
+						break;
+					default:
                         break;
                 }
                 return result;

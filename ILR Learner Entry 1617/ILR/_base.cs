@@ -27,15 +27,14 @@ namespace ILR
 
         public Boolean IsSelected
         {
-            set
-            {
-                _isSelected = value;
-                OnPropertyChanged("IsSelected");
+            set { 
+                _isSelected = value; 
+                OnPropertyChanged("IsSelected"); 
             }
             get { return _isSelected; }
         }
         #endregion
-
+  
         #region Methods
         public int GetItemSize(string ItemName)
         {
@@ -51,9 +50,9 @@ namespace ILR
             }
             return null;
         }
-
+    
         #endregion
-
+ 
         #region INotifyPropertyChanged Members
         /// <summary>
         /// INotifyPropertyChanged requires a property called PropertyChanged.
@@ -68,7 +67,7 @@ namespace ILR
 #if DEBUG     
             VerifyPropertyName(propertyName);
 #endif
-            if (PropertyChanged != null)
+            if ( PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 

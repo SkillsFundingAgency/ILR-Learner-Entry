@@ -283,10 +283,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
                 switch (columnName)
                 {
                     case "ULN":
-                        if (String.IsNullOrEmpty(ULN.ToString()))
-                            sReturn = String.Format("{0} required.", columnName);
-
-                        if (ULN != null && ULN.Length > 0)
+                         if (String.IsNullOrEmpty(ULN.ToString()))
+                                sReturn = String.Format("{0} required.", columnName);
+                        
+                            if (ULN != null && ULN.Length > 0)
                         {
                             sReturn += CheckPropertyLength(ULN, CLASSNAME, columnName);
                             long number;
@@ -297,7 +297,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
                             }
                         }
                         break;
-
+                    
                     default:
                         break;
                 }

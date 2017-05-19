@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-
+ 
 namespace ILR
 {
     public class ContactPreference : ChildEntity, IDataErrorInfo
@@ -44,14 +44,14 @@ namespace ILR
             get
             {
                 string result = null;
-                if (columnName == "ContPrefCode")
-                {
-                    if (ContPrefCode != null && ContPrefCode.ToString().Length > 8)
-                    {
-                        result = "ContPrefCode exceeds maximum length (8 digits).";
-                        //ContPrefCode = (int?)int.Parse(ContPrefCode.ToString().Substring(0, 8));
-                    }
-                }
+				if (columnName == "ContPrefCode")
+				{
+					if (ContPrefCode != null && ContPrefCode.ToString().Length > 8)
+					{
+						result = "ContPrefCode exceeds maximum length (8 digits).";
+						//ContPrefCode = (int?)int.Parse(ContPrefCode.ToString().Substring(0, 8));
+					}
+				}
                 return result;
             }
         }

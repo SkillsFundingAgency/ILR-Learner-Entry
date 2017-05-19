@@ -51,10 +51,10 @@ namespace ilrLearnerEntry.UserControls.EmploymentStatus
                     this.DataContext = null;
                 }
                 EmploymentStatusItemsCV = CollectionViewSource.GetDefaultView(_learner.LearnerEmploymentStatusList as List<LearnerEmploymentStatus>);
-                if (_learner.LearnerEmploymentStatusList.Count > 0)
-                {
-                    (EmploymentStatusItemsCV.CurrentItem as ILR.LearnerEmploymentStatus).IsSelected = true;
-                }
+				if (_learner.LearnerEmploymentStatusList.Count > 0)
+				{
+					(EmploymentStatusItemsCV.CurrentItem as ILR.LearnerEmploymentStatus).IsSelected = true;
+				}
                 EmploymentStatusItemsCV.MoveCurrentToFirst();
                 EmploymentStatusItemsCV.Refresh();
                 OnPropertyChanged("CurrentItem");
@@ -95,7 +95,7 @@ namespace ilrLearnerEntry.UserControls.EmploymentStatus
             }
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void  Add_Click(object sender, RoutedEventArgs e)
         {
             LearnerEmploymentStatus tmp = _learner.CreateLearnerEmploymentStatus();
             EmploymentStatusItemsCV.Refresh();
@@ -171,6 +171,6 @@ namespace ilrLearnerEntry.UserControls.EmploymentStatus
 
         #endregion
 
-
+      
     }
 }

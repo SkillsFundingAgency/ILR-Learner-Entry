@@ -83,13 +83,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				Visibility v = Visibility.Collapsed;
 				switch (FamType)
 				{
-					case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
-						v = Visibility.Collapsed;
+					case LearningDeliveryFAM.MultiOccurrenceFAMs.ACT:
+                    case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
+                        v = Visibility.Collapsed;
 						break;
 					default:
 						v = Visibility.Collapsed;
 						break;
-
 				}
 				return v;
 			}
@@ -104,7 +104,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.ALB:
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.HEM:
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.LDM:
-					case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
+                    case LearningDeliveryFAM.MultiOccurrenceFAMs.ACT:
+                    case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
 						v = Visibility.Visible;
 						break;
 					default:
@@ -124,7 +125,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.ALB:
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.HEM:
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.LDM:
-					case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
+                    case LearningDeliveryFAM.MultiOccurrenceFAMs.ACT:
+                    case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
 						v = Visibility.Visible;
 						break;
 					default:
@@ -144,7 +146,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.ALB:
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.HEM:
 					case LearningDeliveryFAM.MultiOccurrenceFAMs.LDM:
-					case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
+                    case LearningDeliveryFAM.MultiOccurrenceFAMs.ACT:
+                    case LearningDeliveryFAM.MultiOccurrenceFAMs.LSF:
 						v = Visibility.Visible;
 						break;
 					default:
@@ -196,21 +199,21 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				{
 					case "ALB":
 					case "LSF":
-						tmp.LearnDelFAMType = FamType.ToString().ToUpper();
+                    case "ACT":
+                        tmp.LearnDelFAMType = FamType.ToString().ToUpper();
 						break;
 					default:
 						break;
-
 				}
 				switch (FamType.ToString().ToUpper())
 				{
 					case "ALB":
-					case "LSF":
-						tmp.LearnDelFAMCode = "1";
+                    case "LSF":
+                    case "ACT":
+                        tmp.LearnDelFAMCode = "1";
 						break;
 					default:
 						break;
-
 				}
 				
 				_FAMLList = GetLSFList(_learnerDelivery.LearningDeliveryFAMList);
@@ -231,7 +234,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 		}
 		private void Remove_Click(object sender, RoutedEventArgs e)
 		{
-
 			if (FamItemsCV.CurrentItem != null)
 			{
 				LearningDeliveryFAM fam2Remove = FamItemsCV.CurrentItem as LearningDeliveryFAM;
@@ -241,7 +243,6 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 					_FAMLList.Remove(fam2Remove);
 					if (!FamItemsCV.IsEmpty)
 					{
-
 						if (!FamItemsCV.MoveCurrentToPrevious())
 						{
 							FamItemsCV.MoveCurrentToFirst();
@@ -260,6 +261,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 							{
 								LearningDeliveryFAM f = FamItemsCV.CurrentItem as LearningDeliveryFAM;
 								f.IsSelected = true;
+
 							}
 						}
 					}

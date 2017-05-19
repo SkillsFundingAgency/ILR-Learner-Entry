@@ -17,7 +17,6 @@ namespace ilrLearnerEntry.WpfConverter
             {
                 flag = true;
             }
-
             return flag ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
         }
 

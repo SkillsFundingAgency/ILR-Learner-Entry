@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
              mc:Ignorable="d" 
-             d:DesignHeight="70" d:DesignWidth="300">
+             d:DesignHeight="70" d:DesignWidth="290" >
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Margin="5" x:Name="MasterGrid" >
+        <Grid Margin="1" x:Name="MasterGrid" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
@@ -18,16 +18,14 @@
             <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="57"/>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="130" />
-                    <ColumnDefinition />
+                    <ColumnDefinition MinWidth="55"/>
+                    <ColumnDefinition Width="43"/>
+                    <ColumnDefinition Width="127" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
-                    <RowDefinition  />
                 </Grid.RowDefinitions>
                 <!--<TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="10" Text="{Binding Path=UserControlTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=Not Set Yet}" HorizontalAlignment="Left" Margin="3" FontSize="18" />-->
 
@@ -36,10 +34,9 @@
                 <TextBox Grid.Row="1" Grid.Column="1"
                      Text="{Binding Path=CurrentItem.LearnDelFAMType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
-                     HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      MinWidth="50"  
-                     Margin="3"
+                     Margin="3,3,15,3"
                      MaxLength="3"
                      IsReadOnly="True"
                 />
@@ -48,12 +45,11 @@
                 <TextBox Grid.Row="2" Grid.Column="1"
                      Text="{Binding Path=CurrentItem.LearnDelFAMCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
                      Style="{DynamicResource TextBoxWithError}"
-                     HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
                      MinWidth="50"  
-                     Margin="3"
+                     Margin="3,3,15,3"
                      MaxLength="3" 
-                     IsReadOnly="{Binding Path=IsTypeReadOnly, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                     IsReadOnly="{Binding Path=IsCodeReadOnly, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                 />
 
                 <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="From  :" Style="{DynamicResource StandardTextBlockStyle}" Visibility="{Binding Path=IsFromVisable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />

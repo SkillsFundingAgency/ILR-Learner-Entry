@@ -79,7 +79,7 @@ namespace ilrLearnerEntry.UserControls
 
         #region Private Properties
         #endregion
-
+        
         #region Public Methods
         public void UpdateChildControlAsNewDataLoaded()
         {

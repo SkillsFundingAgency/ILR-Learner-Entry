@@ -11,7 +11,7 @@ namespace ILR
     {
         #region ILR Properties
         public int? LLDDCat { get { string LLDDCat = XMLHelper.GetChildValue("LLDDCat", Node, NSMgr); return (LLDDCat != null ? int.Parse(LLDDCat) : (int?)null); } set { XMLHelper.SetChildValue("LLDDCat", value, Node, NSMgr); } }
-        public bool? PrimaryLLDD { get { string PrimaryLLDD = XMLHelper.GetChildValue("PrimaryLLDD", Node, NSMgr); return (PrimaryLLDD != null ? (PrimaryLLDD == "1") : (bool?)null); } set { XMLHelper.SetChildValue("PrimaryLLDD", (value != null ? (bool)value : false) ? (int?)1 : (int?)null, Node, NSMgr); OnPropertyChanged("PrimaryLLDD"); } }
+        public bool? PrimaryLLDD { get { string PrimaryLLDD = XMLHelper.GetChildValue("PrimaryLLDD", Node, NSMgr); return (PrimaryLLDD != null ? (PrimaryLLDD == "1") : (bool?)null); } set { XMLHelper.SetChildValue("PrimaryLLDD", (value!=null?(bool)value:false) ? (int?)1 : (int?)null, Node, NSMgr); OnPropertyChanged("PrimaryLLDD"); } }       
         #endregion
 
         #region Constructors
@@ -42,13 +42,13 @@ namespace ILR
             {
                 string result = null;
                 if (columnName == "LLDDCat")
-                {
+				{
                     if (LLDDCat != null && LLDDCat.ToString().Length > 2)
-                    {
+					{
                         result = "LLDDCat exceeds maximum length (2 digits).";
                         //LLDDCat = (int?)int.Parse(LLDDCat.ToString().Substring(0, 2));
-                    }
-                }
+					}
+				}
                 return result;
             }
         }

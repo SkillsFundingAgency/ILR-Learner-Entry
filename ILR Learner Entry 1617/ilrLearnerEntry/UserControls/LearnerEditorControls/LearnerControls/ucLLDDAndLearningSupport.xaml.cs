@@ -48,8 +48,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
             {
                 _alscost = string.Empty;
                 if (value != null)
-                {
-                    // LLDDItemListControl.CurrentItem = null;
+				{
+                   // LLDDItemListControl.CurrentItem = null;
 
                     _learner = value;
                     _alscost = value.ALSCost.ToString();
@@ -57,31 +57,31 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                     lv_LSR.SelectionChanged -= lv_LSR_SelectionChanged;
                     this.DataContext = this;
                     ClearAllLRSSelected();
-                    LLDDItemListControl.CurrentItem = _learner;
+					LLDDItemListControl.CurrentItem = _learner;
 
                     // Need to finish of the Selection on reload ?
                     foreach (int? lrsCode in _learner.LSR)
                     {
                         SetLRSAsSelected(lrsCode.ToString());
-                    }
-                    lv_LSR.SelectionChanged += lv_LSR_SelectionChanged;
+					}
+					lv_LSR.SelectionChanged += lv_LSR_SelectionChanged;
                     OnPropertyChanged("ALSCost");
                     OnPropertyChanged("LLDDTypeListDS");
-                    OnPropertyChanged("LLDDTypeListLD");
-                    OnPropertyChanged("LLDDHealthProblemList");
-                    OnPropertyChanged("LSRList");
-                    OnPropertyChanged("LLDDHealthProbTest");
-                    OnPropertyChanged("CurrentItem");
-                    OnPropertyChanged("LLDDHealthProblemList");
-                }
+					OnPropertyChanged("LLDDTypeListLD");
+					OnPropertyChanged("LLDDHealthProblemList");
+					OnPropertyChanged("LSRList");
+					OnPropertyChanged("LLDDHealthProbTest");
+					OnPropertyChanged("CurrentItem");
+					OnPropertyChanged("LLDDHealthProblemList");
+				}
                 else
                 {
-                    _learner = null;
+					_learner = null;
                     lv_LSR.SelectionChanged -= lv_LSR_SelectionChanged;
                     ClearAllLRSSelected();
                     OnPropertyChanged("LSRList");
                     this.DataContext = null;
-                }
+				}
             }
         }
         public string ALSCost
@@ -98,18 +98,18 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                 }
             }
         }
-        public int? LLDDHealthProbTest
-        {
-            get { return CurrentItem.LLDDHealthProb; }
-            set
-            {
+		public int? LLDDHealthProbTest
+		{
+			get { return CurrentItem.LLDDHealthProb; }
+			set
+			{
                 if (value != 1)
                 {
                     if (CurrentItem.LLDDandHealthProblemList != null)
                     { CurrentItem.LLDDandHealthProblemList.Clear(); }
                 }
                 CurrentItem.LLDDHealthProb = value;
-                OnPropertyChanged("LLDDHealthProbTest");
+				OnPropertyChanged("LLDDHealthProbTest");
                 LLDDItemListControl.CurrentItem = this.CurrentItem;
                 OnPropertyChanged("LLDDHealthProblemList");
             }
@@ -250,40 +250,40 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
         #endregion
 
 
-        #region IDataErrorInfo Members
-        public string Error
-        {
-            get { throw new NotImplementedException(); }
-        }
-        public string this[string columnName]
-        {
-            get
-            {
-                string sReturn = null;
-                if (_learner != null)
-                {
-                    switch (columnName)
-                    {
-                        case "LLDDHealthProbTest":
-                        case "LLDDHealthProblemList":
-                            if (CurrentItem.LLDDHealthProb == null)
-                            {
+		#region IDataErrorInfo Members
+		public string Error
+		{
+			get { throw new NotImplementedException(); }
+		}
+		public string this[string columnName]
+		{
+			get
+			{
+				string sReturn = null;
+				if (_learner != null)
+				{
+					switch (columnName)
+					{
+						case "LLDDHealthProbTest":
+						case "LLDDHealthProblemList":
+							if (CurrentItem.LLDDHealthProb == null)
+							{
                                 sReturn = "LLDDHealthProb nothing selected - required\r\n";
-                            }
-                            break;
+							}
+							break;
 
-                        case "LLDDHealthProbTest1":
-                            if ((CurrentItem.LLDDHealthProb == null)
-                                || (
-                                    (CurrentItem.LLDDHealthProb != null) && (CurrentItem.LLDDHealthProb == 1)
-                                    && ((CurrentItem.LLDDandHealthProblemList == null) || (CurrentItem.LLDDandHealthProblemList != null && CurrentItem.LLDDandHealthProblemList.Count < 1))
-                                   )
-                                )
-                            {
-                                return "LLDDandHealthProblem Not Selected- required\r\n";
-                            }
-                            break;
-                        case "ALSCost":
+						case "LLDDHealthProbTest1":
+							if ((CurrentItem.LLDDHealthProb == null) 
+								|| (
+									(CurrentItem.LLDDHealthProb != null) && (CurrentItem.LLDDHealthProb == 1)
+									&& ((CurrentItem.LLDDandHealthProblemList == null) || (CurrentItem.LLDDandHealthProblemList != null && CurrentItem.LLDDandHealthProblemList.Count < 1))
+								   )
+								)
+							{
+								return "LLDDandHealthProblem Not Selected- required\r\n";
+							}
+							break;
+						case "ALSCost":
                             if (ALSCost != null && ALSCost.Length > 0)
                             {
                                 sReturn += CheckPropertyLength(ALSCost, CLASSNAME, columnName);
@@ -296,11 +296,11 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
                             }
                             break;
                         default:
-                            break;
-                    }
-                }
-                return sReturn;
-            }
+							break;
+					}
+				}
+				return sReturn;
+			}
         }
         public int GetItemSize(string ItemName)
         {
@@ -320,13 +320,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls
 
 
         private void UserControl_RequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
-        {
-            if (CurrentItem != null)
-            {
-                //OnPropertyChanged("CurrentItem");
-                CurrentItem.RefreshData();
-            }
-        }
+		{
+			if (CurrentItem != null)
+			{
+				//OnPropertyChanged("CurrentItem");
+				CurrentItem.RefreshData();
+			}
+		}
 
     }
 }
