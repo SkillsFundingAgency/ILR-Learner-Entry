@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucLLDDAndLearningSupport"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+			 xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
+             xmlns:llddControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucLLDDControls"  
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:interactivity="schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:TextBoxMask="clr-namespace:ilrLearnerEntry.MaskBehavior"
+             mc:Ignorable="d"
+             d:DesignHeight="500" 
+             d:DesignWidth="750"
+             RequestBringIntoView="UserControl_RequestBringIntoView"  >
+	<UserControl.Resources>
+		<CommonConverters:IsCompleteToBackgroundColourConverter x:Key="IsCompleteColourConverter" />
+		<CommonConverters:IsCompleteVisabilityConverter x:Key="IsCompleteVisibilityConverter" />
+		<CommonConverters:StringToNullableLongConverter x:Key="StringToNullableLongConverter" />
+		<CommonConverters:StringToNullableIntConverter x:Key="StringToNullableIntConverter" />
+        <Style x:Key="ListBoxItemStyle" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="IsSelected" Value="{Binding Path=IsSelected}"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition  />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"  Text="Long term disability, health problem or learning difficulty :" TextWrapping="WrapWithOverflow" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,3,3,3" />
+
+                <ComboBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"
+                      TabIndex="2"   Margin="4" 
+                      Style="{DynamicResource ComboBoxWithError}"    
+                      ItemsSource="{Binding Path=LLDDHealthProblemList, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      SelectedValue="{Binding Path=LLDDHealthProbTest, Mode=TwoWay, NotifyOnValidationError=True}"                    
+                      VerticalAlignment="Top" 
+                      HorizontalAlignment="Left" 
+                      MinWidth="350"
+                      MaxWidth="650"
+                   />
+            </Grid>
+            <Grid Grid.Row="1"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="Does the learner have any of the following (tick those that apply) :"  HorizontalAlignment="Left" Margin="3"  FontSize="14" FontWeight="Bold" />
+
+                <!--<TextBlock Grid.Row="5" Grid.Column="0" Text="Learning difficulty assesment:" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
+                <CheckBox Grid.Row="5" Grid.Column="1"  IsChecked="{Binding Path=CurrentItem.LDA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="4" />-->
+
+                <TextBlock Grid.Row="5" Grid.Column="2" Text="Disabled students allowance : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <CheckBox Grid.Row="5" Grid.Column="3"  IsChecked="{Binding Path=CurrentItem.DLA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="6" />
+
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="Education Health Care plan : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <CheckBox Grid.Row="6" Grid.Column="1"  IsChecked="{Binding Path=CurrentItem.EHC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="5" />
+
+                <TextBlock Grid.Row="6" Grid.Column="2" Text="Learning support cost (£):" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBox Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="3" Text="{Binding Path=ALSCost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Stretch" 
+                     Margin="3"
+                     Width="60"
+                     MaxLength="6" TabIndex="7"
+                     />
+
+
+
+                <TextBlock Grid.Row="8" Grid.Column="2" Text="Special educational needs : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+                <CheckBox Grid.Row="8" Grid.Column="3"  IsChecked="{Binding Path=CurrentItem.SEN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  HorizontalAlignment="Left" Margin="3" TabIndex="6" />
+
+                <TextBlock Grid.Row="8" Grid.Column="0" Text="High needs students :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0.333,9.667,5.667" Style="{DynamicResource StandardTextBlockStyle}" />
+                <CheckBox Grid.Row="8" Grid.Column="1"  IsChecked="{Binding Path=CurrentItem.HNS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="3" 
+                           TabIndex="6"/>
+            </Grid>
+            <Grid Grid.Row="2"  Margin="10" ScrollViewer.VerticalScrollBarVisibility="Visible" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Learner Support Reason (select up to 4 that apply)" HorizontalAlignment="Left" Margin="0,3,2.6,3" Style="{DynamicResource StandardTextBlockStyle}"  FontSize="14" FontWeight="Bold" />
+                <Label Grid.Row="1" Grid.Column="0"
+                         Content="{Binding Path=NLM_Message, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  
+                         Style="{DynamicResource ErrorLabelStyle}"
+                         HorizontalAlignment="Center" 
+                         Margin="3"                       
+                         />
+                <ListView  Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top"
+                            ItemsSource="{Binding Path=DataContext.LSRList, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                            SelectionMode="Multiple" 
+                            Name="lv_LSR" 
+                            MinHeight="5"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            Margin="3" 
+                            FontWeight="Bold" 
+                            TabIndex="4"
+                            ItemContainerStyle="{DynamicResource MyListBoxItemStyle}"
+                            DisplayMemberPath="Description" 
+                            ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                    />
+
+
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="LLDD and Health Problem Category" HorizontalAlignment="Left" Margin="3,3,2.6,3" Style="{DynamicResource StandardTextBlockStyle}"  FontSize="14" FontWeight="Bold" />
+                <llddControls:ucLLDDList x:Name="LLDDItemListControl" Grid.Row="2" Grid.Column="2" MaxItems="22" HorizontalAlignment="Left" />
+
+            </Grid>
+            <Grid Grid.Row="3" 
+                  Margin="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

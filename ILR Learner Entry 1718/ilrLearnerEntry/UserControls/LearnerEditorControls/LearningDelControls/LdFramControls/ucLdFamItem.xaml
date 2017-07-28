@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.LdFramControls.ucLdFamItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
+             mc:Ignorable="d" 
+             d:DesignHeight="70" d:DesignWidth="290" >
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="1" x:Name="MasterGrid" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition MinWidth="55"/>
+                    <ColumnDefinition Width="43"/>
+                    <ColumnDefinition Width="127" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <!--<TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="10" Text="{Binding Path=UserControlTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=Not Set Yet}" HorizontalAlignment="Left" Margin="3" FontSize="18" />-->
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text=" Type :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+
+                <TextBox Grid.Row="1" Grid.Column="1"
+                     Text="{Binding Path=CurrentItem.LearnDelFAMType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalContentAlignment="Left" 
+                     MinWidth="50"  
+                     Margin="3,3,15,3"
+                     MaxLength="3"
+                     IsReadOnly="True"
+                />
+                <TextBlock Grid.Row="2" Grid.Column="0" Text=" Code :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}"  />
+
+                <TextBox Grid.Row="2" Grid.Column="1"
+                     Text="{Binding Path=CurrentItem.LearnDelFAMCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalContentAlignment="Left" 
+                     MinWidth="50"  
+                     Margin="3,3,15,3"
+                     MaxLength="3" 
+                     IsReadOnly="{Binding Path=IsCodeReadOnly, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                />
+
+                <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="From  :" Style="{DynamicResource StandardTextBlockStyle}" Visibility="{Binding Path=IsFromVisable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                <DatePicker  Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" Margin="3" x:Name="dtFromDate"  VerticalAlignment="Top" MinWidth="120" 
+                           TabIndex="2"
+                             DisplayDate="{Binding Path=CurrentItem.LearnDelFAMDateFrom, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
+                             SelectedDate="{Binding Path=CurrentItem.LearnDelFAMDateFrom, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                          />
+
+                <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="3" TextWrapping="Wrap" Text="To  :" Style="{DynamicResource StandardTextBlockStyle}" Visibility="{Binding Path=IsToVisable, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                <DatePicker  Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" Margin="3" x:Name="dtToDate"  VerticalAlignment="Top" MinWidth="120" 
+                           TabIndex="2"
+                             DisplayDate="{Binding Path=CurrentItem.LearnDelFAMDateTo, Mode=OneWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" 
+                             SelectedDate="{Binding Path=CurrentItem.LearnDelFAMDateTo, Mode=TwoWay,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                          />
+
+            </Grid>
+
+        </Grid>
+
+
+    </ScrollViewer>
+</UserControl>

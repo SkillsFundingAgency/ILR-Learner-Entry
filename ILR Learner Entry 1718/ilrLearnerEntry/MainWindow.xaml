@@ -1,0 +1,36 @@
+﻿<Window x:Class="ilrLearnerEntry.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:UserControls="clr-namespace:ilrLearnerEntry.UserControls" 
+    xmlns:DpControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls" 
+    Title="{Binding Path=WindowTitle,UpdateSourceTrigger=PropertyChanged}"
+    Height="750"     
+    Width="1560"
+    Closing="Window_Closing" 
+    Icon="AppIcon.ico" 
+    WindowStartupLocation="CenterScreen" >
+    <Grid x:Name="MasterGrid" >
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="131*" />
+            <ColumnDefinition Width="120*"/>
+            <ColumnDefinition Width="1008*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <TabControl Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0.4,0" >
+            <TabItem Header="Home Page" Name="tbHomeScreen" IsSelected="True">
+                <UserControls:ucHomeScreen x:Name="HomeScreenControl" />
+            </TabItem>
+            <TabItem Header="Learners" Name="tbItemLearnDetails" IsSelected="False" >
+                <UserControls:ucLearnerEditControl x:Name="LearnersControl" />
+            </TabItem>
+            <TabItem Header="Learner Destination and Progression" Name="tblDPOutcome" IsSelected="False" >
+                <DpControls:ucDPO_LearnerList x:Name="DPOutcomeControl" />
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

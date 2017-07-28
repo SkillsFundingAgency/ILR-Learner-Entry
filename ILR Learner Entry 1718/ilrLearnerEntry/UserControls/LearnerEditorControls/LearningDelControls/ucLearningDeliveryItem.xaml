@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.ucLearningDeliveryItem"
+             xmlns:LearnerDelControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls"  
+             xmlns:WpControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.WorkPlacementControls"  
+             xmlns:AFRControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.FinancialDetailControls"  
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+             xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" 
+             d:DesignWidth="950"
+             MinWidth="950"
+             Visibility="{Binding ShowControl, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+             >
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <TabControl >
+                <TabItem Header="Learning Information" IsSelected="True" MinWidth="125" TabIndex="1">
+                    <LearnerDelControls:ucLearningStartInformation x:Name="LearningStartInformationControl" />
+                </TabItem>
+                <TabItem Header="Funding and Monitoring" IsSelected="False" MinWidth="125"  TabIndex="2">
+                    <LearnerDelControls:ucLearnerFundingAndMonitoring x:Name="LearnerFundingAndMonitoringControl" />
+                </TabItem>
+                <TabItem Header="Provider Specified Info" IsSelected="False" MinWidth="125"  TabIndex="3">
+                    <LearnerDelControls:ucProviderSpecifiedDeliveryMonitorInformation  x:Name="ProviderSpecifiedDeliveryMonitorInformationControl"/>
+                </TabItem>
+                <TabItem Header="Learning Delivery HE" IsSelected="False" MinWidth="85"  TabIndex="3">
+                    <LearnerDelControls:ucLearningEDInformation  x:Name="HEControl"/>
+                </TabItem>
+                <TabItem Header="Financial Details" IsSelected="False" MinWidth="125"  TabIndex="4">
+                    <AFRControls:ucFinancialDetailList x:Name="FinancialDetailsListControl"/>
+                </TabItem>
+                <TabItem Header="Work Placement" IsSelected="False" MinWidth="125"  TabIndex="4">
+                    <WpControls:ucWorkPlacementList x:Name="WorkplaceListControls" />
+                </TabItem>
+            <TabItem Header="End Details" IsSelected="False" MinWidth="125"  TabIndex="4">
+                <LearnerDelControls:ucLearningEndInformation x:Name="LearningEndInformationControl" />
+            </TabItem>
+        </TabControl>
+    </ScrollViewer>
+</UserControl>

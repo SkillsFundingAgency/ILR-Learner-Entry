@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls.ucDPO_LearnerOutcomeList"                         
+             xmlns:DPLearnerControls="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls"               
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 			 
+             xmlns:IlrTypes="clr-namespace:ILR"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" 
+             d:DesignWidth="600">
+    <UserControl.Resources>
+        <DataTemplate x:Key="DPOutcomeDataTemplate" DataType="{x:Type IlrTypes:DPOutcome}">
+            <Grid HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                    <!--<ColumnDefinition Width="Auto"/>-->
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Type :"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3,3,3,3"  Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=OutType, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="30"  Margin="3" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Code :"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,3,3,3"  Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Path=OutCode, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="75"  Margin="3" />
+                <TextBlock Grid.Row="1" Grid.Column="4" Text="Start :"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,3,3,3"  Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding Path=OutStartDate, StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="50"  Margin="3" />
+                <TextBlock Grid.Row="1" Grid.Column="6" Text="End : "  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,3,3,3"  Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBlock Grid.Row="1" Grid.Column="7" Text="{Binding Path=OutEndDate, StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="50"  Margin="3" />
+                <TextBlock Grid.Row="1" Grid.Column="8" Text="Col : "  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,3,3,3"  Style="{DynamicResource StandardTextBlockStyle}" />
+                <TextBlock Grid.Row="1" Grid.Column="9" Text="{Binding Path=OutCollDate, StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="50"  Margin="3" />
+                <!--<Button Grid.Row="1" Grid.Column="11"
+                        x:Name="btnRemove" 
+                        Content=" Remove " 
+                        HorizontalAlignment="Right"
+                        HorizontalContentAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontSize="8"
+                        TabIndex="2" 
+                        MinWidth="45"
+                        MinHeight="15"
+                        Style="{DynamicResource RoundedButton}" Click="RemoveOutcome" 
+                />-->               
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="5" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
+                <RowDefinition MinHeight="35" MaxHeight="90" />
+                <RowDefinition Height="180" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Learner reference number :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
+            <TextBox Grid.Row="0" Grid.Column="1" 
+                     Name="txtEmpId" 
+                     Text="{Binding Path=CurrentItem.LearnRefNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" 
+                     Width="150"                       
+                     MaxLength="12"
+                     Margin="3" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Unique learner number :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" 
+                     Name="txtULN" 
+                     Text="{Binding Path=ULN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" 
+                     Width="120"                       
+                     MaxLength="10"
+                     Margin="3" />
+
+            <Button Grid.Row="2" Grid.Column="1" 
+                x:Name="btnNew" 
+                Content="Add" 
+                Panel.ZIndex="200" 
+                IsDefault="True" 
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                FontSize="10"
+                Margin="0,4,5,0" 
+                TabIndex="2" 
+                MinWidth="50"
+                MinHeight="15"
+                Style="{DynamicResource RoundedButton}"
+                 Grid.RowSpan="3" Click="AddNewOutcome" />
+            <Button Grid.Row="2" Grid.Column="1" 
+                x:Name="btnRemove" 
+                Content="Remove" 
+                Panel.ZIndex="200" 
+                IsDefault="True" 
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                FontSize="10"
+                Margin="0,24,5,0" 
+                TabIndex="2" 
+                MinWidth="50"
+                MinHeight="15"
+                Style="{DynamicResource RoundedButton}"
+                 Grid.RowSpan="3" Click="RemoveOutcome" />
+
+            <ListView 
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="2"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                HorizontalContentAlignment="Stretch"
+                ItemsSource="{Binding LearnerOutcomeItemsCV}"
+                ItemTemplate="{StaticResource DPOutcomeDataTemplate}"             
+                ItemContainerStyle="{DynamicResource MyListBoxItemStyle}"
+                SelectionMode="Single" 
+                IsSynchronizedWithCurrentItem="True"
+                Name="lv" 
+                Margin="8,1,60.4,2.8"
+                MaxHeight="80"
+        />
+            <DPLearnerControls:ucDPO_OutcomeDetail x:Name="OutcomeDetailControl"
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="5" VerticalContentAlignment="Top" />
+        </Grid>
+
+    </ScrollViewer>
+</UserControl>

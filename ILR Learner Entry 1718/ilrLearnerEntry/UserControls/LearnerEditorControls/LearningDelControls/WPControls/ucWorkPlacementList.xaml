@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.WorkPlacementControls.ucWorkPlacementList"
+             xmlns:WpControl="clr-namespace:ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.WorkPlacementControls" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 			
+             xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter" 
+             xmlns:IlrTypes="clr-namespace:ILR"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" 
+             d:DesignWidth="700"
+             >
+    <UserControl.Resources>     
+        <DataTemplate x:Key="WorkPlacementDataTemplate" DataType="{x:Type IlrTypes:LearningDeliveryWorkPlacement}">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="120"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Start :" Style="{DynamicResource LdListTextHeaderStyle}" />
+                <TextBlock Grid.Column="1" Text="{Binding Path=WorkPlaceStartDate,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource LdListTextValueStyle}" />
+                <TextBlock Grid.Column="2" Text="End :" Style="{DynamicResource LdListTextHeaderStyle}" />
+                <TextBlock Grid.Column="3" Text="{Binding Path=WorkPlaceEndDate,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource LdListTextValueStyle}" />
+                <TextBlock Grid.Column="4" Text="Mode :" Style="{DynamicResource LdListTextHeaderStyle}" />
+                <TextBlock Grid.Column="5" Text="{Binding Path=WorkPlaceMode, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource LdListTextValueStyle}" />
+                <TextBlock Grid.Column="6" Text="Emp Id :"  Style="{DynamicResource LdListTextHeaderStyle}" />
+                <TextBlock Grid.Column="7" Text="{Binding Path=WorkPlaceEmpId, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource LdListTextValueStyle}" />
+                <Button Grid.Column="8" x:Name="btnRemove" 
+                        Content="Remove" 
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontSize="8"
+                        TabIndex="2" 
+                        MinWidth="45"
+                        MinHeight="15"
+                        Style="{DynamicResource RoundedButton}" 
+                        Click="Remove_Click" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="5,5,5,5" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition  />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" 
+                    Grid.Column="0" 
+                    x:Name="btnNew" 
+                    Content="Add" 
+                    Panel.ZIndex="200" 
+                    IsDefault="True" 
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    FontSize="10"
+                    Margin="0,4,5,0" 
+                    TabIndex="2" 
+                    MinWidth="50"
+                    MinHeight="15"
+                    Style="{DynamicResource RoundedButton}"
+                    Grid.RowSpan="3" 
+                    Click="Add_Click" />
+            <ListView 
+                Grid.Row="0"
+                Grid.Column="0"
+                ItemsSource="{Binding WorkPlacementItemsCV}"
+                ItemTemplate="{StaticResource WorkPlacementDataTemplate}" 
+                ItemContainerStyle="{DynamicResource MyListBoxItemStyle}"
+                SelectionMode="Single" 
+                IsSynchronizedWithCurrentItem="True"
+                HorizontalContentAlignment="Stretch"
+                Name="lv" 
+                SelectionChanged="lv_SelectionChanged" 
+                MaxHeight="75"
+                MinHeight="25" 
+                Margin="3,1,65,0"
+            />
+            <WpControl:ucWorkPlacementItem 
+                x:Name="WorkPlacementItemControl"
+                Grid.Row="2"
+                Grid.Column="0" 
+                MinHeight="80" />
+        </Grid>
+    </ScrollViewer>
+</UserControl>

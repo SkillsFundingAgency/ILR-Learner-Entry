@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearnerControls.ucLLDDControls.ucLLDDList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 			 
+             xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
+             mc:Ignorable="d"
+             d:DesignHeight="200" 
+             d:DesignWidth="400" RequestBringIntoView="UserControl_RequestBringIntoView" MinWidth="350" >
+    <UserControl.Resources>
+        <CommonConverters:StringToNullableIntConverter x:Key="StringToNullableIntConverter" />
+        <Style x:Key="ListBoxItemStyle" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="IsSelected" Value="{Binding Path=IsSelected}"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="4" Margin="2" >
+            <Grid Margin="3" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition  />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <ListView Grid.Column="0"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        ItemsSource="{Binding Path=LLDDCatList, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                        SelectionMode="Multiple" 
+                        Name="lv_LLDDCats" 
+                        MinHeight="5"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        Margin="3" 
+                        FontWeight="Bold" 
+                        TabIndex="4"
+                        Style="{DynamicResource ListBoxWithError}"                              
+                        ItemContainerStyle="{DynamicResource MyListBoxItemStyle}"
+                        DisplayMemberPath="Description" 
+                        ScrollViewer.VerticalScrollBarVisibility="Visible"                           
+            />
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Primary is : " Style="{DynamicResource LdListTextValueStyle}" Margin="5" />               
+            <ComboBox x:Name="cbLLDDCatPrimary" Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="3,3,25,3"
+                    Style="{DynamicResource ComboBox}"    
+                    ItemsSource="{Binding Path=LLDDCatSelList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                    DisplayMemberPath="Description"
+                    SelectedItem="{Binding Path=LLDDCatSelPrimary, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+            />
+            </Grid>
+        </Border>
+    </ScrollViewer>
+</UserControl>

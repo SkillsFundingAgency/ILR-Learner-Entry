@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls.ucLearningEndInformation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:CommonConverters="clr-namespace:ilrLearnerEntry.WpfConverter"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" 
+             d:DesignWidth="695" 
+             MinWidth="750"
+             HorizontalAlignment="Left"
+             RequestBringIntoView="UserControl_RequestBringIntoView">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Employment outcome :" HorizontalAlignment="Right" Margin="3"  VerticalAlignment="Center" Style="{DynamicResource StandardTextBlockStyle}" />
+            <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"
+                      Margin="4"
+                      TabIndex="3"
+                      MinWidth="350"
+                      MaxWidth="850"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=EmpOutcomeList, UpdateSourceTrigger=PropertyChanged}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      Style="{DynamicResource ComboBoxWithError}"    
+                      SelectedValue="{Binding Path=CurrentItem.EmpOutcome, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                   />
+
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Completion status :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"
+                      Margin="4"
+                      MinWidth="350"
+                      MaxWidth="850"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=CompStatusList, UpdateSourceTrigger=PropertyChanged}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      TabIndex="1"
+                      Style="{DynamicResource ComboBoxWithError}"    
+                      SelectedValue="{Binding Path=CurrentItem.CompStatus, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                   />
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Actual end date :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" Style="{DynamicResource StandardTextBlockStyle}"/>
+            <DatePicker  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" x:Name="dtLearnActEndDate"  VerticalAlignment="Top" Margin="3" 
+                         TabIndex="2" IsTodayHighlighted="False" 
+                         SelectedDate="{Binding Path=LearnActEndDate, StringFormat=dd-MM-yyyy, Mode=OneWay,  UpdateSourceTrigger=PropertyChanged}"   
+            />
+            
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="Achievement date :" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="3" Style="{DynamicResource StandardTextBlockStyle}"/>
+            <DatePicker  Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" x:Name="dtAchDate"  VerticalAlignment="Top" Margin="3" 
+                         TabIndex="2" 
+                         SelectedDate="{Binding Path=AchDate, Mode=OneWay, StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}"   
+            />
+          
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Outcome :" HorizontalAlignment="Right" Margin="3"  VerticalAlignment="Center" Style="{DynamicResource StandardTextBlockStyle}" />
+            <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"
+                      Margin="4"
+                      TabIndex="3"
+                      MinWidth="350"
+                      MaxWidth="850"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=OutcomeList, UpdateSourceTrigger=PropertyChanged}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      Style="{DynamicResource ComboBoxWithError}"    
+                      SelectedValue="{Binding Path=CurrentItem.Outcome, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                   />
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Withdrawal reason :" HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+            <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4"
+                      Margin="4"
+                      MinWidth="400"
+                      MaxWidth="850"
+                      TabIndex="4"
+                      HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                      ItemsSource="{Binding Path=WithdrawReasonList, UpdateSourceTrigger=PropertyChanged}" 
+                      DisplayMemberPath="Description" 
+                      SelectedValuePath="Code" 
+                      Style="{DynamicResource ComboBoxWithError}"    
+                      SelectedValue="{Binding Path=CurrentItem.WithdrawReason, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" 
+                   />
+
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Outcome grade :" HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
+            <TextBox Grid.Row="5" Grid.Column="1" 
+                     Name="txtDelLocPostCode" 
+                     TabIndex="7"
+                     Text="{Binding Path=CurrentItem.OutGrade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Style="{DynamicResource TextBoxWithError}"
+                     HorizontalAlignment="Left" 
+                     HorizontalContentAlignment="Left" 
+                     VerticalAlignment="Center" 
+                     Margin="3" 
+                     Width="95"
+                     MaxLength="6" />
+        </Grid>
+    </ScrollViewer>
+</UserControl>
