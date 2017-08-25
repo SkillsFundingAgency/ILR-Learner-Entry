@@ -89,7 +89,9 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
 				LearnerDPList.CurrentChanged += LearnerDPList_CurrentChanged;
 				if (App.ILRMessage.LearnerDestinationandProgressionList.Count > 0)
 				{
-					(LearnerDPList.CurrentItem as ILR.LearnerDestinationandProgression).IsSelected = true;
+                    var currentListItem = (LearnerDPList.CurrentItem as ILR.LearnerDestinationandProgression);
+                    if(currentListItem!=null)
+                        currentListItem.IsSelected = true;
 				}
 				LearnerDPList.Refresh();
 				OnPropertyChanged("LearnerDPList");

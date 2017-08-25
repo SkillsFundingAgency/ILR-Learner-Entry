@@ -311,7 +311,7 @@ namespace ilrLearnerEntry.UserControls
             MessageBoxResult result = MessageBox.Show(String.Format("Importing a new file will WIPE ALL the current data.{0}{0}Any changes to learner you have made WILL be wiped out.{0}{0}{0} Are you sure you want to do this ?", Environment.NewLine)
                                                            , "Loading Data will WIPE the current data"
                                                            , MessageBoxButton.YesNo
-                                                           , MessageBoxImage.Error
+                                                           , MessageBoxImage.Warning
                                                            , MessageBoxResult.No);
             if (result == MessageBoxResult.Yes)
             {

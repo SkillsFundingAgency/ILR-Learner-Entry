@@ -8,7 +8,8 @@
     Width="1560"
     Closing="Window_Closing" 
     Icon="AppIcon.ico" 
-    WindowStartupLocation="CenterScreen" >
+    WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
     <Grid x:Name="MasterGrid" >
         <Grid.RowDefinitions>
             <RowDefinition />

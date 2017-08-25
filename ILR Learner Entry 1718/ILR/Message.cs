@@ -9,6 +9,8 @@ using System.Xml.Linq;
 using System.IO;
 using System.Data;
 using System.Threading.Tasks;
+using System.Xml.Xsl;
+using System.Reflection;
 
 namespace ILR
 {
@@ -24,6 +26,7 @@ namespace ILR
         private DataTable _statistics = new DataTable();
         private static bool _isImportRunning = false;
         private static string _logFileName = string.Empty;
+        public static string ILR2017_18_XSLT = "ILR-2017-18.xslt";
         #endregion
 
         #region Counts
@@ -358,8 +361,9 @@ namespace ILR
             string filename = ExportFolder;
             if (!filename.EndsWith("\\"))
                 filename += "\\";
-            filename += FileNameTemplate.Replace("$$UKPRN$$", LearningProvider.UKPRN.ToString()).Replace("$$YEAR$$", CurrentYear.ToString()).Replace("$$NOW$$", DateTime.Now.ToString("yyyyMMdd-HHmmss"));
+            string exportFileName = FileNameTemplate.Replace("$$UKPRN$$", LearningProvider.UKPRN.ToString()).Replace("$$YEAR$$", CurrentYear.ToString()).Replace("$$NOW$$", DateTime.Now.ToString("yyyyMMdd-HHmmss"));
 
+            filename += exportFileName; // FileNameTemplate.Replace("$$UKPRN$$", LearningProvider.UKPRN.ToString()).Replace("$$YEAR$$", CurrentYear.ToString()).Replace("$$NOW$$", DateTime.Now.ToString("yyyyMMdd-HHmmss"));
             Log("Message", "Export", String.Format("filename  : {0}", filename));
 
             //Update header information
@@ -376,6 +380,23 @@ namespace ILR
             //Save where we are
             Save();
 
+            TransformAndExport(filename, exportFileName);
+
+            //Message exportMessage = new Message(this.Filename, _logFileName);
+
+            //// remove non complete learner so we only export good learners.
+            //foreach (Learner learner in exportMessage.LearnerList)
+            //{
+            //    if (!learner.IsComplete || learner.ExcludeFromExport)
+            //        learner.DeleteNode();
+            //}
+            //exportMessage.Save(filename);
+            //exportMessage = null;
+            //GC.Collect();
+        }
+
+        public void TransformAndExport(string fullExportFileName, string exportFileName)
+        {
             Message exportMessage = new Message(this.Filename, _logFileName);
 
             // remove non complete learner so we only export good learners.
@@ -384,9 +405,54 @@ namespace ILR
                 if (!learner.IsComplete || learner.ExcludeFromExport)
                     learner.DeleteNode();
             }
-            exportMessage.Save(filename);
+
+            string tempInternalPath = Path.Combine(Path.GetTempPath(), exportFileName);
+            exportMessage.Save(tempInternalPath);
             exportMessage = null;
+            TransformExportedFile(tempInternalPath, fullExportFileName);
+
             GC.Collect();
+        }
+        XslCompiledTransform xslTransformer;
+
+        private string getXslFileName()
+        {
+
+            var assembly = Assembly.GetExecutingAssembly();
+            string xslResourceName = assembly.GetManifestResourceNames().Where(x => x.ToUpper().EndsWith(ILR2017_18_XSLT.ToUpper())).FirstOrDefault();
+           
+            //string path = Path.Combine(Path.GetDirectoryName(assembly.Location), ILR2017_18_XSLT);
+            string path = Path.Combine(Path.GetTempPath(), ILR2017_18_XSLT);
+            try
+            {
+                using (Stream stream = assembly.GetManifestResourceStream(xslResourceName))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string result = reader.ReadToEnd();
+                  
+                    File.WriteAllText(path, result);
+                }
+            }
+            catch(IOException iox)
+            {
+                Log("Message", "getXslFileName", "Exception during reading the xsl resource");
+            }
+           
+                return path;
+        }
+
+        public void TransformExportedFile(string sourceFile, string destinationFile)
+        {
+           
+
+            if (xslTransformer == null)
+            {
+                string xslFile = getXslFileName();
+                xslTransformer = new XslCompiledTransform();
+                xslTransformer.Load(xslFile);
+            }
+            xslTransformer.Transform(sourceFile, destinationFile);
+
         }
         public void Import(string FilenameToLoad)
         {

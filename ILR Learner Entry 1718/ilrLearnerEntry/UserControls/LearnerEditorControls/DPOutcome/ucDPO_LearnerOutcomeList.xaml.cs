@@ -140,7 +140,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
         }
         private void ShowHidChildControls()
         {
-            if (_learnerDP.DPOutcomeList.Count > 0)
+            if (_learnerDP!= null &&_learnerDP.DPOutcomeList.Count > 0)
             {
                 OutcomeDetailControl.Visibility = System.Windows.Visibility.Visible;
             }
