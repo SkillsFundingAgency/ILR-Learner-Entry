@@ -695,6 +695,14 @@ namespace ILR
         #region ILR Child Entites
         public List<LearningDeliveryFAM> LearningDeliveryFAMList = new List<LearningDeliveryFAM>();
         private List<TrailblazerApprenticeshipFinancialRecord> TrailblazerApprenticeshipFinancialRecordList = new List<TrailblazerApprenticeshipFinancialRecord>();
+
+        public List<TrailblazerApprenticeshipFinancialRecord> GetTrailblazerApprenticeshipFinancialRecords
+        {
+            get {
+                return TrailblazerApprenticeshipFinancialRecordList;
+            }
+        }
+
         public List<ApprenticeshipFinancialRecord> ApprenticeshipFinancialRecordList = new List<ApprenticeshipFinancialRecord>();
         public List<ProviderSpecDeliveryMonitoring> ProviderSpecDeliveryMonitoringList = new List<ProviderSpecDeliveryMonitoring>();
         public LearningDeliveryHE LearningDeliveryHE;
@@ -712,7 +720,7 @@ namespace ILR
         }
         public ApprenticeshipFinancialRecord CreateApprenticeshipFinancialRecord()
         {
-            XmlNode newNode = Node.OwnerDocument.CreateElement("TrailblazerApprenticeshipFinancialRecord", NSMgr.LookupNamespace("ia"));
+            XmlNode newNode = Node.OwnerDocument.CreateElement("AppFinRecord", NSMgr.LookupNamespace("ia"));
             ApprenticeshipFinancialRecord newInstance = new ApprenticeshipFinancialRecord(newNode, NSMgr);
             ApprenticeshipFinancialRecordList.Add(newInstance);
             AppendToLastOfNodeNamed(newNode, newNode.Name);
@@ -766,6 +774,12 @@ namespace ILR
                         Node.InsertBefore(NewNode, TrailblazerApprenticeshipFinancialRecordList.First().Node);
                     break;
                 case "TrailblazerApprenticeshipFinancialRecord":
+                    if (ProviderSpecDeliveryMonitoringList.Count() == 0)
+                        AppendToLastOfNodeNamed(NewNode, "ProviderSpecDeliveryMonitoring");
+                    else
+                        Node.InsertBefore(NewNode, ProviderSpecDeliveryMonitoringList.First().Node);
+                    break;
+                case "AppFinRecord":
                     if (ProviderSpecDeliveryMonitoringList.Count() == 0)
                         AppendToLastOfNodeNamed(NewNode, "ProviderSpecDeliveryMonitoring");
                     else
@@ -828,7 +842,7 @@ namespace ILR
             foreach (XmlNode node in nodes)
                 TrailblazerApprenticeshipFinancialRecordList.Add(new TrailblazerApprenticeshipFinancialRecord(node, NSMgr));
 
-            nodes = Node.SelectNodes("./ia:ApprenticeshipFinancialRecord", NSMgr);
+            nodes = Node.SelectNodes("./ia:AppFinRecord", NSMgr);
             foreach (XmlNode node in nodes)
                 ApprenticeshipFinancialRecordList.Add(new ApprenticeshipFinancialRecord(node, NSMgr));
 
@@ -874,6 +888,8 @@ namespace ILR
             int stdCode;
             if (MigrationLearningDelivery.HasFAMType("TBS") && int.TryParse(MigrationLearningDelivery.GetLegacyFAM("TBS").LearnDelFAMCode, out stdCode))
                 this.StdCode = stdCode;
+            else
+                this.StdCode = MigrationLearningDelivery.StdCode;
 
             this.PartnerUKPRN = MigrationLearningDelivery.PartnerUKPRN;
             this.DelLocPostCode = MigrationLearningDelivery.DelLocPostCode;
@@ -909,17 +925,17 @@ namespace ILR
                 LearningDeliveryWorkPlacementList.Add(newInstance);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
-            foreach (LearningDeliveryWorkPlacement migrationItem in MigrationLearningDelivery.LearningDeliveryWorkPlacementList)
-            {
-                XmlNode newNode = Node.OwnerDocument.CreateElement("LearningDeliveryWorkPlacement", NSMgr.LookupNamespace("ia"));
-                LearningDeliveryWorkPlacement newInstance = new LearningDeliveryWorkPlacement(migrationItem, newNode, NSMgr);
-                LearningDeliveryWorkPlacementList.Add(newInstance);
-                AppendToLastOfNodeNamed(newNode, newNode.Name);
-            }
+            //foreach (LearningDeliveryWorkPlacement migrationItem in MigrationLearningDelivery.LearningDeliveryWorkPlacementList)
+            //{
+            //    XmlNode newNode = Node.OwnerDocument.CreateElement("LearningDeliveryWorkPlacement", NSMgr.LookupNamespace("ia"));
+            //    LearningDeliveryWorkPlacement newInstance = new LearningDeliveryWorkPlacement(migrationItem, newNode, NSMgr);
+            //    LearningDeliveryWorkPlacementList.Add(newInstance);
+            //    AppendToLastOfNodeNamed(newNode, newNode.Name);
+            //}
 
             foreach (TrailblazerApprenticeshipFinancialRecord migrationItem in MigrationLearningDelivery.TrailblazerApprenticeshipFinancialRecordList)
             {
-                XmlNode newNode = Node.OwnerDocument.CreateElement("ApprenticeshipFinancialRecord", NSMgr.LookupNamespace("ia"));
+                XmlNode newNode = Node.OwnerDocument.CreateElement("AppFinRecord", NSMgr.LookupNamespace("ia"));
                 ApprenticeshipFinancialRecord migrationItemAP = CreateApprenticeshipFinancialRecord();
 
                 migrationItemAP.AFinCode = migrationItem.TBFinCode;
@@ -927,10 +943,21 @@ namespace ILR
                 migrationItemAP.AFinDate = migrationItem.TBFinDate;
                 migrationItemAP.AFinAmount = migrationItem.TBFinAmount;
 
-                ApprenticeshipFinancialRecord newInstance = new ApprenticeshipFinancialRecord(migrationItemAP, newNode, NSMgr);
-                ApprenticeshipFinancialRecordList.Add(migrationItemAP);
+               // ApprenticeshipFinancialRecord newInstance = new ApprenticeshipFinancialRecord(migrationItemAP, newNode, NSMgr);
+               // ApprenticeshipFinancialRecordList.Add(migrationItemAP);
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
             }
+            foreach(ProviderSpecDeliveryMonitoring migrationItem in MigrationLearningDelivery.ProviderSpecDeliveryMonitoringList)
+            {
+                XmlNode newNode = Node.OwnerDocument.CreateElement("ProviderSpecDeliveryMonitoring", NSMgr.LookupNamespace("ia"));
+                ProviderSpecDeliveryMonitoring migrationItemAP = CreateProviderSpecDeliveryMonitoring();
+
+                migrationItemAP.ProvSpecDelMon = migrationItem.ProvSpecDelMon;
+                migrationItemAP.ProvSpecDelMonOccur = migrationItem.ProvSpecDelMonOccur;
+                ProviderSpecDeliveryMonitoringList.Add(migrationItemAP);
+                AppendToLastOfNodeNamed(newNode, newNode.Name);
+            }
+
             if (MigrationLearningDelivery.LearningDeliveryHE != null)
             {
                 XmlNode newNode = Node.OwnerDocument.CreateElement("LearningDeliveryHE", NSMgr.LookupNamespace("ia"));

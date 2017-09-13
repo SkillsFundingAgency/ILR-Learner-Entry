@@ -21,7 +21,7 @@ namespace ILR
             {"LearnerFAM",new List<string>() {"LearnFAMType","LearnFAMCode"}},
             {"LearnerHE",new List<string>() {"UCASPERID","TTACCOM","LearnerHEFinancialSupport"}},
             {"LearnerHEFinancialSupport",new List<string>() {"FINTYPE","FINAMOUNT"}},
-            {"LearningDelivery",new List<string>() {"LearnAimRef","AimType","AimSeqNumber","LearnStartDate","OrigLearnStartDate","LearnPlanEndDate","FundModel","ProgType","FworkCode","PwayCode","StdCode","PartnerUKPRN","DelLocPostCode","AddHours","PriorLearnFundAdj","OtherFundAdj","ConRefNumber","EPAOrgID","EmpOutcome","CompStatus","LearnActEndDate","WithdrawReason","Outcome","AchDate","OutGrade","SWSupAimId","LearningDeliveryFAM","TrailblazerApprenticeshipFinancialRecord","ProviderSpecDeliveryMonitoring","LearningDeliveryHE","LearningDeliveryWorkPlacement"}},
+            {"LearningDelivery",new List<string>() {"LearnAimRef","AimType","AimSeqNumber","LearnStartDate","OrigLearnStartDate","LearnPlanEndDate","FundModel","ProgType","FworkCode","PwayCode","StdCode","PartnerUKPRN","DelLocPostCode","AddHours","PriorLearnFundAdj","OtherFundAdj","ConRefNumber","EPAOrgID","EmpOutcome","CompStatus","LearnActEndDate","WithdrawReason","Outcome","AchDate","OutGrade","SWSupAimId","LearningDeliveryFAM", "AppFinRecord","TrailblazerApprenticeshipFinancialRecord", "ProviderSpecDeliveryMonitoring","LearningDeliveryHE","LearningDeliveryWorkPlacement"}},
             {"LearningDeliveryFAM",new List<string>() {"LearnDelFAMType","LearnDelFAMCode","LearnDelFAMDateFrom","LearnDelFAMDateTo"}},
             {"LearningDeliveryHE",new List<string>() {"NUMHUS","SSN","QUALENT3","SOC2000","SEC","TOTALTS","UCASAPPID","TYPEYR","MODESTUD","FUNDLEV","FUNDCOMP","STULOAD","YEARSTU","MSTUFEE","PCOLAB","PCFLDCS","PCSLDCS","PCTLDCS","SPECFEE","NETFEE","GROSSFEE","DOMICILE","ELQ","HEPostCode"}},
             {"LearningDeliveryWorkPlacement",new List<string>() {"WorkPlaceStartDate","WorkPlaceEndDate","WorkPlaceMode","WorkPlaceEmpId"}},
@@ -33,7 +33,8 @@ namespace ILR
             {"Source",new List<string>() {"ProtectiveMarking","UKPRN","SoftwareSupplier","SoftwarePackage","Release","SerialNo","DateTime","ReferenceData","ComponentSetVersion"}},
             {"SourceFile",new List<string>() {"SourceFileName","FilePreparationDate","SoftwareSupplier","SoftwarePackage","Release","SerialNo","DateTime"}},
             {"TrailblazerApprenticeshipFinancialRecord",new List<string>() {"TBFinType","TBFinCode","TBFinDate","TBFinAmount"}},
-            {"ApprenticeshipFinancialRecord",new List<string>() {"AFinType","AFinCode","AFinDate","AFinAmount"}}
+            {"AppFinRecord",new List<string>() {"AFinType","AFinCode","AFinDate","AFinAmount"}},
+            { "ApprenticeshipFinancialRecord",new List<string>() {"AFinType","AFinCode","AFinDate","AFinAmount"}}
 
         };
 

@@ -439,7 +439,11 @@
     </Compile>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="..\ILR.LearnerEntry.Tests\ILR-2017-18.xslt">
+      <Link>ILR-2017-18.xslt</Link>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\ILR\Lookups.xml">
       <Link>Lookups.xml</Link>
@@ -489,9 +493,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\WarningTriangle.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="1617-changes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

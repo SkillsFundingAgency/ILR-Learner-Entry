@@ -51,7 +51,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 				{
 					_apprenticeshipFinancialRecordList = GetTrailblazerList(_learningDelivery.ApprenticeshipFinancialRecordList);
 					ApprenticeshipFinancialItemsCV = CollectionViewSource.GetDefaultView(_apprenticeshipFinancialRecordList as List<ILR.ApprenticeshipFinancialRecord>);
-					ApprenticeshipFinancialItemsCV.MoveCurrentToFirst();
+					//ApprenticeshipFinancialItemsCV.MoveCurrentToFirst();
 
 					if (_apprenticeshipFinancialRecordList.Count > 0)
 					{
