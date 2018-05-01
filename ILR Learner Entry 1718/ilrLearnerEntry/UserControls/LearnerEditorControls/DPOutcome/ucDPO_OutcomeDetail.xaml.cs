@@ -27,6 +27,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
         #region Private Variables
         private ILR.DPOutcome _outcome;
         private DataTable _dt;
+        private string _outCode;
+
         #endregion
 
         #region Constructor
@@ -49,6 +51,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
                     if (_outcome != value)
                     {
                         _outcome = value;
+                        OutCode = value.OutCode.HasValue ? value.OutCode.ToString() : "";
                     }
                 }
                 else
@@ -57,6 +60,29 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
                 }
                 OnPropertyChanged("OutcomeTypeList");
                 OnPropertyChanged("CurrentItem");
+            }
+        }
+
+        public string OutCode
+        {
+            get { return _outCode; }
+            set
+            {
+                _outCode = value;
+                if (String.IsNullOrEmpty(value))
+                {
+                    CurrentItem.OutCode = null;
+                }
+                else
+                {
+                    int number;
+                    bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                    if (result)
+                    {
+                        CurrentItem.OutCode = number;
+                    }
+                }
+                OnPropertyChanged("OutCode");
             }
         }
 

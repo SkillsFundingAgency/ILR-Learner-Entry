@@ -32,6 +32,7 @@ namespace ILR
                 return this.DPOutcomeList.Count();
             }
         }
+
         #endregion
 
         #region ILR Child Entites
@@ -92,6 +93,23 @@ namespace ILR
         public string Error
         {
             get { throw new NotImplementedException(); }
+        }       
+
+        public bool ExcludeFromExport
+        {
+            get
+            {
+                XmlAttribute attr = Node.Attributes["ExcludeFromExport"];
+                return ((attr != null && attr.Value == "true") || !IsComplete);
+            }
+            set
+            {
+                if (value)
+                    ((XmlElement)Node).SetAttribute("ExcludeFromExport", "true");
+                else
+                    ((XmlElement)Node).RemoveAttribute("ExcludeFromExport");
+                OnPropertyChanged("ExcludeFromExport");
+            }
         }
 
         public string this[string columnName]

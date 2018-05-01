@@ -105,6 +105,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
                 {
                     _learnerDP.ULN = number;
                 }
+                else if (string.IsNullOrEmpty(value) && _learnerDP != null)
+                {
+                    _learnerDP.ULN = null;
+                }
                 OnPropertyChanged("ULN");
             }
         }
@@ -140,7 +144,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
         }
         private void ShowHidChildControls()
         {
-            if (_learnerDP!= null &&_learnerDP.DPOutcomeList.Count > 0)
+            if (_learnerDP != null && _learnerDP.DPOutcomeList.Count > 0)
             {
                 OutcomeDetailControl.Visibility = System.Windows.Visibility.Visible;
             }
@@ -283,10 +287,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
                 switch (columnName)
                 {
                     case "ULN":
-                         if (String.IsNullOrEmpty(ULN.ToString()))
-                                sReturn = String.Format("{0} required.", columnName);
-                        
-                            if (ULN != null && ULN.Length > 0)
+                        if (String.IsNullOrEmpty(ULN.ToString()))
+                            sReturn = String.Format("{0} required.", columnName);
+
+                        if (ULN != null && ULN.Length > 0)
                         {
                             sReturn += CheckPropertyLength(ULN, CLASSNAME, columnName);
                             long number;
@@ -297,7 +301,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.DPOutcomeControls
                             }
                         }
                         break;
-                    
+
                     default:
                         break;
                 }

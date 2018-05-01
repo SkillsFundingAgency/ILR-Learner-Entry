@@ -51,7 +51,7 @@
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Code :" HorizontalAlignment="Right" Margin="3"  Style="{DynamicResource StandardTextBlockStyle}"/>
             <TextBox Grid.Row="2" Grid.Column="1" 
                      Name="txtEmpId" 
-                     Text="{Binding Path=CurrentItem.OutCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  
+                     Text="{Binding Path=OutCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 

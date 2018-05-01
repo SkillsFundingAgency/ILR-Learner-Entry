@@ -10,7 +10,7 @@ namespace ILR
     public class LearnerFAM : ChildEntity, IDataErrorInfo
     {
         #region Enums
-        public enum SingleOccurrenceFAMs { LDA, HNS, EHC, DLA, FME, SEN, ECF, MCF }
+        public enum SingleOccurrenceFAMs { HNS, EHC, DLA, FME, SEN, ECF, MCF }
         public enum MultiOccurrenceFAMs { LSR, NLM, PPE, EDF }
         #endregion
 

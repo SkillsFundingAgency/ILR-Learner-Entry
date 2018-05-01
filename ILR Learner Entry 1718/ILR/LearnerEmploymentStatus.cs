@@ -14,8 +14,8 @@ namespace ILR
 
         #region ILR Properties
         public int? EmpStat { get { string EmpStat = XMLHelper.GetChildValue("EmpStat", Node, NSMgr); return (EmpStat != null ? int.Parse(EmpStat) : (int?)null); } set { XMLHelper.SetChildValue("EmpStat", value, Node, NSMgr); OnPropertyChanged("EmpStat"); } }
-        public DateTime? DateEmpStatApp { get { string DateEmpStatApp = XMLHelper.GetChildValue("DateEmpStatApp", Node, NSMgr); return (DateEmpStatApp != null ? DateTime.Parse(DateEmpStatApp) : (DateTime?)null); } set { XMLHelper.SetChildValue("DateEmpStatApp", value, Node, NSMgr); OnPropertyChanged("DateEmpStatApp"); } }
-        public int? EmpId { get { string EmpId = XMLHelper.GetChildValue("EmpId", Node, NSMgr); return (EmpId != null ? int.Parse(EmpId) : (int?)null); } set { XMLHelper.SetChildValue("EmpId", value, Node, NSMgr); OnPropertyChanged("EmpId"); } }
+        public DateTime? DateEmpStatApp { get { string DateEmpStatApp = XMLHelper.GetChildValue("DateEmpStatApp", Node, NSMgr); return (!string.IsNullOrEmpty(DateEmpStatApp) ? DateTime.Parse(DateEmpStatApp) : (DateTime?)null); } set { XMLHelper.SetChildValue("DateEmpStatApp", value, Node, NSMgr); OnPropertyChanged("DateEmpStatApp"); } }
+        public int? EmpId { get { string EmpId = XMLHelper.GetChildValue("EmpId", Node, NSMgr); return (!string.IsNullOrEmpty(EmpId) ? int.Parse(EmpId) : (int?)null); } set { XMLHelper.SetChildValue("EmpId", value, Node, NSMgr); OnPropertyChanged("EmpId"); } }
         #endregion
 
         #region Lookup Properties
@@ -171,7 +171,7 @@ namespace ILR
             this.DateEmpStatApp = MigrationLearnerEmploymentStatus.DateEmpStatApp;
             this.EmpId = MigrationLearnerEmploymentStatus.EmpId;
 
-            foreach (EmploymentStatusMonitoring migrationItem in MigrationLearnerEmploymentStatus.EmploymentStatusMonitoringList.Where(x=>x.ESMType!="RON"))
+            foreach (EmploymentStatusMonitoring migrationItem in MigrationLearnerEmploymentStatus.EmploymentStatusMonitoringList.Where(x => x.ESMType != "RON"))
             {
                 XmlNode newNode = Node.OwnerDocument.CreateElement("EmploymentStatusMonitoring", NSMgr.LookupNamespace("ia"));
                 EmploymentStatusMonitoring newInstance = new EmploymentStatusMonitoring(migrationItem, newNode, NSMgr);
@@ -226,7 +226,7 @@ namespace ILR
             get { throw new NotImplementedException(); }
         }
 
-      
+
         public string this[string columnName]
         {
             get
