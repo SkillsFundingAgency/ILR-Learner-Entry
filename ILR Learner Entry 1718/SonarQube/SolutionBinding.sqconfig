@@ -1,0 +1,14 @@
+{
+  "ServerUri": "https://sonarcloud.io/",
+  "Organization": {
+    "Key": "sujitks-github",
+    "Name": "Sujit Singh"
+  },
+  "ProjectKey": "ILR-Learner-Entry",
+  "Profiles": {
+    "CSharp": {
+      "ProfileKey": "AWA1LU0hoETz9fUAFNWp",
+      "ProfileTimestamp": "2017-11-14T06:59:59+00:00"
+    }
+  }
+}

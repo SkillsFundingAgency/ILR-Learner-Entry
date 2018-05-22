@@ -95,7 +95,7 @@ namespace ILR
 
         public void ReFreshStats()
         {
-            ReBuildStatisticsDatatable();        
+            ReBuildStatisticsDatatable();
         }
         public void ReBuildStatisticsDatatable()
         {
@@ -124,7 +124,7 @@ namespace ILR
                 if (l.HasLearningDeliveriesInFundingModel(82)) fm82++;
                 if (l.HasLearningDeliveriesInFundingModel(99)) fm99++;
             }
-       
+
             _statistics.Columns.Add(new DataColumn("Description", typeof(string)));
             _statistics.Columns.Add(new DataColumn("Count", typeof(string)));
             DataRow row = _statistics.NewRow();
@@ -149,11 +149,11 @@ namespace ILR
 
                 //if (learners < 500)
                 //{
-                    row = _statistics.NewRow();
-                    row["Description"] = "Learners excluded from export count";
-                    row["Count"] = (learners - this.LearnerList.Count(x => !x.ExcludeFromExport)).ToString();
+                row = _statistics.NewRow();
+                row["Description"] = "Learners excluded from export count";
+                row["Count"] = (learners - this.LearnerList.Count(x => !x.ExcludeFromExport)).ToString();
 
-                    _statistics.Rows.Add(row);
+                _statistics.Rows.Add(row);
                 //}
             }
             OnPropertyChanged("Statistics");
@@ -215,11 +215,14 @@ namespace ILR
         #region public Properties
         public static String LogFileName { set { _logFileName = value; } }
         public Boolean IsFileImportLoadingRunning
-        { get { return _isImportRunning; }
-          set {
+        {
+            get { return _isImportRunning; }
+            set
+            {
                 foreach (Learner l in LearnerList)
                 { l.IsFileImportLoadingRunning = value; }
-                _isImportRunning = value; }
+                _isImportRunning = value;
+            }
         }
         #endregion
 
@@ -355,7 +358,7 @@ namespace ILR
         }
         public void Export(string ExportFolder, string Release)
         {
-            Log("Message", "Export", String.Format("Release : {0} - ExportFolder : {1}",Release, ExportFolder));
+            Log("Message", "Export", String.Format("Release : {0} - ExportFolder : {1}", Release, ExportFolder));
 
             //Calculate filename
             string filename = ExportFolder;
@@ -399,12 +402,28 @@ namespace ILR
         {
             Message exportMessage = new Message(this.Filename, _logFileName);
 
-            // remove non complete learner so we only export good learners.
-            foreach (Learner learner in exportMessage.LearnerList)
+            for (int i = exportMessage.LearnerList.Count - 1; i >= 0; i--)
             {
+                var learner = exportMessage.LearnerList[i];
                 if (!learner.IsComplete || learner.ExcludeFromExport)
-                    learner.DeleteNode();
+                {
+                    var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList.Where(c => c.ULN == learner.ULN).FirstOrDefault();
+                    exportMessage.Delete(learner);                   
+                    if(learnerDestinationandProgression != null)
+                    {
+                        exportMessage.Delete(learnerDestinationandProgression);
+                    }
+                }                
             }
+
+            for (int i = exportMessage.LearnerDestinationandProgressionList.Count - 1; i >= 0; i--)
+            {
+                var learnerDestinationandProgression = exportMessage.LearnerDestinationandProgressionList[i];
+                if (!learnerDestinationandProgression.IsComplete || learnerDestinationandProgression.ExcludeFromExport)
+                {
+                    exportMessage.Delete(learnerDestinationandProgression);
+                }
+            }           
 
             string tempInternalPath = Path.Combine(Path.GetTempPath(), exportFileName);
             exportMessage.Save(tempInternalPath);
@@ -420,7 +439,7 @@ namespace ILR
 
             var assembly = Assembly.GetExecutingAssembly();
             string xslResourceName = assembly.GetManifestResourceNames().Where(x => x.ToUpper().EndsWith(ILR2017_18_XSLT.ToUpper())).FirstOrDefault();
-           
+
             //string path = Path.Combine(Path.GetDirectoryName(assembly.Location), ILR2017_18_XSLT);
             string path = Path.Combine(Path.GetTempPath(), ILR2017_18_XSLT);
             try
@@ -429,21 +448,21 @@ namespace ILR
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     string result = reader.ReadToEnd();
-                  
+
                     File.WriteAllText(path, result);
                 }
             }
-            catch(IOException iox)
+            catch (IOException iox)
             {
                 Log("Message", "getXslFileName", "Exception during reading the xsl resource");
             }
-           
-                return path;
+
+            return path;
         }
 
         public void TransformExportedFile(string sourceFile, string destinationFile)
         {
-           
+
 
             if (xslTransformer == null)
             {
@@ -472,7 +491,7 @@ namespace ILR
             this.LearnerList.Clear();
             this.LearnerDestinationandProgressionList.Clear();
 
-            
+
             Message importMessage = new Message();
 
             System.IO.FileInfo fi = new System.IO.FileInfo(FilenameToLoad);
@@ -518,7 +537,8 @@ namespace ILR
                 this.LearningProvider.UKPRN = importMessage.LearningProvider.UKPRN;
 
 
-                var x = importMessage.LearnerList.Where(l => l.HasContinuingAims);
+                // var x = importMessage.LearnerList.Where(l => l.HasContinuingAims);
+                var x = importMessage.LearnerList.ToList();
                 var y = importMessage.LearnerDestinationandProgressionList.Where(ldp => ldp.HasCurrentDPOutcomes);
 
                 importMessage = null;
@@ -537,8 +557,8 @@ namespace ILR
                     }
                     catch (Exception el)
                     {
-                       Log("Message", "Import", String.Format("Error Loading Learner : {0}", el.Message));
-                       Console.WriteLine(String.Format("Learern Ref:{0}", learner.LearnRefNumber));
+                        Log("Message", "Import", String.Format("Error Loading Learner : {0}", el.Message));
+                        Console.WriteLine(String.Format("Learern Ref:{0}", learner.LearnRefNumber));
                     }
                 }
 
@@ -682,22 +702,22 @@ namespace ILR
             if (!File.Exists(Filename))
             {
                 Log("Message", "Constructor", "Filename not found create new file");
-        ILRFile = new XmlDocument();
-        ILRFile.LoadXml("<Message xmlns=\"" + CurrentNameSpace + "\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />");
+                ILRFile = new XmlDocument();
+                ILRFile.LoadXml("<Message xmlns=\"" + CurrentNameSpace + "\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />");
                 ILRFile.Save(Filename);
             }
-    IsFileImportLoadingRunning = true;
+            IsFileImportLoadingRunning = true;
             Load(Filename);
             FixLDAPULN();
-    IsFileImportLoadingRunning = false;
+            IsFileImportLoadingRunning = false;
         }
-#endregion
+        #endregion
 
-#region INotifyPropertyChanged Members
-/// <summary>
-/// INotifyPropertyChanged requires a property called PropertyChanged.
-/// </summary>
-public event PropertyChangedEventHandler PropertyChanged;
+        #region INotifyPropertyChanged Members
+        /// <summary>
+        /// INotifyPropertyChanged requires a property called PropertyChanged.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Fires the event for the property when it changes.

@@ -48,7 +48,7 @@
                 <!--Text="{Binding Path=CurrentItem.AFinCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToNullableIntConverter}, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"-->
 
                 <TextBox Grid.Row="2" Grid.Column="1"
-                     Text="{Binding Path=CurrentItem.AFinCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=CurrentItem.AFinCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true,TargetNullValue=''}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
@@ -66,7 +66,7 @@
                 <TextBox Grid.Row="2" Grid.Column="3"                          
                      TabIndex="4"
                      Name="TrailblazerCode" 
-                     Text="{Binding Path=CurrentItem.AFinAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=CurrentItem.AFinAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true,TargetNullValue=''}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 

@@ -13,6 +13,7 @@ namespace ILR
         private const String CLASSNAME = "LearningDelivery";
         private const String TABS = "\t\t";
         DateTime FIRST_AUG_2013 = new DateTime(2013, 8, 1);
+        DateTime FIRST_AUG_2015 = new DateTime(2015, 8, 1);
 
         #region LD updateLearnerEvent
         public event PropertyChangedEventHandler LearningDeliveryPropertyChanged;
@@ -65,11 +66,17 @@ namespace ILR
                 {
                     case 1:
                     case 4:
+                        return ((this.FundModel != 70 && this.LearnPlanEndDate >= FIRST_AUG_2015 && this.LearnActEndDate == null) ||(this.FundModel == 70));
                     case 5:
-                        if (this.LearnPlanEndDate >= FIRST_AUG_2013)
-                            return this.LearnActEndDate == null || (this.Outcome == 4 || this.Outcome == 5 || this.Outcome == 6);
+                        if (this.FundModel == 70)
+                            return true;
                         else
-                            return false;
+                        {
+                            if ((this.LearnPlanEndDate >= FIRST_AUG_2015) && ((this.LearnActEndDate == null) || (this.Outcome == 8 || this.Outcome == 6)))
+                                return this.LearnActEndDate == null || (this.Outcome == 4 || this.Outcome == 5 || this.Outcome == 6);
+                            else
+                                return false;
+                        }
                     case 3:
                         return this.LearnPlanEndDate >= FIRST_AUG_2013 && this.LearnActEndDate == null;
                 }
@@ -77,6 +84,7 @@ namespace ILR
             }
         }
         #endregion
+        Nullable<int> _defaultStdCode ;
 
         #region ILR Properties
         public string LearnAimRef { get { return XMLHelper.GetChildValue("LearnAimRef", Node, NSMgr); } set { XMLHelper.SetChildValue("LearnAimRef", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("LearnAimRef"); } }
@@ -89,7 +97,7 @@ namespace ILR
         public int? ProgType { get { string ProgType = XMLHelper.GetChildValue("ProgType", Node, NSMgr); return (ProgType != null ? int.Parse(ProgType) : (int?)null); } set { XMLHelper.SetChildValue("ProgType", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("ProgType"); } }
         public int? FworkCode { get { string FworkCode = XMLHelper.GetChildValue("FworkCode", Node, NSMgr); return (FworkCode != null ? int.Parse(FworkCode) : (int?)null); } set { XMLHelper.SetChildValue("FworkCode", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("FworkCode"); } }
         public int? PwayCode { get { string PwayCode = XMLHelper.GetChildValue("PwayCode", Node, NSMgr); return (PwayCode != null ? int.Parse(PwayCode) : (int?)null); } set { XMLHelper.SetChildValue("PwayCode", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("PwayCode"); } }
-        public int? StdCode { get { string StdCode = XMLHelper.GetChildValue("StdCode", Node, NSMgr); return (StdCode != null ? int.Parse(StdCode) : (int?)null); } set { XMLHelper.SetChildValue("StdCode", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("StdCode"); } }
+        public int? StdCode { get { string StdCode = XMLHelper.GetChildValue("StdCode", Node, NSMgr); return (StdCode != null ? int.Parse(StdCode) : _defaultStdCode); } set { XMLHelper.SetChildValue("StdCode", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("StdCode"); } }
         public int? PartnerUKPRN { get { string PartnerUKPRN = XMLHelper.GetChildValue("PartnerUKPRN", Node, NSMgr); return (PartnerUKPRN != null ? int.Parse(PartnerUKPRN) : (int?)null); } set { XMLHelper.SetChildValue("PartnerUKPRN", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("PartnerUKPRN"); } }
         public string DelLocPostCode { get { return XMLHelper.GetChildValue("DelLocPostCode", Node, NSMgr); } set { XMLHelper.SetChildValue("DelLocPostCode", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("DelLocPostCode"); } }
         public int? AddHours { get { string AddHours = XMLHelper.GetChildValue("AddHours", Node, NSMgr); return (AddHours != null ? int.Parse(AddHours) : (int?)null); } set { XMLHelper.SetChildValue("AddHours", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("AddHours"); } }
@@ -106,6 +114,8 @@ namespace ILR
         public string OutGrade { get { return XMLHelper.GetChildValue("OutGrade", Node, NSMgr); } set { XMLHelper.SetChildValue("OutGrade", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("OutGrade"); } }
         public string SWSupAimId { get { return XMLHelper.GetChildValue("SWSupAimId", Node, NSMgr); } set { XMLHelper.SetChildValue("SWSupAimId", value, Node, NSMgr); OnLearningDeliveryPropertyChanged(); OnPropertyChanged("SWSupAimId"); } }
 
+
+      
         #endregion
 
         #region Lookup Properties
@@ -893,6 +903,7 @@ namespace ILR
 
             this.PartnerUKPRN = MigrationLearningDelivery.PartnerUKPRN;
             this.DelLocPostCode = MigrationLearningDelivery.DelLocPostCode;
+            this.ConRefNumber = MigrationLearningDelivery.ConRefNumber;
             this.PriorLearnFundAdj = MigrationLearningDelivery.PriorLearnFundAdj;
             this.OtherFundAdj = MigrationLearningDelivery.OtherFundAdj;
             this.EmpOutcome = MigrationLearningDelivery.EmpOutcome;

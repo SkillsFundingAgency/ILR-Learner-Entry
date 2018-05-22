@@ -50,6 +50,7 @@ namespace ILR
 				message += this["PostCode"];
 				message += this["LLDDHealthProb"];
 
+
                 //if (this.LLDDandHealthProblemList == null)
                 //    message += "LLDDandHealthProblemList Nothing Selected\r\n";
                 if (this.LearningDeliveryList.Count == 0)
@@ -75,6 +76,9 @@ namespace ILR
                     //	message += "\tThere are NO primary LLDDandHealthProblem\r\n";
                     //}
                 }
+
+                if (string.IsNullOrEmpty(this.PostcodePrior))
+                    message += "Postcode Prior to Enrolment required\r\n";
                 return message;
             }
         }
@@ -97,6 +101,9 @@ namespace ILR
                                 learningDeliveriesToMigrate.Add(learningDelivery);
                             break;
                         case 4:
+                            if (learningDelivery.ShouldProbablyMigrate)
+                                learningDeliveriesToMigrate.Add(learningDelivery);
+                            break;
                         case 5:
                             if (learningDelivery.ShouldProbablyMigrate)
                                 learningDeliveriesToMigrate.Add(learningDelivery);
@@ -1220,7 +1227,7 @@ namespace ILR
             }
             foreach (LearnerFAM migrationItem in MigrationLearner.LearnerFAMList)
             {
-                if (migrationItem.LearnFAMType != "HNS" && migrationItem.LearnFAMType != "LSR" && migrationItem.LearnFAMType != "SEN" && migrationItem.LearnFAMType != "EDF" && migrationItem.LearnFAMType != "MCF" && migrationItem.LearnFAMType != "ECF" && migrationItem.LearnFAMType != "FME" && migrationItem.LearnFAMType != "PPE")
+                if (migrationItem.LearnFAMType != "LDA")
                 {
                     XmlNode newNode = Node.OwnerDocument.CreateElement("LearnerFAM", NSMgr.LookupNamespace("ia"));
                     LearnerFAM newInstance = new LearnerFAM(migrationItem, newNode, NSMgr);
@@ -1747,9 +1754,11 @@ namespace ILR
 						//else if (PostCode != null)
 						//	return CheckPropertyLength(PostCode, CLASSNAME, columnName, TABS);
 						break;
-
-						
-					default:
+                    case "PostcodePrior":
+                        if (string.IsNullOrEmpty(PostcodePrior))
+                            return "Postcode Prior to Enrolment required\r\n";
+                        break;
+                    default:
                         break;
                 }
                 return result;

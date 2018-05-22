@@ -396,11 +396,11 @@
     <LearnFAMType>
       <option code="DLA" description="Disabled students allowance" />
       <option code="ECF" description="GCSE English condition of funding" />
-      <option code="EDF" description="Eligibility for EFA disadvantage funding" />
+      <option code="EDF" description="Eligibility for 16-19 (excluding Apprenticeships) disadvantage funding" />
       <option code="EHC" description="Education Health Care plan" />
       <option code="FME" description="Free meals eligiblity" />
       <option code="HNS" description="High needs students" />
-      <option code="LDA" description="Learning difficulty assessment" />
+      <!--<option code="LDA" description="Learning difficulty assessment" />-->
       <option code="LSR" description="Learner support reason" />
       <option code="MCF" description="GCSE maths condition of funding" />
       <option code="NLM" description="National learner monitoring" />
@@ -1601,9 +1601,9 @@
       <HNS>
         <option code="1" description="Learner is a high needs student in receipt of element 3 ‘top-up’ funding from the local authority" />
       </HNS>
-      <LDA>
+      <!--<LDA>
         <option code="1" description="Learner has a Section 139A Learning Difficulty Assessment " />
-      </LDA>
+      </LDA>-->
       <LSR>
         <option code="36" description="Care to Learn " />
         <option code="55" description="16-19 Bursary Fund – learner is a member of a vulnerable group " />

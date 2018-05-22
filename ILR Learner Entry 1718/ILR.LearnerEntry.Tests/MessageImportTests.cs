@@ -40,7 +40,7 @@ namespace ILR.LearnerEntry.Tests
 
         }
         [Test]
-        public void Test01_Import_WhenFileContainsTrailBlazerFinRecord_Learner_ShouldHaveFinRecords()
+        public void Test02_Import_WhenFileContainsTrailBlazerFinRecord_Learner_ShouldHaveFinRecords()
         {
             string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
             Message ilrMessage = new Message(fileName);
@@ -55,7 +55,7 @@ namespace ILR.LearnerEntry.Tests
             // Assert.True(File.Exists(fileName), "Failed to create internal file");
         }
         [Test]
-        public void Test01_Import_WhenFileContainsTrailBlazerFinRecord_OutputFile_ShouldHaveFinRecords()
+        public void Test03_Import_WhenFileContainsTrailBlazerFinRecord_OutputFile_ShouldHaveFinRecords()
         {
            
             XNamespace ns = "SFA/ILR/2017-18";
@@ -76,7 +76,7 @@ namespace ILR.LearnerEntry.Tests
         }
 
         [Test]
-        public void Test01_Export_WhenFileValidatedWithSchema_ShouldHaveNoErrors()
+        public void Test04_Export_WhenFileValidatedWithSchema_ShouldHaveNoErrors()
         {
 
             XNamespace ns = "SFA/ILR/2017-18";
@@ -110,7 +110,26 @@ namespace ILR.LearnerEntry.Tests
         }
 
 
+        [Test]
+        public void Test05_Import_WhenFileContainsESFConRefNum_OutputFile_ShouldHaveConRefNum()
+        {
 
+            XNamespace ns = "SFA/ILR/2017-18";
+            XNamespace nsa = "http://schemas.datacontract.org/2004/07/My.Namespace";
+
+            string fileName = Path.Combine(Directory.GetCurrentDirectory(), ILRFileName);
+            Message ilrMessage = new Message(fileName);
+            string importFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ILRFileToImport);
+            ilrMessage.Import(importFile);
+            Assert.True(ilrMessage.LearnerList.Count > 0, "Unable to populate learners from imported file");
+            XDocument xDoc = XDocument.Load(fileName);
+            var query = from t in xDoc.Descendants(ns + "ConRefNumber")
+                        select t.Value;
+            var val = query.First();
+            Assert.NotNull(val, "ConRefNumber are not created");
+            Assert.AreEqual(val, "ESF-2068", "ConRefNumber value is wrong");
+            // Assert.True(File.Exists(fileName), "Failed to create internal file");
+        }
 
 
 

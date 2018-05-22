@@ -179,7 +179,7 @@
                 <TextBlock Grid.Row="10" Grid.Column="3" Text="Apprenticeship Standard Code : " HorizontalAlignment="Right" Margin="3" Style="{DynamicResource StandardTextBlockStyle}" />
                 <TextBox Grid.Row="10" Grid.Column="4" 
                       TabIndex="7"
-                     Text="{Binding Path=CurrentItem.StdCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  
+                     Text="{Binding Path=CurrentItem.StdCode, Mode=TwoWay, UpdateSourceTrigger=Default, ValidatesOnDataErrors=true, NotifyOnValidationError=true, TargetNullValue=''}"  
                      Style="{DynamicResource TextBoxWithError}"
                      HorizontalAlignment="Left" 
                      HorizontalContentAlignment="Left" 
