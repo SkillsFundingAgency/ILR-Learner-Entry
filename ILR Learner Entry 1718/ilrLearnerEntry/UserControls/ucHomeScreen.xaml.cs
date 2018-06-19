@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Xml;
 
 
@@ -79,6 +80,8 @@ namespace ilrLearnerEntry.UserControls
             RaiseEvent(new RoutedEventArgs(OnUkprnUpdateEvent, String.Empty));
         }
         #endregion
+
+
 
         #region Public Properties
         public string WindowTitle
@@ -181,7 +184,7 @@ namespace ilrLearnerEntry.UserControls
         public void RefreshData()
         {
             // Not sure DoEvents is needed anymore?
-            App.DoEvents();
+            //App.DoEvents();
             SetupBackgroundWorkerStats();
         }
         #endregion
@@ -218,7 +221,15 @@ namespace ilrLearnerEntry.UserControls
             try
             {
                 App.Log("Home Screen", "WorkerStats", "ReFreshStats.");
-                App.ILRMessage.ReFreshStats();
+
+                Application.Current.Dispatcher.BeginInvoke(
+                DispatcherPriority.Background,
+                new Action(() => {
+                    App.ILRMessage.ReFreshStats();
+                    OnPropertyChanged("Statistics");
+                }));
+
+               
             }
             catch (Exception ex)
             {
@@ -373,6 +384,14 @@ namespace ilrLearnerEntry.UserControls
         {
 
         }
+
+
+        private bool HasInvalidLdp()
+        {
+
+            return App.ILRMessage.LearnerDestinationandProgressionList.Any(ldp => ((!ldp.ULN.HasValue || string.IsNullOrEmpty(ldp.LearnRefNumber)) && !ldp.ExcludeFromExport) );
+
+        }
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {
             LoadMessage = String.Format("Export Started : {0}", this.UKPRN.ToString());
@@ -393,6 +412,16 @@ namespace ilrLearnerEntry.UserControls
                                                            , MessageBoxButton.OK
                                                            , MessageBoxImage.Error
                                                            , MessageBoxResult.OK);
+
+                LoadMessage = String.Empty;
+            }
+            else if(HasInvalidLdp())
+            {
+                MessageBox.Show(String.Format("There are invalid Learner Destination Progression records, please correct them", Environment.NewLine)
+                                                          , "Unable to Export"
+                                                          , MessageBoxButton.OK
+                                                          , MessageBoxImage.Error
+                                                          , MessageBoxResult.OK);
 
                 LoadMessage = String.Empty;
             }

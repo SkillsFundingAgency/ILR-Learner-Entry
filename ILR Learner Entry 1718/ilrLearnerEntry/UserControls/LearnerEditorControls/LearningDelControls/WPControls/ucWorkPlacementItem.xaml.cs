@@ -51,12 +51,13 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 {
                     _learningDeliveryWorkPlacement = value;
                     WorkPlaceEmpId = _learningDeliveryWorkPlacement.WorkPlaceEmpId.ToString();
-                    WorkPlaceHours = _learningDeliveryWorkPlacement.WorkPlaceHours.ToString();
+                    WorkPlaceHours = _learningDeliveryWorkPlacement.WorkPlaceHours;
                     this.DataContext = this;
                     OnPropertyChanged("CurrentItem");
                     OnPropertyChanged("WorkPlaceEmpId");
                     OnPropertyChanged("WorkPlaceHours");
                     OnPropertyChanged("WorkplacementCodeList");
+                    _learningDeliveryWorkPlacement.Refresh();
                 }
                 else
                 {
@@ -76,6 +77,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 {
                     CurrentItem.WorkPlaceEmpId = number;
                 }
+                _learningDeliveryWorkPlacement.Refresh();
             }
         }
         public string WorkPlaceHours
@@ -84,12 +86,14 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
             set
             {
                 _workPlaceHours = value;
-                int number;
-                bool result = Int32.TryParse(System.Convert.ToString(value), out number);
-                if (result)
-                {
-                    CurrentItem.WorkPlaceHours = number;
-                }
+                //int number;
+                //bool result = Int32.TryParse(System.Convert.ToString(value), out number);
+                //if (result)
+                //{
+                    CurrentItem.WorkPlaceHours = value;
+                //}
+
+                _learningDeliveryWorkPlacement.Refresh();
             }
         }
         public DataTable WorkplacementCodeList { set; get; }
@@ -160,7 +164,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                 if (CurrentItem != null)
                 {
                     switch (columnName)
-                    { 
+                    {
                         case "WorkPlaceEmpId":
                             if (WorkPlaceEmpId != null && WorkPlaceEmpId.Length > 0)
                             {
@@ -184,6 +188,8 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                                     sReturn += String.Format("{0} has non numeric values. this will NOT be SAVED !!!", columnName);
                                 }
                             }
+                            else if (WorkPlaceHours == null || WorkPlaceHours.ToString().Length == 0)
+                                return "Work Place Hours is required\r\n";
                             break;
                         default:
                             break;

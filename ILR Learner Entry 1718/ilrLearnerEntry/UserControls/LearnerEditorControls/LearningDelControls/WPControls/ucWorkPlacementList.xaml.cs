@@ -100,6 +100,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
 			LearningDeliveryWorkPlacement tmp = _learnerDelivery.CreateLearningDeliveryWorkPlacement();
 			WorkPlacementItemsCV.MoveCurrentTo(tmp);
 			WorkPlacementItemsCV.Refresh();
+            _learnerDelivery.RefreshData();
 			OnPropertyChanged("WorkPlacementItemsCV");
 			ShouldShowListView();
 		}

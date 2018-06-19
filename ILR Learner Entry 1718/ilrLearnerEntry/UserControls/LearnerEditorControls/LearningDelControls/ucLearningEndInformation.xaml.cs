@@ -52,6 +52,7 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
                     Refresh();
                     dtLearnActEndDate.SelectedDateChanged += dtLearnActEndDate_SelectedDateChanged;
                     dtAchDate.SelectedDateChanged += dtAchDate_SelectedDateChanged;
+
                 }
                 else
                 {

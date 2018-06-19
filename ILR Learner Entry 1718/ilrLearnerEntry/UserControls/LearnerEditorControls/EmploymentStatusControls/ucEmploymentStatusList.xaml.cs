@@ -29,6 +29,7 @@ namespace ilrLearnerEntry.UserControls.EmploymentStatus
         #region Constructor
         public ucEmploymentStatusList()
         {
+            this.DataContext = this;
             InitializeComponent();
         }
         #endregion
