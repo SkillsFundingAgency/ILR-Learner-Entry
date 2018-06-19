@@ -24,6 +24,9 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
     /// </summary>
     public partial class ucLearningDeliveryList : UserControl, INotifyPropertyChanged
     {
+
+      
+
         private void lv_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)
@@ -45,7 +48,10 @@ namespace ilrLearnerEntry.UserControls.LearnerEditorControls.LearningDelControls
         #region Constructor
         public ucLearningDeliveryList()
         {
+            
+
             InitializeComponent();
+
             lv.Visibility = System.Windows.Visibility.Visible;
             LearningDeliveryItemControl.Visibility = System.Windows.Visibility.Collapsed;
         }

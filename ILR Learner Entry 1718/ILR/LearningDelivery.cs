@@ -53,9 +53,9 @@ namespace ILR
                 message += this["LearnPlanEndDate"];
                 message += this["FundModel"];
                 message += this["CompStatus"];
-				message += this["DelLocPostCode"];			
-
-				return message;
+				message += this["DelLocPostCode"];
+                LearningDeliveryWorkPlacementList.ForEach(wp => message += wp.IncompleteMessage);
+                return message;
             }
         }
         public bool ShouldProbablyMigrate
@@ -763,10 +763,18 @@ namespace ILR
         {
             XmlNode newNode = Node.OwnerDocument.CreateElement("LearningDeliveryWorkPlacement", NSMgr.LookupNamespace("ia"));
             LearningDeliveryWorkPlacement newInstance = new LearningDeliveryWorkPlacement(newNode, NSMgr);
+            newInstance.LearningDeliveryWPPropertyChanged += NewInstance_LearningDeliveryWPPropertyChanged;
             LearningDeliveryWorkPlacementList.Add(newInstance);
             AppendToLastOfNodeNamed(newNode, newNode.Name);
+            OnLearningDeliveryPropertyChanged();
             return newInstance;
         }
+
+        private void NewInstance_LearningDeliveryWPPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnLearningDeliveryPropertyChanged();
+        }
+
         private void AppendToLastOfNodeNamed(XmlNode NewNode, string NodeName)
         {
             switch (NodeName)
@@ -868,7 +876,12 @@ namespace ILR
 
             nodes = Node.SelectNodes("./ia:LearningDeliveryWorkPlacement", NSMgr);
             foreach (XmlNode node in nodes)
-                LearningDeliveryWorkPlacementList.Add(new LearningDeliveryWorkPlacement(node, NSMgr));
+            {
+                var newInstance = new LearningDeliveryWorkPlacement(node, NSMgr);
+                newInstance.LearningDeliveryWPPropertyChanged += NewInstance_LearningDeliveryWPPropertyChanged;
+                LearningDeliveryWorkPlacementList.Add(newInstance);
+                OnLearningDeliveryPropertyChanged();
+            }
 
             OnPropertyChanged("CompStatus");
 
@@ -934,7 +947,9 @@ namespace ILR
                 XmlNode newNode = Node.OwnerDocument.CreateElement("LearningDeliveryWorkPlacement", NSMgr.LookupNamespace("ia"));
                 LearningDeliveryWorkPlacement newInstance = new LearningDeliveryWorkPlacement(migrationItem, newNode, NSMgr);
                 LearningDeliveryWorkPlacementList.Add(newInstance);
+                newInstance.LearningDeliveryWPPropertyChanged += NewInstance_LearningDeliveryWPPropertyChanged;
                 AppendToLastOfNodeNamed(newNode, newNode.Name);
+                OnLearningDeliveryPropertyChanged();
             }
             //foreach (LearningDeliveryWorkPlacement migrationItem in MigrationLearningDelivery.LearningDeliveryWorkPlacementList)
             //{
@@ -1000,9 +1015,16 @@ namespace ILR
                     this.LearningDeliveryHE = null;
                     break;
                 case "ILR.LearningDeliveryWorkPlacement":
-                    this.LearningDeliveryWorkPlacementList.Remove((LearningDeliveryWorkPlacement)Child);
+                    LearningDeliveryWorkPlacement childWp = Child as LearningDeliveryWorkPlacement;
+                    if (childWp != null)
+                    {
+                        childWp.LearningDeliveryWPPropertyChanged -= NewInstance_LearningDeliveryWPPropertyChanged;
+                        this.LearningDeliveryWorkPlacementList.Remove((LearningDeliveryWorkPlacement)Child);
+                    }
                     break;
             }
+
+            OnLearningDeliveryPropertyChanged();
         }
         #region FAM management
         private LearningDeliveryFAM GetLegacyFAM(string FAMType)
@@ -1191,6 +1213,8 @@ namespace ILR
             OnPropertyChanged("LearnPlanEndDate");
             OnPropertyChanged("FundModel");
             OnPropertyChanged("CompStatus");
+            OnPropertyChanged("IsComplete");
+            OnPropertyChanged("IncompleteMessage");
         }
         public void RefreshData()
         {
